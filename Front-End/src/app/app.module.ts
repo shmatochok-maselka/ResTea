@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BlogComponent } from './blog/blog.component';
+import {BlogCarouselModule} from "./blog-carousel/blog-carousel.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { BlogComponent } from './blog/blog.component';
     BlogComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BlogCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
