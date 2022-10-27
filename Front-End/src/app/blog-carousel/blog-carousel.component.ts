@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-interface carouseleImages{
-  imageSrc:string;
-  imageAlt:string;
+interface carouseleImages {
+  imageSrc: string;
+  imageAlt: string;
 }
 
 @Component({
@@ -13,14 +13,33 @@ interface carouseleImages{
 export class BlogCarouselComponent implements OnInit {
   @Input() images: carouseleImages[] = [];
   @Input() indicators = true;
-  constructor() { }
+  @Input() controls = true;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
   selectedIndex = 0;
 
-  selectImage(index:number):void{
+  selectImage(index: number): void {
     this.selectedIndex = index;
+  }
+
+  onPrevClick(): void {
+    if (this.selectedIndex === 0) {
+      this.selectedIndex = this.images.length - 1;
+    } else {
+      this.selectedIndex--;
+    }
+  }
+
+  onNextClick(): void {
+    if(this.selectedIndex===this.images.length - 1){
+      this.selectedIndex = 0;
+    } else {
+      this.selectedIndex++;
+    }
   }
 }
