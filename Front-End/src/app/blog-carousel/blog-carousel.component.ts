@@ -14,11 +14,16 @@ export class BlogCarouselComponent implements OnInit {
   @Input() images: carouseleImages[] = [];
   @Input() indicators = true;
   @Input() controls = true;
+  @Input() autoSlide = false;
+  @Input() slideInterval = 5000;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    if (this.autoSlide) {
+      this.autoSlideImages()
+    }
   }
 
   selectedIndex = 0;
@@ -36,10 +41,16 @@ export class BlogCarouselComponent implements OnInit {
   }
 
   onNextClick(): void {
-    if(this.selectedIndex===this.images.length - 1){
+    if (this.selectedIndex === this.images.length - 1) {
       this.selectedIndex = 0;
     } else {
       this.selectedIndex++;
     }
+  }
+
+  autoSlideImages(): void {
+    setInterval(() => {
+      this.onNextClick();
+    }, this.slideInterval)
   }
 }
