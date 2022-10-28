@@ -1,6 +1,9 @@
 # ResTea
 Team project(group №1)
 
+Swagger http://localhost:8080/swagger-ui/index.html
+
+
 Steps to set up project
 1. Connect to MySql
 
