@@ -22,15 +22,34 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> findAllUsers(){
+    public ResponseEntity<List<UserDto>> findAllUsers() {
         return new ResponseEntity<>(userService.findAll().stream()
                 .map(UserDto::new)
                 .collect(Collectors.toList()),
                 HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> findUserById(@PathVariable Long id) {
+        return new ResponseEntity<>(new UserDto(userService.findUserById(id)),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<UserDto> findUserByName(@PathVariable String name) {
+        return new ResponseEntity<>(new UserDto(userService.findUserByName(name)),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/findByEmail/{email}")
+    public ResponseEntity<UserDto> findUserByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(new UserDto(userService.findUserByEmail(email)),
+                HttpStatus.OK);
+    }
+
+
     @PostMapping
-    public User saveUser(@RequestBody UserDto userDto){
+    public User saveUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto.toUser());
     }
 }
