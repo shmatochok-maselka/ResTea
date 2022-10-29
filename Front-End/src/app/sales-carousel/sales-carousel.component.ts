@@ -6,11 +6,11 @@ interface carouseleImages {
 }
 
 @Component({
-  selector: 'app-blog-carousel',
-  templateUrl: './blog-carousel.component.html',
-  styleUrls: ['./blog-carousel.component.css']
+  selector: 'app-sales-carousel',
+  templateUrl: './sales-carousel.component.html',
+  styleUrls: ['./sales-carousel.component.css']
 })
-export class BlogCarouselComponent implements OnInit {
+export class SalesCarouselComponent implements OnInit {
   @Input() images: carouseleImages[] = [];
   @Input() indicators = true;
   @Input() controls = true;
