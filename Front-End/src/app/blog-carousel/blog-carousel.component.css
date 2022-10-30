@@ -42,3 +42,29 @@ span.post-active p {
   margin-top: 5%;
   margin-bottom: 5%;
 }
+
+.carousel-dot-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.dot {
+  cursor: pointer;
+  opacity: 0.5;
+  width: 13px;
+  height: 13px;
+  margin: 0 5px;
+  background-color: black;
+  display: inline-block;
+  border-radius: 50%;
+  transition: opacity 0.6s ease;
+}
+
+.active, .dot:hover {
+  opacity: 1;
+}

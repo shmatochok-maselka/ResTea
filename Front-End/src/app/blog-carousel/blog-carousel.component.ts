@@ -15,6 +15,7 @@ interface postComponents {
 })
 export class BlogCarouselComponent implements OnInit {
   @Input() posts: postComponents[] = []
+  @Input() indicators = true;
 
   constructor() {
   }
@@ -24,4 +25,7 @@ export class BlogCarouselComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectPost(index: number): void {
+    this.selectedIndex = index;
+  }
 }
