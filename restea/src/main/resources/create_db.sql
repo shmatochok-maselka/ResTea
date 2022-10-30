@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product` (
                                                   `id` INT NOT NULL AUTO_INCREMENT,
                                                   `name` VARCHAR(20) NOT NULL,
     `description` VARCHAR(400) NOT NULL,
-    `image` BLOB NOT NULL,
+    `image` BLOB DEFAULT NULL,
     `price` INT NOT NULL,
     `type_id` INT NOT NULL,
     `Origin_id` INT NOT NULL,
