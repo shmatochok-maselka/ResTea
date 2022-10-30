@@ -15,7 +15,7 @@ export class AppComponent {
       imageAlt: 'nature1',
       postHeader: 'FirstPost',
       postText: 'It`s me, text of this post',
-      postLink: '',
+      postLink: ''
     },
     {
       imageSrc:

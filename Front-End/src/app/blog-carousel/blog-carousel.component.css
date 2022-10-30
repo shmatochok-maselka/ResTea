@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-container {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  position: relative;
+  width: 70%;
+}
+
+.carousel-container h1 {
+  text-align: center;
+}
+.carousel-container button{
+  display: flex;
+}
+.carousel-container img, span {
+  display: none;
+}
+
+.carousel-container span {
+  margin-left: 15px;
+}
+
+.carousel-container img {
+  border-radius: 100%;
+}
+
+.carousel-container img.post-active, .carousel-container span.post-active {
+  display: block;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+span.post-active p {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}

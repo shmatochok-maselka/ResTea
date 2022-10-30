@@ -1,1 +1,12 @@
-<p>blog-carousel works!</p>
+<div *ngIf="posts && posts.length > 0" class="carousel-container">
+  <img *ngFor="let post of posts; let i = index"
+       [src]="post.imageSrc" [alt]="post.imageAlt"
+       [ngClass]="{'post-active': selectedIndex === i}"
+  >
+  <span *ngFor="let post of posts; let i = index"
+    [ngClass]="{'post-active': selectedIndex === i}">
+  <h1 [textContent]="post.postHeader"></h1>
+  <p [textContent]="post.postText"></p>
+  <button class="btn btn-full-post">Show full</button>
+</span>
+</div>

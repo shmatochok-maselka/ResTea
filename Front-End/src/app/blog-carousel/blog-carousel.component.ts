@@ -19,6 +19,8 @@ export class BlogCarouselComponent implements OnInit {
   constructor() {
   }
 
+  selectedIndex = 0;
+
   ngOnInit(): void {
   }
 
