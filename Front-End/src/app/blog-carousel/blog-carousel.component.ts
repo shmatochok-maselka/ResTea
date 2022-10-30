@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+
+interface postComponents {
+  imageSrc: string;
+  imageAlt: string;
+  postHeader: string;
+  postText: string;
+  postLink: string;
+}
 
 @Component({
   selector: 'app-blog-carousel',
@@ -6,8 +14,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-carousel.component.css']
 })
 export class BlogCarouselComponent implements OnInit {
+  @Input() posts: postComponents[] = []
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
