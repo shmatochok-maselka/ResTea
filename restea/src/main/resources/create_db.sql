@@ -18,40 +18,52 @@ DROP SCHEMA IF EXISTS `ResTea` ;
 CREATE SCHEMA IF NOT EXISTS `ResTea` DEFAULT CHARACTER SET utf8 ;
 USE `ResTea` ;
 
--- -----------------------------------------------------
--- Table `ResTea`.`Role`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ResTea`.`Role` ;
+CREATE SCHEMA IF NOT EXISTS `ResTea` DEFAULT CHARACTER SET utf8 ;
+USE `ResTea` ;
 
-CREATE TABLE IF NOT EXISTS `ResTea`.`Role` (
-                                               `id` INT NOT NULL,
-                                               `name` VARCHAR(20) NOT NULL,
-    PRIMARY KEY (`id`))
+-- -----------------------------------------------------
+-- Table `ResTea`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ResTea`.`user` (
+   `id` INT NOT NULL AUTO_INCREMENT,
+   `name` VARCHAR(15) NOT NULL,
+   `surname` VARCHAR(15) NOT NULL,
+   `birthday` DATE NOT NULL,
+   `bonus` INT NOT NULL,
+   `email` VARCHAR(45) NOT NULL,
+   PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ResTea`.`User`
+-- Table `ResTea`.`role`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ResTea`.`User` ;
-
-CREATE TABLE IF NOT EXISTS `ResTea`.`User` (
-                                               `id` INT NOT NULL AUTO_INCREMENT,
-                                               `name` VARCHAR(15) NOT NULL,
-    `surname` VARCHAR(15) NOT NULL,
-    `birthday` DATE NOT NULL,
-    `bonus` INT NOT NULL,
-    `email` VARCHAR(45) NOT NULL,
-    `idRole` INT NOT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `idRole_idx` (`idRole` ASC) VISIBLE,
-    CONSTRAINT `idRole`
-    FOREIGN KEY (`idRole`)
-    REFERENCES `ResTea`.`Role` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `ResTea`.`role` (
+   `id` INT NOT NULL,
+   `name` VARCHAR(20) NOT NULL,
+   PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `ResTea`.`user_role`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ResTea`.`user_role` (
+    `user_id` INT NOT NULL,
+    `role_id` INT NOT NULL,
+    PRIMARY KEY (`user_id`, `role_id`),
+    INDEX `role_id_idx` (`role_id` ASC) VISIBLE,
+    CONSTRAINT `user_id`
+        FOREIGN KEY (`user_id`)
+            REFERENCES `ResTea`.`user` (`id`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT `role_id`
+        FOREIGN KEY (`role_id`)
+            REFERENCES `ResTea`.`role` (`id`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `ResTea`.`Type`
