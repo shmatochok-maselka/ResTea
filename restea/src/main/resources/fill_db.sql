@@ -25,6 +25,30 @@ VALUES(1, "product1", "desc1", 150, 1, 2),
       (2, "product2", "desc2", 180, 2, 3),
       (3, "product3", "desc3", 200, 2, 1);
 
+INSERT INTO flavor(id, name)
+VALUES(1, "flavor1"),
+      (2, "flavor2"),
+      (3, "flavor3");
+
+INSERT INTO properties(id, name)
+VALUES(1, "property1"),
+      (2, "property2"),
+      (3, "property3");
+
+INSERT INTO product_flavor(Product_id, flavor_id)
+VALUES(1, 1),
+      (2, 1),
+      (2, 2),
+      (2, 3),
+      (3, 2);
+
+INSERT INTO product_properties(Product_id, Properties_id)
+VALUES(1, 2),
+      (2, 1),
+      (2, 2),
+      (2, 3),
+      (3, 1);
+
 INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
 INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Petro', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
 INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
