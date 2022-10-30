@@ -15,15 +15,15 @@
 .carousel-container h1 {
   text-align: center;
 }
-.carousel-container button{
+
+.carousel-container button {
   display: flex;
 }
+
 .carousel-container img, span {
   display: none;
-}
-
-.carousel-container span {
   margin-left: 15px;
+  margin-right: 15px;
 }
 
 .carousel-container img {
@@ -32,7 +32,7 @@
 
 .carousel-container img.post-active, .carousel-container span.post-active {
   display: block;
-  width: 50%;
+  width: 45%;
   height: 100%;
   overflow: hidden;
   word-wrap: break-word;
@@ -67,4 +67,36 @@ span.post-active p {
 
 .active, .dot:hover {
   opacity: 1;
+}
+
+.btn-carousel {
+  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top:0;
+  bottom: 0;
+  color: white;
+  background: 0 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.icon-carousel {
+  color: black;
+  opacity: 0.5;
+  transition: all 0.15s ease;
+}
+
+.icon-carousel:hover {
+  opacity: 0.9;
+}
+
+.icon-carousel:active {
+  opacity: 0.6;
+}
+
+.icon-prev, .icon-next {
+  font-size: 35px;
 }
