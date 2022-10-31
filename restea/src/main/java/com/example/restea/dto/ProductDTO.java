@@ -2,6 +2,7 @@ package com.example.restea.dto;
 
 import com.example.restea.model.Product;
 import com.example.restea.model.ProductType;
+import com.example.restea.repository.ProductOriginRepository;
 import com.example.restea.repository.ProductTypeRepository;
 import com.example.restea.service.UserService;
 import lombok.Getter;
@@ -16,6 +17,9 @@ public class ProductDto {
 
     @Autowired
     private ProductTypeRepository typeRepository;
+
+    @Autowired
+    private ProductOriginRepository originRepository;
     private Long id;
     private String name;
 
@@ -26,6 +30,8 @@ public class ProductDto {
     private int price;
     private String typeName;
 
+    private String originName;
+
     public ProductDto(Product product) {
         this.id = product.getId();
         this.name = product.getName();
@@ -33,6 +39,7 @@ public class ProductDto {
         this.image = product.getImage();
         this.price = product.getPrice();
         this.typeName = product.getType().getName();
+        this.originName = product.getOrigin().getName();
     }
 
     public Product toProduct(){
@@ -42,6 +49,7 @@ public class ProductDto {
         product.setImage(image);
         product.setPrice(price);
         product.setType(typeRepository.findByName(typeName));
+        product.setOrigin(originRepository.findByName(originName));
         return product;
     }
 }
