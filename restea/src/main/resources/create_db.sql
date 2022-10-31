@@ -25,13 +25,13 @@ USE `ResTea` ;
 -- Table `ResTea`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ResTea`.`user` (
-   `user_id` INT NOT NULL AUTO_INCREMENT,
+   `id` INT NOT NULL AUTO_INCREMENT,
    `name` VARCHAR(15) NOT NULL,
    `surname` VARCHAR(15) NOT NULL,
    `birthday` DATE NOT NULL,
    `bonus` INT NOT NULL,
    `email` VARCHAR(45) NOT NULL,
-   PRIMARY KEY (`user_id`))
+   PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
 
@@ -39,9 +39,9 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user` (
 -- Table `ResTea`.`role`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ResTea`.`role` (
-   `role_id` INT NOT NULL,
+   `id` INT NOT NULL,
    `name` VARCHAR(20) NOT NULL,
-   PRIMARY KEY (`role_id`))
+   PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
 
@@ -55,15 +55,39 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user_role` (
     INDEX `role_id_idx` (`role_id` ASC) VISIBLE,
     CONSTRAINT `user_id`
         FOREIGN KEY (`user_id`)
-            REFERENCES `ResTea`.`user` (`user_id`)
+            REFERENCES `ResTea`.`user` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT `role_id`
         FOREIGN KEY (`role_id`)
-            REFERENCES `ResTea`.`role` (`role_id`)
+            REFERENCES `ResTea`.`role` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION)
     ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ResTea`.`order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ResTea`.`order` (
+    `id` INT NOT NULL,
+    `phone` VARCHAR(12) NOT NULL,
+    `address` VARCHAR(50) NOT NULL,
+    `date` DATETIME NOT NULL,
+    `price` DOUBLE NOT NULL,
+    `used_bonus` INT NOT NULL,
+    `receiver_name` VARCHAR(15) NOT NULL,
+    `receiver_surname` VARCHAR(15) NOT NULL,
+    `order_user_id` INT NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `user_id_idx` (`order_user_id` ASC) VISIBLE,
+    CONSTRAINT `order_user_id`
+        FOREIGN KEY (`order_user_id`)
+            REFERENCES `ResTea`.`user` (`id`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `ResTea`.`Type`
@@ -117,32 +141,6 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product` (
     ON UPDATE NO ACTION)
     ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `ResTea`.`Order`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ResTea`.`order`;
-
-CREATE TABLE IF NOT EXISTS `ResTea`.`order` (
-    `order_id` INT NOT NULL,
-    `phone` VARCHAR(12) NOT NULL,
-    `address` VARCHAR(50) NOT NULL,
-    `date` DATETIME NOT NULL,
-    `price` DOUBLE NOT NULL,
-    `used_bonus` INT NOT NULL,
-    `receiver_name` VARCHAR(15) NOT NULL,
-    `receiver_surname` VARCHAR(15) NOT NULL,
-    `order_user_id` INT NOT NULL,
-    PRIMARY KEY (`order_id`),
-    INDEX `user_id_idx` (`order_user_id` ASC) VISIBLE,
-    CONSTRAINT `order_user_id`
-    FOREIGN KEY (`order_user_id`)
-    REFERENCES `ResTea`.`user` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-    ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `ResTea`.`Cart`
 -- -----------------------------------------------------
@@ -155,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`cart` (
     INDEX `product_id_idx` (`cart_product_id` ASC) VISIBLE,
     CONSTRAINT `cart_user_id`
     FOREIGN KEY (`cart_user_id`)
-    REFERENCES `ResTea`.`user` (`user_id`)
+    REFERENCES `ResTea`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
     CONSTRAINT `cart_product_id`
@@ -179,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`order_product` (
     INDEX `product_id_idx` (`product_id` ASC) VISIBLE,
     CONSTRAINT `order_id`
     FOREIGN KEY (`order_id`)
-    REFERENCES `ResTea`.`order` (`order_id`)
+    REFERENCES `ResTea`.`order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
     CONSTRAINT `product_id`
