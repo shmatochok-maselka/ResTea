@@ -50,6 +50,6 @@ public class UserController {
 
     @PostMapping
     public User saveUser(@RequestBody UserDto userDto) {
-        return userService.createUser(userDto.toUser());
+        return userService.saveUser(userDto.toUser());
     }
 }

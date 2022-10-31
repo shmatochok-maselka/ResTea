@@ -14,7 +14,10 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = "user",
+        uniqueConstraints ={
+            @UniqueConstraint(columnNames = "email")
+        })
 public class User extends BaseEntity {
     @Column(name = "name")
     private String name;
