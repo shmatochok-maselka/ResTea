@@ -20,7 +20,7 @@ VALUES(1, 'Зелений'),
       (2, 'Чорний'),
       (3, 'Фруктовий');
 
-INSERT INTO product(product_id, name, description, price, type_id, origin_id)
+INSERT INTO product(id, name, description, price, type_id, origin_id)
 VALUES(1, 'product1', 'desc1', 150, 1, 2),
       (2, 'product2', 'desc2', 180, 2, 3),
       (3, 'product3', 'desc3', 200, 2, 1);
