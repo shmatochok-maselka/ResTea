@@ -11,11 +11,11 @@ DELETE FROM properties;
 DELETE FROM product_flavor;
 DELETE FROM product_properties;
 
-INSERT INTO origin(origin_id, name)
+INSERT INTO origin(id, name)
 VALUES(1, 'Китай'),
       (2, 'Індія');
 
-INSERT INTO type(type_id, name)
+INSERT INTO type(id, name)
 VALUES(1, 'Зелений'),
       (2, 'Чорний'),
       (3, 'Фруктовий');

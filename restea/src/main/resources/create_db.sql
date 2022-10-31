@@ -95,9 +95,9 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`order` (
 DROP TABLE IF EXISTS `ResTea`.`Type` ;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`Type` (
-                                               `type_id` INT NOT NULL AUTO_INCREMENT,
+                                               `id` INT NOT NULL AUTO_INCREMENT,
                                                `name` VARCHAR(20) NOT NULL,
-                                               PRIMARY KEY (`type_id`))
+                                               PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
 
@@ -107,9 +107,9 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Type` (
 DROP TABLE IF EXISTS `ResTea`.`Origin` ;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`Origin` (
-                                                 `origin_id` INT NOT NULL AUTO_INCREMENT,
+                                                 `id` INT NOT NULL AUTO_INCREMENT,
                                                  `name` VARCHAR(45) NOT NULL,
-                                                 PRIMARY KEY (`origin_id`))
+                                                 PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
 
@@ -131,12 +131,12 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product` (
                                                   INDEX `fk_Product_Origin1_idx` (`origin_id` ASC) VISIBLE,
                                                   CONSTRAINT `fk_Product_Type1`
                                                       FOREIGN KEY (`type_id`)
-                                                          REFERENCES `ResTea`.`Type` (`type_id`)
+                                                          REFERENCES `ResTea`.`Type` (`id`)
                                                           ON DELETE NO ACTION
                                                           ON UPDATE NO ACTION,
                                                   CONSTRAINT `fk_Product_Origin1`
                                                       FOREIGN KEY (`origin_id`)
-                                                          REFERENCES `ResTea`.`Origin` (`origin_id`)
+                                                          REFERENCES `ResTea`.`Origin` (`id`)
                                                           ON DELETE NO ACTION
                                                           ON UPDATE NO ACTION)
     ENGINE = InnoDB;
