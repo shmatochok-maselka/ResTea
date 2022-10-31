@@ -25,18 +25,13 @@ public class Product extends BaseEntity{
     @Column(name = "price")
     private int price;
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "type_id", referencedColumnName = "id")
-    private ProductType type;*/
-
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "origin_id")
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "origin_id")
-
     @ManyToOne
     @JoinColumn(name="origin_id", nullable=false)
     private ProductOrigin origin;
+
+    @ManyToOne
+    @JoinColumn(name="type_id", nullable=false)
+    private ProductType type;
 
     /*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "product_flavor",

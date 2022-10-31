@@ -140,31 +140,6 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product` (
           ON DELETE NO ACTION
           ON UPDATE NO ACTION)
     ENGINE = InnoDB;
-#                                                   `id` INT NOT NULL AUTO_INCREMENT,
-#                                                   `name` VARCHAR(20) NOT NULL,
-#                                                   `description` VARCHAR(400) NOT NULL,
-#                                                   `image` BLOB DEFAULT NULL,
-#                                                   `price` INT NOT NULL,
-#                                                   `type_id` INT NOT NULL,
-#                                                   `origin_id` INT NOT NULL,
-#                                                   PRIMARY KEY (`id`, `type_id`, `origin_id`),
-#                                                   FOREIGN KEY(`type_id`) REFERENCES type(`id`),
-#                                                   FOREIGN KEY(`origin_id`) REFERENCES origin(`id`))
-
-#                                                   PRIMARY KEY (`id`, `type_id`, `origin_id`),
-#                                                   INDEX `fk_Product_Type1_idx` (`type_id` ASC) VISIBLE,
-#                                                   INDEX `fk_Product_Origin1_idx` (`origin_id` ASC) VISIBLE,
-#                                                   CONSTRAINT `fk_Product_Type1`
-#                                                       FOREIGN KEY (`type_id`)
-#                                                           REFERENCES `ResTea`.`Type` (`id`)
-#                                                           ON DELETE NO ACTION
-#                                                           ON UPDATE NO ACTION,
-#                                                   CONSTRAINT `fk_Product_Origin1`
-#                                                       FOREIGN KEY (`origin_id`)
-#                                                           REFERENCES `ResTea`.`Origin` (`id`)
-#                                                           ON DELETE NO ACTION
-#                                                           ON UPDATE NO ACTION)
-#      ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `ResTea`.`Cart`

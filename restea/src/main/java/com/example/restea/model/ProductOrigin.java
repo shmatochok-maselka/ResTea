@@ -17,10 +17,6 @@ public class ProductOrigin extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-    //@JsonIgnore
-//    @ManyToOne(mappedBy = "origin")
-//    @OneToOne(mappedBy = "origin")
- //   @JsonIgnore
     @OneToMany(mappedBy="origin")
     private List<Product> products;
 }

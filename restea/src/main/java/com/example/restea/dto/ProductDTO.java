@@ -38,7 +38,7 @@ public class ProductDto {
         this.image = product.getImage();
         this.price = product.getPrice();
         this.originName = product.getOrigin().getName();
-      //  this.typeName = product.getType().getName();
+        this.typeName = product.getType().getName();
     }
 
     @Autowired
@@ -48,7 +48,7 @@ public class ProductDto {
         product.setDescription(description);
         product.setImage(image);
         product.setPrice(price);
-        //product.setType(typeRepository.findByName(typeName));
+        product.setType(typeService.findTypeByName(typeName));
         product.setOrigin(originService.findOriginByName(originName));
         return product;
     }
