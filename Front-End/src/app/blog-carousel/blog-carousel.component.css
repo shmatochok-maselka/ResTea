@@ -20,7 +20,7 @@
   display: flex;
 }
 
-.carousel-container img, span{
+.carousel-container img, .post-text{
   display: none;
   margin-left: 15px;
   margin-right: 15px;
@@ -29,13 +29,12 @@
 }
 
 .carousel-container img {
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
 .carousel-container img.post-active, .carousel-container span.post-active {
   display: block;
   overflow: hidden;
-
 }
 
 .carousel-container img.post-active {
@@ -77,23 +76,21 @@ span.post-active p {
 }
 
 .carousel-dot-container {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: end;
+  justify-self: center;
   padding: 0;
 }
 
 .dot {
+  width: 15px;
+  height: 15px;
   cursor: pointer;
-  opacity: 0.5;
-  width: 13px;
-  height: 13px;
+  opacity: 0.7;
   margin: 0 5px;
-  background-color: black;
+  border: black solid 1px;
   display: inline-block;
   border-radius: 50%;
   transition: opacity 0.6s ease;

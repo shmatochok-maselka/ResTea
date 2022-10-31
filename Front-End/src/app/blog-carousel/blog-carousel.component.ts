@@ -15,7 +15,7 @@ interface postComponents {
 })
 export class BlogCarouselComponent implements OnInit {
   @Input() posts: postComponents[] = []
-  @Input() indicators = false;
+  @Input() indicators = true;
   @Input() controls = true;
 
   constructor() {
