@@ -6,6 +6,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BlogComponent } from './blog/blog.component';
 import {SalesCarouselModule} from "./sales-carousel/sales-carousel.module";
 import {BlogCarouselModule} from "./blog-carousel/blog-carousel.module";
+import {SuggestedItemsModule} from "./suggested-items/suggested-items.module";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {BlogCarouselModule} from "./blog-carousel/blog-carousel.module";
     BrowserModule,
     SalesCarouselModule,
     BlogCarouselModule,
+    SuggestedItemsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
