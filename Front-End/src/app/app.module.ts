@@ -7,6 +7,7 @@ import { BlogComponent } from './blog/blog.component';
 import {SalesCarouselModule} from "./sales-carousel/sales-carousel.module";
 import {BlogCarouselModule} from "./blog-carousel/blog-carousel.module";
 import {SuggestedItemsModule} from "./suggested-items/suggested-items.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {SuggestedItemsModule} from "./suggested-items/suggested-items.module";
     SalesCarouselModule,
     BlogCarouselModule,
     SuggestedItemsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

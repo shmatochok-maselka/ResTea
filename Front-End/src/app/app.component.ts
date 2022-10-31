@@ -7,7 +7,36 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'ResTea';
-
+  items = [
+    {
+      itemImageSrc: 'https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      itemImageAlt: 'nature1',
+      itemPrice: '10 грн',
+      itemName: 'Чай чорний',
+      itemLink: ''
+    },
+    {
+      itemImageSrc: 'https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      itemImageAlt: 'nature1',
+      itemPrice: '10 грн',
+      itemName: 'Чай чорний',
+      itemLink: ''
+    },
+    {
+      itemImageSrc: 'https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      itemImageAlt: 'nature1',
+      itemPrice: '10 грн',
+      itemName: 'Чай чорний',
+      itemLink: ''
+    },
+    {
+      itemImageSrc: 'https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      itemImageAlt: 'nature1',
+      itemPrice: '10 грн',
+      itemName: 'Чай чорний',
+      itemLink: ''
+    }
+  ]
   posts = [
     {
       imageSrc:
