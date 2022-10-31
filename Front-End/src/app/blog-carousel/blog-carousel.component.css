@@ -37,6 +37,13 @@
   overflow: hidden;
   word-wrap: break-word;
 }
+.carousel-container p{
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: large;
+}
 
 span.post-active p {
   margin-top: 5%;
