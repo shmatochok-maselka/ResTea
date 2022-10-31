@@ -12,10 +12,9 @@ public class ProductOriginServiceImpl implements ProductOriginService {
     private ProductOriginRepository originRepository;
 
     @Autowired
-    public ProductOriginServiceImpl(ProductOriginRepository  originRepository ) {
-        this.originRepository = originRepository ;
+    public ProductOriginServiceImpl(ProductOriginRepository originRepository) {
+        this.originRepository = originRepository;
     }
-
     @Override
     public ProductOrigin findOriginById(Long id) {
         return originRepository.findById(id).get();

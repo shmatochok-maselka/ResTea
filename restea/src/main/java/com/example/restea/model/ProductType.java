@@ -18,6 +18,6 @@ public class ProductType extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "type")
-    private Product product;
+    /*@OneToOne(mappedBy = "type")
+    private Product product;*/
 }

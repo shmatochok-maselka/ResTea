@@ -21,9 +21,9 @@ VALUES(1, 'Зелений'),
       (3, 'Фруктовий');
 
 INSERT INTO product(id, name, description, price, type_id, origin_id)
-VALUES(1, 'product1', 'desc1', 150, 1, 2),
+VALUES(1, 'product1', 'desc1', 150, 1, 1),
       (2, 'product2', 'desc2', 180, 2, 2),
-      (3, 'product3', 'desc3', 200, 3, 1);
+       (3, 'product3', 'desc3', 200, 3, 1);
 
 INSERT INTO flavor(flavor_id, name)
 VALUES(1, 'flavor1'),

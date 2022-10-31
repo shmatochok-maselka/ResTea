@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -24,11 +25,23 @@ public class Product extends BaseEntity{
     @Column(name = "price")
     private int price;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "origin_id")
+    /*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "type_id", referencedColumnName = "id")
+    private ProductType type;*/
+
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "origin_id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "origin_id")
+
+    @ManyToOne
+    @JoinColumn(name="origin_id", nullable=false)
     private ProductOrigin origin;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "type_id")
-    private ProductType type;
+    /*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "product_flavor",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "flavor_id")
+    )@ToString.Exclude
+    private Set<Flavor> flavors;*/
 }

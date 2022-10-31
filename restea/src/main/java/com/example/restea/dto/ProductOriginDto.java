@@ -13,7 +13,7 @@ public class ProductOriginDto {
     private Long id;
     private String name;
 
-    public ProductOriginDto(ProductOrigin origin) {
+    public ProductOriginDto(ProductOriginDto origin) {
         this.id = origin.getId();
         this.name = origin.getName();
     }
