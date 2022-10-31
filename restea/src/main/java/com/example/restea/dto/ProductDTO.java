@@ -15,11 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @NoArgsConstructor
 public class ProductDto {
 
-    @Autowired
-    private ProductTypeRepository typeRepository;
-
-    @Autowired
-    private ProductOriginRepository originRepository;
     private Long id;
     private String name;
 
@@ -39,10 +34,11 @@ public class ProductDto {
         this.image = product.getImage();
         this.price = product.getPrice();
         this.typeName = product.getType().getName();
-        this.originName = product.getOrigin().getName();
+        //this.originName = product.getOrigin().getName();
     }
 
-    public Product toProduct(){
+    @Autowired
+    public Product toProduct(ProductOriginRepository originRepository, ProductTypeRepository typeRepository){
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
