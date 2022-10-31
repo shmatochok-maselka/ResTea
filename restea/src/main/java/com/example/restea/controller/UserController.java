@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +51,8 @@ public class UserController {
 
 
     @PostMapping
-    public User saveUser(@RequestBody UserDto userDto) {
-        return userService.saveUser(userDto.toUser());
+    public ResponseEntity<UserDto> saveUser(@RequestBody UserDto userDto) {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/users").toUriString());
+        return ResponseEntity.created(uri).body(new UserDto(userService.saveUser(userDto.toUser())));
     }
 }
