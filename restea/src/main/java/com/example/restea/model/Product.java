@@ -24,11 +24,11 @@ public class Product extends BaseEntity{
     @Column(name = "price")
     private int price;
 
-    /*@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_id")
+   @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "type_id")
     private ProductType type;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "origin_id")
-    private ProductOrigin origin;*/
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "origin_id")
+    private ProductType origin;
 }
