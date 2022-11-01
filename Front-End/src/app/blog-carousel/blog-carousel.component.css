@@ -140,7 +140,11 @@ span.post-active p {
     align-items: center;
     height: fit-content;
   }
-
+  .carousel-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .carousel-container img.post-active {
     width: 100%;
   }

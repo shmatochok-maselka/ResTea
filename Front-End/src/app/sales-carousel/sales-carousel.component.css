@@ -101,3 +101,10 @@
 .btn-next{
   right: 0;
 }
+
+@media screen and (max-width: 600px){
+  .carousel-container{
+    width: fit-content;
+    margin: auto;
+  }
+}

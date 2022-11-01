@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SalesCarouselComponent } from './sales-carousel.component';
-
+import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { SalesCarouselComponent } from './sales-carousel.component';
     SalesCarouselComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FlexModule,
   ],
   exports: [
     SalesCarouselComponent
