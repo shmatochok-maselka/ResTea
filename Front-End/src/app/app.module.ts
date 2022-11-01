@@ -8,6 +8,7 @@ import {SalesCarouselModule} from "./sales-carousel/sales-carousel.module";
 import {BlogCarouselModule} from "./blog-carousel/blog-carousel.module";
 import {SuggestedItemsModule} from "./suggested-items/suggested-items.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AboutUsModule} from "./about-us/about-us.module";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BlogCarouselModule,
     SuggestedItemsModule,
     BrowserAnimationsModule,
+    AboutUsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
