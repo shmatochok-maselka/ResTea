@@ -2,19 +2,20 @@
   <button *ngIf="controls" class="btn-carousel btn-prev"
           (click)="onPrevClick()">
     <i class="fas fa-arrow-circle-left icon-carousel icon-prev"></i></button>
-
-  <img *ngFor="let post of posts; let i = index"
-       [src]="post.imageSrc" [alt]="post.imageAlt"
-       [ngClass]="{'post-active': selectedIndex === i}"
-  >
-  <span *ngFor="let post of posts; let i = index"
-        [ngClass]="{'post-active': selectedIndex === i}"
-  class="post-text">
+  <div fxLayout.lg = "row"  fxLayout.sm="row" fxLayout.xs="column"
+  class="flex-container">
+    <img *ngFor="let post of posts; let i = index"
+         [src]="post.imageSrc" [alt]="post.imageAlt"
+         [ngClass]="{'post-active': selectedIndex === i}"
+    >
+    <span *ngFor="let post of posts; let i = index"
+          [ngClass]="{'post-active': selectedIndex === i}"
+          class="post-text">
   <h1 [textContent]="post.postHeader"></h1>
   <p [textContent]="post.postText"></p>
   <button class="btn btn-full-post">Show full</button>
 </span>
-
+  </div>
   <button *ngIf="controls" class="btn-carousel btn-next"
           (click)="onNextClick()">
     <i class="fas fa-arrow-circle-right icon-carousel icon-next"></i></button>
@@ -28,3 +29,5 @@
     >
     </span>
 </div>
+
+

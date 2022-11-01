@@ -20,7 +20,7 @@
   display: flex;
 }
 
-.carousel-container img, .post-text{
+.carousel-container img, .post-text {
   display: none;
   margin-left: 15px;
   margin-right: 15px;
@@ -41,7 +41,7 @@
   width: 30%;
 }
 
-.carousel-container span.post-active{
+.carousel-container span.post-active {
   width: 60%;
   height: 100%;
 }
@@ -130,4 +130,23 @@ span.post-active p {
 
 .icon-prev, .icon-next {
   font-size: 35px;
+}
+
+@media screen and (max-width: 600px) {
+
+  .flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+  }
+
+  .carousel-container img.post-active {
+    width: 100%;
+  }
+
+  .carousel-container span.post-active {
+    width: 100%;
+    margin-bottom: 5px;
+  }
 }
