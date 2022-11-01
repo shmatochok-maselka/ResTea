@@ -2,7 +2,7 @@
   <button *ngIf="controls" class="btn-carousel btn-prev"
           (click)="onPrevClick()">
     <i class="fas fa-arrow-circle-left icon-carousel icon-prev"></i></button>
-  <div fxLayout.lg = "row"  fxLayout.sm="row" fxLayout.xs="column"
+  <div fxLayout.lg = "row"  fxLayout.sm="row" fxLayout.xs="column" fxLayout.md="row"
   class="flex-container">
     <img *ngFor="let post of posts; let i = index"
          [src]="post.imageSrc" [alt]="post.imageAlt"
