@@ -7,6 +7,9 @@ import com.example.restea.service.ProductOriginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class ProductOriginServiceImpl implements ProductOriginService {
     private ProductOriginRepository originRepository;
@@ -23,5 +26,10 @@ public class ProductOriginServiceImpl implements ProductOriginService {
     @Override
     public ProductOrigin findOriginByName(String name) {
         return originRepository.findByName(name);
+    }
+
+    @Override
+    public Set<ProductOrigin> findAll() {
+        return new HashSet<>(originRepository.findAll());
     }
 }

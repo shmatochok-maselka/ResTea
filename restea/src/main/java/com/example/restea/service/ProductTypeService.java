@@ -5,10 +5,13 @@ import com.example.restea.model.ProductType;
 import com.example.restea.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ProductTypeService {
 
     ProductType findTypeById(Long id);
 
     ProductType findTypeByName(String name);
+
+    Set<ProductType> findAll();
 }

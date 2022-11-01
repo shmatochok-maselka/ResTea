@@ -9,6 +9,10 @@ import com.example.restea.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class ProductTypeServiceImpl implements ProductTypeService {
     private ProductTypeRepository typeRepository;
@@ -26,5 +30,10 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     @Override
     public ProductType findTypeByName(String name) {
         return typeRepository.findByName(name);
+    }
+
+    @Override
+    public Set<ProductType> findAll() {
+        return new HashSet<>(typeRepository.findAll());
     }
 }
