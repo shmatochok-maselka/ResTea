@@ -2,6 +2,7 @@ package com.example.restea.dto;
 
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.Product;
+import com.example.restea.model.ProductProperty;
 import com.example.restea.service.impl.ProductFlavorServiceImpl;
 import com.example.restea.service.impl.ProductOriginServiceImpl;
 import com.example.restea.service.impl.ProductTypeServiceImpl;
@@ -36,6 +37,7 @@ public class ProductDto {
 
 //    private Set<String> flavors;
     private Set<ProductFlavorDto> flavors;
+    private Set<ProductPropertyDto> properties;
     public ProductDto(Product product) {
         this.id = product.getId();
         this.name = product.getName();
@@ -47,6 +49,7 @@ public class ProductDto {
         this.origin = new ProductOriginDto(product.getOrigin());
         this.type = new ProductTypeDto(product.getType());
         this.flavors = flavorsDtoSet(product);
+        this.properties = propertyDtoSet(product);
     }
 
     @Autowired
@@ -60,6 +63,7 @@ public class ProductDto {
         product.setType(type.toType());
         product.setOrigin(origin.toOrigin());
         product.setFlavors(flavorsSet());
+        product.setProperties(propertiesSet());
         return product;
     }
 
@@ -83,5 +87,27 @@ public class ProductDto {
             flavors.add(flavor);
         }
         return flavors;
+    }
+
+    public Set<ProductPropertyDto> propertyDtoSet(Product product){
+        Set<ProductPropertyDto> propertiesDto = new HashSet<ProductPropertyDto>();
+        for (ProductProperty productProperty : product.getProperties()){
+            var propertyDto = new ProductPropertyDto();
+            propertyDto.setId(product.getId());
+            propertyDto.setName(productProperty.getName());
+            propertiesDto.add(propertyDto);
+        }
+        return propertiesDto;
+    }
+
+    public Set<ProductProperty> propertiesSet(){
+        Set<ProductProperty> properties = new HashSet<ProductProperty>();
+        for (ProductPropertyDto productPropertyDto : this.getProperties()){
+            var property = new ProductProperty();
+            property.setId(productPropertyDto.getId());
+            property.setName(productPropertyDto.getName());
+            properties.add(property);
+        }
+        return properties;
     }
 }

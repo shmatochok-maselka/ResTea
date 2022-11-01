@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "properties")
+@Table(name = "property")
 @Getter
 @Setter
 @ToString
@@ -20,6 +20,6 @@ public class ProductProperty extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "flavors")
+    @ManyToMany(mappedBy = "properties")
     private Set<Product> products = new HashSet<Product>();
 }
