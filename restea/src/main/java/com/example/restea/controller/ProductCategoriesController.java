@@ -1,7 +1,6 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.ProductFlavorDto;
-import com.example.restea.dto.ProductTypeDto;
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.ProductType;
 import com.example.restea.service.ProductFlavorService;
@@ -34,38 +33,10 @@ public class ProductCategoriesController {
     @GetMapping
     @ResponseBody
     public ResponseEntity<Response> findAllProducts() {
-//        Map<String, Object> map= new HashMap<>();
         Set<ProductType> var1 = productTypeService.findAll();
         Set<ProductFlavor> var2 = productFlavorService.findAll();
-        Response result = new Response(typeDtoSet(var1), flavorsDtoSet(var2));
-//        map.put("type", productTypeService.findAll());
-        //System.out.println(map.toString());
-//        map.put("origin", productTypeService.findAll());
-        //System.out.println(map.toString());
+        Response result = new Response(productTypeService.typeSetToTypeDtoSet(var1),
+                productFlavorService.flavorSetToFlavorDtoSet(var2));
         return ResponseEntity.ok(result);
-//                .map(ProductDto::new)
-//                .collect(Collectors.toList()),
-//                HttpStatus.OK);
-    }
-    public Set<ProductTypeDto> typeDtoSet(Set<ProductType> productTypes){
-        Set<ProductTypeDto> typeDtos = new HashSet<>();
-        for (ProductType productType : productTypes){
-            var flavorDto = new ProductTypeDto();
-            flavorDto.setId(productType.getId());
-            flavorDto.setName(productType.getName());
-            typeDtos.add(flavorDto);
-        }
-        return typeDtos;
-    }
-
-    public Set<ProductFlavorDto> flavorsDtoSet(Set<ProductFlavor> productFlavors){
-        Set<ProductFlavorDto> flavorsDto = new HashSet<ProductFlavorDto>();
-        for (ProductFlavor productFlavor : productFlavors){
-            var flavorDto = new ProductFlavorDto();
-            flavorDto.setId(productFlavor.getId());
-            flavorDto.setName(productFlavor.getName());
-            flavorsDto.add(flavorDto);
-        }
-        return flavorsDto;
     }
 }

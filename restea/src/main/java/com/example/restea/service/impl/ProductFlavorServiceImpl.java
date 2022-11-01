@@ -1,5 +1,6 @@
 package com.example.restea.service.impl;
 
+import com.example.restea.dto.ProductFlavorDto;
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.ProductOrigin;
 import com.example.restea.repository.ProductFlavorsRepository;
@@ -31,5 +32,17 @@ public class ProductFlavorServiceImpl implements ProductFlavorService {
     @Override
     public Set<ProductFlavor> findAll() {
         return new HashSet<>(flavorsRepository.findAll());
+    }
+
+    @Override
+    public Set<ProductFlavorDto> flavorSetToFlavorDtoSet(Set<ProductFlavor> productFlavors) {
+        Set<ProductFlavorDto> flavorsDto = new HashSet<ProductFlavorDto>();
+        for (ProductFlavor productFlavor : productFlavors){
+            var flavorDto = new ProductFlavorDto();
+            flavorDto.setId(productFlavor.getId());
+            flavorDto.setName(productFlavor.getName());
+            flavorsDto.add(flavorDto);
+        }
+        return flavorsDto;
     }
 }

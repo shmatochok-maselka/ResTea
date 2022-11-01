@@ -1,5 +1,6 @@
 package com.example.restea.service;
 
+import com.example.restea.dto.ProductFlavorDto;
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.ProductOrigin;
 import com.example.restea.model.ProductType;
@@ -11,4 +12,6 @@ public interface ProductFlavorService {
 
     ProductFlavor findFlavorByName(String name);
     Set<ProductFlavor> findAll();
+
+    Set<ProductFlavorDto> flavorSetToFlavorDtoSet(Set<ProductFlavor> productFlavors);
 }

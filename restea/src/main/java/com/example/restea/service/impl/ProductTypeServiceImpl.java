@@ -1,5 +1,6 @@
 package com.example.restea.service.impl;
 
+import com.example.restea.dto.ProductTypeDto;
 import com.example.restea.model.Product;
 import com.example.restea.model.ProductType;
 import com.example.restea.model.User;
@@ -35,5 +36,17 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     @Override
     public Set<ProductType> findAll() {
         return new HashSet<>(typeRepository.findAll());
+    }
+
+    @Override
+    public Set<ProductTypeDto> typeSetToTypeDtoSet(Set<ProductType> productTypes) {
+        Set<ProductTypeDto> typesDto = new HashSet<>();
+        for (ProductType productType : productTypes){
+            var flavorDto = new ProductTypeDto();
+            flavorDto.setId(productType.getId());
+            flavorDto.setName(productType.getName());
+            typesDto.add(flavorDto);
+        }
+        return typesDto;
     }
 }

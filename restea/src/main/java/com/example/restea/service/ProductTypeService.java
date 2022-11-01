@@ -1,5 +1,6 @@
 package com.example.restea.service;
 
+import com.example.restea.dto.ProductTypeDto;
 import com.example.restea.model.Product;
 import com.example.restea.model.ProductType;
 import com.example.restea.model.User;
@@ -14,4 +15,6 @@ public interface ProductTypeService {
     ProductType findTypeByName(String name);
 
     Set<ProductType> findAll();
+
+    Set<ProductTypeDto> typeSetToTypeDtoSet(Set<ProductType> productTypes);
 }
