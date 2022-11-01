@@ -1,7 +1,6 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.UserDto;
-import com.example.restea.model.User;
 import com.example.restea.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
