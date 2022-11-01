@@ -1,0 +1,59 @@
+.about-us-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2%;
+  width: 80%;
+}
+
+.about-us-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.about-us-photo img {
+  width: 400px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.about-us-text {
+  width: 40%;
+}
+
+.btn-about-us {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 30px;
+  margin: auto;
+  background-color: #028C6A;
+  color: white;
+  border: #028C6A solid 1px;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  word-break: break-word;;
+}
+
+.about-us-text h1 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.about-us-text p{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden;
+  margin-bottom: 5%;
+}
