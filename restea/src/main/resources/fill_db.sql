@@ -59,11 +59,12 @@ VALUES (1, 2),
        (2, 3),
        (3, 1);
 
+-- Password 1234 is encrypted
 INSERT INTO user (name, surname, birthday, bonus, email, password)
-VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', 1234),
-       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', 2345),
-       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', 3456),
-       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', 4567);
+VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK');
 
 INSERT INTO role
 VALUES (1, 'customer');
