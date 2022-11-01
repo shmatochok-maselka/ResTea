@@ -30,7 +30,8 @@ public class ProductDto {
 
     private String originName;
 
-    //private Set<ProductFlavor> flavors;
+//    private Set<String> flavors;
+    private Set<ProductFlavorDto> flavors;
     public ProductDto(Product product) {
         this.id = product.getId();
         this.name = product.getName();
@@ -39,7 +40,9 @@ public class ProductDto {
         this.price = product.getPrice();
         this.originName = product.getOrigin().getName();
         this.typeName = product.getType().getName();
-        //HashSet<ProductFlavor> fhgbjh = product.getFlavors();
+        //this.flavors = product.getFlavors();
+        this.flavors = flavorDto(product);
+
         //this.flavors = setDtoFlavors(product.getFlavors());
     }
 
@@ -57,13 +60,24 @@ public class ProductDto {
         return product;
     }
 
-    public Set<String> setDtoFlavors(Set<ProductFlavor> flavors){
-        var productDtoFlavors = new HashSet<String>();
-        for(ProductFlavor flavor : flavors){
-            productDtoFlavors.add(flavor.getName());
+    public Set<ProductFlavorDto> flavorDto(Product product){
+        Set<ProductFlavorDto> flavorsDto = new HashSet<ProductFlavorDto>();
+        for (ProductFlavor productFlavor : product.getFlavors()){
+            var flavorDto = new ProductFlavorDto();
+            flavorDto.setId(productFlavor.getId());
+            flavorDto.setName(productFlavor.getName());
+            flavorsDto.add(flavorDto);
         }
-        return productDtoFlavors;
+        return flavorsDto;
     }
+//
+//    public Set<String> setDtoFlavors(Set<ProductFlavor> flavors){
+//        var productDtoFlavors = new HashSet<String>();
+//        for(ProductFlavor flavor : flavors){
+//            productDtoFlavors.add(flavor.getName());
+//        }
+//        return productDtoFlavors;
+//    }
 
 //    public Set<ProductFlavor> setDtoFlavors1(List<String> flavors, ProductFlavorServiceImpl flavorService){
 //        var flavorsPr = new HashSet<ProductFlavor>();

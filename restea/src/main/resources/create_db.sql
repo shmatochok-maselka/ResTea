@@ -194,9 +194,9 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`order_product` (
 DROP TABLE IF EXISTS `ResTea`.`flavor` ;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`flavor` (
-                                                 `flavor_id` INT NOT NULL AUTO_INCREMENT,
+                                                 `id` INT NOT NULL AUTO_INCREMENT,
                                                  `name` VARCHAR(45) NOT NULL,
-                                                 PRIMARY KEY (`flavor_id`))
+                                                 PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
 
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product_Flavor` (
                                                                  ON UPDATE NO ACTION,
                                                          CONSTRAINT `fk_Product_has_flavor_flavor1`
                                                              FOREIGN KEY (`flavor_id`)
-                                                                 REFERENCES `ResTea`.`flavor` (`flavor_id`)
+                                                                 REFERENCES `ResTea`.`flavor` (`id`)
                                                                  ON DELETE NO ACTION
                                                                  ON UPDATE NO ACTION)
     ENGINE = InnoDB;

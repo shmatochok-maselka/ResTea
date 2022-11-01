@@ -39,5 +39,5 @@ public class Product extends BaseEntity{
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "flavor_id")
     )@ToString.Exclude
-    private Set<ProductFlavor> flavors;
+    private Set<ProductFlavor> flavors = new HashSet<ProductFlavor>();
 }

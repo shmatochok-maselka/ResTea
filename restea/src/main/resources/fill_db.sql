@@ -25,7 +25,7 @@ VALUES(1, 'product1', 'desc1', 150, 1, 1),
       (2, 'product2', 'desc2', 180, 2, 2),
        (3, 'product3', 'desc3', 200, 3, 1);
 
-INSERT INTO flavor(flavor_id, name)
+INSERT INTO flavor(id, name)
 VALUES(1, 'flavor1'),
       (2, 'flavor2'),
       (3, 'flavor3');
