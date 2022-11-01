@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user` (
    `surname` VARCHAR(15) NOT NULL,
    `birthday` DATE NOT NULL,
    `bonus` INT NOT NULL,
-   `email` VARCHAR(45) NOT NULL,
+   `email` VARCHAR(45) NOT NULL UNIQUE,
+   `password` VARCHAR(100) NOT NULL,
    PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
@@ -40,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ResTea`.`role` (
    `id` INT NOT NULL,
-   `name` VARCHAR(20) NOT NULL,
+   `name` VARCHAR(20) NOT NULL UNIQUE,
    PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 

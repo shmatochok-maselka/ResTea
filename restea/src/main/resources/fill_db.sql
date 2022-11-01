@@ -1,64 +1,81 @@
 USE restea;
-SET FOREIGN_KEY_CHECKS=0;
-DELETE FROM user;
-DELETE FROM role;
-DELETE FROM user_role;
-DELETE FROM product;
-DELETE FROM type;
-DELETE FROM origin;
-DELETE FROM flavor;
-DELETE FROM properties;
-DELETE FROM product_flavor;
-DELETE FROM product_properties;
+SET FOREIGN_KEY_CHECKS = 0;
+DELETE
+FROM user;
+DELETE
+FROM role;
+DELETE
+FROM user_role;
+DELETE
+FROM product;
+DELETE
+FROM type;
+DELETE
+FROM origin;
+DELETE
+FROM flavor;
+DELETE
+FROM properties;
+DELETE
+FROM product_flavor;
+DELETE
+FROM product_properties;
 
 INSERT INTO origin(origin_id, name)
-VALUES(1, 'Китай'),
-      (2, 'Індія');
+VALUES (1, 'Китай'),
+       (2, 'Індія');
 
 INSERT INTO type(type_id, name)
-VALUES(1, 'Зелений'),
-      (2, 'Чорний'),
-      (3, 'Фруктовий');
+VALUES (1, 'Зелений'),
+       (2, 'Чорний'),
+       (3, 'Фруктовий');
 
 INSERT INTO product(product_id, name, description, price, type_id, origin_id)
-VALUES(1, 'product1', 'desc1', 150, 1, 2),
-      (2, 'product2', 'desc2', 180, 2, 3),
-      (3, 'product3', 'desc3', 200, 2, 1);
+VALUES (1, 'product1', 'desc1', 150, 1, 2),
+       (2, 'product2', 'desc2', 180, 2, 3),
+       (3, 'product3', 'desc3', 200, 2, 1);
 
 INSERT INTO flavor(flavor_id, name)
-VALUES(1, 'flavor1'),
-      (2, 'flavor2'),
-      (3, 'flavor3');
+VALUES (1, 'flavor1'),
+       (2, 'flavor2'),
+       (3, 'flavor3');
 
 INSERT INTO properties(properties_id, name)
-VALUES(1, 'property1'),
-      (2, 'property2'),
-      (3, 'property3');
+VALUES (1, 'property1'),
+       (2, 'property2'),
+       (3, 'property3');
 
 INSERT INTO product_flavor(product_id, flavor_id)
-VALUES(1, 1),
-      (2, 1),
-      (2, 2),
-      (2, 3),
-      (3, 2);
+VALUES (1, 1),
+       (2, 1),
+       (2, 2),
+       (2, 3),
+       (3, 2);
 
 INSERT INTO product_properties(product_id, properties_id)
-VALUES(1, 2),
-      (2, 1),
-      (2, 2),
-      (2, 3),
-      (3, 1);
+VALUES (1, 2),
+       (2, 1),
+       (2, 2),
+       (2, 3),
+       (3, 1);
 
-INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
-INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Petro', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
-INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
-INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
+INSERT INTO user (name, surname, birthday, bonus, email, password)
+VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', 1234),
+       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', 2345),
+       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', 3456),
+       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', 4567);
 
-INSERT INTO role VALUES (1, 'customer');
-INSERT INTO role VALUES (2, 'seller');
-INSERT INTO role VALUES (3, 'admin');
+INSERT INTO role
+VALUES (1, 'customer');
+INSERT INTO role
+VALUES (2, 'seller');
+INSERT INTO role
+VALUES (3, 'admin');
 
-INSERT INTO user_role VALUES (1, 2);
-INSERT INTO user_role VALUES (1, 3);
-INSERT INTO user_role VALUES (2, 3);
-SET FOREIGN_KEY_CHECKS=1;
+INSERT INTO user_role
+VALUES (1, 2);
+INSERT INTO user_role
+VALUES (1, 3);
+INSERT INTO user_role
+VALUES (2, 3);
+SET FOREIGN_KEY_CHECKS = 1;

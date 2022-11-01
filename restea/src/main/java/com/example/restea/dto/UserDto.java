@@ -17,6 +17,7 @@ public class UserDto {
     private LocalDate birthday;
     private int bonus;
     private String email;
+    private String password;
 
 
     public UserDto(User user) {
@@ -26,6 +27,7 @@ public class UserDto {
         this.birthday = user.getBirthday();
         this.bonus = user.getBonus();
         this.email = user.getEmail();
+        this.password = user.getPassword();
     }
 
     public User toUser(){
@@ -35,6 +37,7 @@ public class UserDto {
         user.setBirthday(birthday);
         user.setBonus(bonus);
         user.setEmail(email);
+        user.setPassword(password);
         return user;
     }
 }
