@@ -26,9 +26,13 @@ public class ProductDto {
     private byte[] image;
 
     private int price;
-    private String typeName;
+//    private String typeName;
 
-    private String originName;
+    private ProductTypeDto type;
+
+    private ProductOriginDto origin;
+
+//    private String originName;
 
 //    private Set<String> flavors;
     private Set<ProductFlavorDto> flavors;
@@ -38,12 +42,11 @@ public class ProductDto {
         this.description = product.getDescription();
         this.image = product.getImage();
         this.price = product.getPrice();
-        this.originName = product.getOrigin().getName();
-        this.typeName = product.getType().getName();
-        //this.flavors = product.getFlavors();
-        this.flavors = flavorDto(product);
-
-        //this.flavors = setDtoFlavors(product.getFlavors());
+//        this.originName = product.getOrigin().getName();
+//        this.typeName = product.getType().getName();
+        this.origin = new ProductOriginDto(product.getOrigin());
+        this.type = new ProductTypeDto(product.getType());
+        this.flavors = flavorsDtoSet(product);
     }
 
     @Autowired
@@ -54,13 +57,13 @@ public class ProductDto {
         product.setDescription(description);
         product.setImage(image);
         product.setPrice(price);
-        product.setType(typeService.findTypeByName(typeName));
-        product.setOrigin(originService.findOriginByName(originName));
-       // product.setFlavors(setDtoFlavors1(flavors, flavorService));
+        product.setType(type.toType());
+        product.setOrigin(origin.toOrigin());
+        product.setFlavors(flavorsSet());
         return product;
     }
 
-    public Set<ProductFlavorDto> flavorDto(Product product){
+    public Set<ProductFlavorDto> flavorsDtoSet(Product product){
         Set<ProductFlavorDto> flavorsDto = new HashSet<ProductFlavorDto>();
         for (ProductFlavor productFlavor : product.getFlavors()){
             var flavorDto = new ProductFlavorDto();
@@ -70,20 +73,15 @@ public class ProductDto {
         }
         return flavorsDto;
     }
-//
-//    public Set<String> setDtoFlavors(Set<ProductFlavor> flavors){
-//        var productDtoFlavors = new HashSet<String>();
-//        for(ProductFlavor flavor : flavors){
-//            productDtoFlavors.add(flavor.getName());
-//        }
-//        return productDtoFlavors;
-//    }
 
-//    public Set<ProductFlavor> setDtoFlavors1(List<String> flavors, ProductFlavorServiceImpl flavorService){
-//        var flavorsPr = new HashSet<ProductFlavor>();
-//        for(String flavor : flavors){
-//            flavorsPr.add(flavorService.findFlavorByName(flavor));
-//        }
-//        return flavorsPr;
-//    }
+    public Set<ProductFlavor> flavorsSet(){
+        Set<ProductFlavor> flavors = new HashSet<ProductFlavor>();
+        for (ProductFlavorDto productFlavorDto : this.getFlavors()){
+            var flavor = new ProductFlavor();
+            flavor.setId(productFlavorDto.getId());
+            flavor.setName(productFlavorDto.getName());
+            flavors.add(flavor);
+        }
+        return flavors;
+    }
 }
