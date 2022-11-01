@@ -229,10 +229,10 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product_Flavor` (
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `ResTea`.`Properties` ;
 
-CREATE TABLE IF NOT EXISTS `ResTea`.`Properties` (
-                                                     `properties_id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `ResTea`.`Property` (
+                                                     `id` INT NOT NULL AUTO_INCREMENT,
                                                      `name` VARCHAR(45) NOT NULL,
-                                                     PRIMARY KEY (`properties_id`))
+                                                     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
 
@@ -243,9 +243,9 @@ DROP TABLE IF EXISTS `ResTea`.`Product_Properties` ;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`Product_Properties` (
                                              `product_id` INT NOT NULL,
-                                             `properties_id` INT NOT NULL,
-                                             PRIMARY KEY (`product_id`, `properties_id`),
-                                             INDEX `fk_Product_has_Properties_Properties1_idx` (`properties_id` ASC) VISIBLE,
+                                             `property_id` INT NOT NULL,
+                                             PRIMARY KEY (`product_id`, `property_id`),
+                                             INDEX `fk_Product_has_Properties_Properties1_idx` (`property_id` ASC) VISIBLE,
                                              INDEX `fk_Product_has_Properties_Product1_idx` (`product_id` ASC) VISIBLE,
                                              CONSTRAINT `fk_Product_has_Properties_Product1`
                                                  FOREIGN KEY (`product_id`)
@@ -253,8 +253,8 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product_Properties` (
                                                      ON DELETE NO ACTION
                                                      ON UPDATE NO ACTION,
                                              CONSTRAINT `fk_Product_has_Properties_Properties1`
-                                                 FOREIGN KEY (`properties_id`)
-                                                     REFERENCES `ResTea`.`Properties` (`properties_id`)
+                                                 FOREIGN KEY (`property_id`)
+                                                     REFERENCES `ResTea`.`Property` (`id`)
                                                      ON DELETE NO ACTION
                                                      ON UPDATE NO ACTION)
     ENGINE = InnoDB;

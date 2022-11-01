@@ -7,7 +7,7 @@ DELETE FROM product;
 DELETE FROM type;
 DELETE FROM origin;
 DELETE FROM flavor;
-DELETE FROM properties;
+DELETE FROM property;
 DELETE FROM product_flavor;
 DELETE FROM product_properties;
 
@@ -30,7 +30,7 @@ VALUES(1, 'flavor1'),
       (2, 'flavor2'),
       (3, 'flavor3');
 
-INSERT INTO properties(properties_id, name)
+INSERT INTO property(id, name)
 VALUES(1, 'property1'),
       (2, 'property2'),
       (3, 'property3');
@@ -42,7 +42,7 @@ VALUES(1, 1),
       (2, 3),
       (3, 2);
 
-INSERT INTO product_properties(product_id, properties_id)
+INSERT INTO product_properties(product_id, property_id)
 VALUES(1, 2),
       (2, 1),
       (2, 2),
