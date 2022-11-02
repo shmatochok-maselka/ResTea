@@ -34,19 +34,4 @@ public class BlogController {
                 .collect(Collectors.toList()),
                 HttpStatus.OK);
     }
-
-//    @GetMapping("/{productId}")
-//    public ResponseEntity<ProductDto> findProductById(@PathVariable Long productId) {
-//        if(productId == null)
-//        {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//        try{
-//            Product product = productService.findProductById(productId);
-//        } catch (NoSuchElementException exception){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(new ProductDto(productService.findProductById(productId)),
-//                HttpStatus.OK);
-//    }
 }
