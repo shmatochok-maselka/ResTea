@@ -8,10 +8,12 @@ import com.example.restea.repository.ProductFlavorsRepository;
 import com.example.restea.repository.ProductPropertyRepository;
 import com.example.restea.service.ProductPropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class ProductPropertyServiceImpl implements ProductPropertyService {
 
     private ProductPropertyRepository propertyRepository;

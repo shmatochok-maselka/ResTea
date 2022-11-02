@@ -1,8 +1,10 @@
 package com.example.restea.controller;
 
 import com.example.restea.model.ProductCategories;
+import com.example.restea.model.ProductProperty;
 import com.example.restea.service.ProductFlavorService;
 import com.example.restea.service.ProductOriginService;
+import com.example.restea.service.ProductPropertyService;
 import com.example.restea.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +19,16 @@ public class ProductCategoriesController {
     private ProductTypeService productTypeService;
     private ProductOriginService productOriginService;
     private ProductFlavorService productFlavorService;
+    private ProductPropertyService productPropertyService;
 
     @Autowired
     public ProductCategoriesController(ProductTypeService productTypeService, ProductOriginService productOriginService,
-                                       ProductFlavorService productFlavorService) {
+                                       ProductFlavorService productFlavorService,
+                                       ProductPropertyService productPropertyService) {
         this.productTypeService = productTypeService;
         this.productOriginService = productOriginService;
         this.productFlavorService = productFlavorService;
+        this.productPropertyService = productPropertyService;
     }
 
     @GetMapping
@@ -31,7 +36,8 @@ public class ProductCategoriesController {
     public ResponseEntity<ProductCategories> findAllCategories() {
         ProductCategories productCategories = new ProductCategories(productTypeService.typeSetToTypeDtoSet(productTypeService.findAll()),
                 productFlavorService.flavorSetToFlavorDtoSet(productFlavorService.findAll()),
-                productOriginService.originSetToOriginDtoSet(productOriginService.findAll()));
+                productOriginService.originSetToOriginDtoSet(productOriginService.findAll()),
+                productPropertyService.propertySetToPropertyDtoSet(productPropertyService.findAll()));
         return ResponseEntity.ok(productCategories);
     }
 }
