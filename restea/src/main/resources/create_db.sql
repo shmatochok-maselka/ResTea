@@ -260,6 +260,18 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product_Properties` (
     ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `shop`.`Blog_Post`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ResTea`.`Blog_Post` ;
+
+CREATE TABLE IF NOT EXISTS `ResTea`.`Blog_Post` (
+                                                  `id` INT NOT NULL AUTO_INCREMENT,
+                                                  `title` VARCHAR(150) NOT NULL,
+                                                  `content` TEXT NOT NULL,
+                                                  PRIMARY KEY (`id`))
+    ENGINE = InnoDB;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
