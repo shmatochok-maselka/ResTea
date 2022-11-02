@@ -1,26 +1,18 @@
 USE restea;
 
-SET FOREIGN_KEY_CHECKS = 0;
-DELETE
-FROM user;
-DELETE
-FROM role;
-DELETE
-FROM user_role;
-DELETE
-FROM product;
-DELETE
-FROM type;
-DELETE
-FROM origin;
-DELETE
-FROM flavor;
-DELETE
-FROM property;
-DELETE
-FROM product_flavor;
-DELETE
-FROM product_properties;
+SET FOREIGN_KEY_CHECKS=0;
+DELETE FROM user;
+DELETE FROM role;
+DELETE FROM user_role;
+DELETE FROM product;
+DELETE FROM type;
+DELETE FROM origin;
+DELETE FROM flavor;
+DELETE FROM property;
+DELETE FROM product_flavor;
+DELETE FROM product_properties;
+DELETE FROM blog_post;
+
 
 INSERT INTO origin(id, name)
 VALUES (1, 'Китай'),
@@ -65,6 +57,11 @@ VALUES (1, 2),
        (2, 2),
        (2, 3),
        (3, 1);
+
+INSERT INTO blog_post(id, title, content)
+VALUES(1, 'title1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+    (2, 'title2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+    (3, 'title3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
 -- Password 1234 is encrypted
 INSERT INTO user (id, name, surname, birthday, bonus, email, password)
