@@ -20,10 +20,10 @@ VALUES(1, 'Зелений'),
       (2, 'Чорний'),
       (3, 'Фруктовий');
 
-INSERT INTO product(id, name, description, price, type_id, origin_id)
-VALUES(1, 'product1', 'desc1', 150, 1, 1),
-      (2, 'product2', 'desc2', 180, 2, 2),
-       (3, 'product3', 'desc3', 200, 3, 1);
+INSERT INTO product(id, name, description, image, price, type_id, origin_id)
+VALUES(1, 'product1', 'desc1','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 150, 1, 1),
+      (2, 'product2', 'desc2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 180, 2, 2),
+       (3, 'product3', 'desc3','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 200, 3, 1);
 
 INSERT INTO flavor(id, name)
 VALUES(1, 'flavor1'),

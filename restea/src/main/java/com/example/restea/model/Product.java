@@ -21,7 +21,7 @@ public class Product extends BaseEntity{
     private String description;
 
     @Column(name = "image")
-    private byte[] image;
+    private String image;
 
     @Column(name = "price")
     private int price;

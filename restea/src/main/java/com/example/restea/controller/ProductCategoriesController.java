@@ -34,7 +34,8 @@ public class ProductCategoriesController {
     @GetMapping
     @ResponseBody
     public ResponseEntity<ProductCategories> findAllCategories() {
-        ProductCategories productCategories = new ProductCategories(productTypeService.typeSetToTypeDtoSet(productTypeService.findAll()),
+        ProductCategories productCategories = new ProductCategories
+                (productTypeService.typeSetToTypeDtoSet(productTypeService.findAll()),
                 productFlavorService.flavorSetToFlavorDtoSet(productFlavorService.findAll()),
                 productOriginService.originSetToOriginDtoSet(productOriginService.findAll()),
                 productPropertyService.propertySetToPropertyDtoSet(productPropertyService.findAll()));

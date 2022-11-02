@@ -24,7 +24,7 @@ public class ProductDto {
 
     private String description;
 
-    private byte[] image;
+    private String image;
 
     private int price;
 //    private String typeName;
@@ -91,10 +91,10 @@ public class ProductDto {
 
     public Set<ProductPropertyDto> propertyDtoSet(Product product){
         Set<ProductPropertyDto> propertiesDto = new HashSet<ProductPropertyDto>();
-        for (ProductProperty productProperty : product.getProperties()){
+        for (ProductFlavor productFlavor : product.getFlavors()){
             var propertyDto = new ProductPropertyDto();
             propertyDto.setId(product.getId());
-            propertyDto.setName(productProperty.getName());
+            propertyDto.setName(productFlavor.getName());
             propertiesDto.add(propertyDto);
         }
         return propertiesDto;
