@@ -12,6 +12,8 @@ import { FilterComponent } from './shop/filter/filter.component';
 import { ProductComponent } from './shop/product/product.component';
 import { CatalogComponent } from './shop/catalog/catalog.component';
 import { BlogPostComponent } from './blog/blog-post/blog-post.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { BlogPostComponent } from './blog/blog-post/blog-post.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
