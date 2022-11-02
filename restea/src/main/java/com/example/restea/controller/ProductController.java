@@ -1,6 +1,7 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.ProductDto;
+import com.example.restea.model.Product;
 import com.example.restea.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -22,15 +25,29 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<ProductDto>> findAllProducts() {
+//        try{
+//            Set<Product> products = productService.findAll();
+//        } catch (NoSuchElementException exception){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
         return new ResponseEntity<>(productService.findAll().stream()
                 .map(ProductDto::new)
                 .collect(Collectors.toList()),
                 HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> findProductById(@PathVariable Long id) {
-        return new ResponseEntity<>(new ProductDto(productService.findProductById(id)),
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductDto> findProductById(@PathVariable Long productId) {
+        if(productId == null)
+        {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        try{
+            Product product = productService.findProductById(productId);
+        } catch (NoSuchElementException exception){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new ProductDto(productService.findProductById(productId)),
                 HttpStatus.OK);
     }
 
