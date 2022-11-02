@@ -45,4 +45,16 @@ public class ProductFlavorServiceImpl implements ProductFlavorService {
         }
         return flavorsDto;
     }
+
+    @Override
+    public Set<ProductFlavor> flavorsDtoSetToFlavorSet(Set<ProductFlavorDto> flavorsDto){
+        Set<ProductFlavor> flavors = new HashSet<ProductFlavor>();
+        for (ProductFlavorDto productFlavorDto : flavorsDto){
+            var flavor = new ProductFlavor();
+            flavor.setId(productFlavorDto.getId());
+            flavor.setName(productFlavorDto.getName());
+            flavors.add(flavor);
+        }
+        return flavors;
+    }
 }

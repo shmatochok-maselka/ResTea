@@ -49,4 +49,16 @@ public class ProductPropertyServiceImpl implements ProductPropertyService {
         }
         return propertiesDto;
     }
+
+    @Override
+    public Set<ProductProperty> propertyDtoSetToPropertySet(Set<ProductPropertyDto> productPropertiesDto) {
+        Set<ProductProperty> properties = new HashSet<ProductProperty>();
+        for (ProductPropertyDto productPropertyDto : productPropertiesDto){
+            var property = new ProductProperty();
+            property.setId(productPropertyDto.getId());
+            property.setName(productPropertyDto.getName());
+            properties.add(property);
+        }
+        return properties;
+    }
 }

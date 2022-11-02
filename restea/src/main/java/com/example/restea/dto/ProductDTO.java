@@ -2,14 +2,16 @@ package com.example.restea.dto;
 
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.Product;
-import com.example.restea.model.ProductProperty;
+import com.example.restea.repository.ProductFlavorsRepository;
+import com.example.restea.service.ProductFlavorService;
 import com.example.restea.service.impl.ProductFlavorServiceImpl;
-import com.example.restea.service.impl.ProductOriginServiceImpl;
-import com.example.restea.service.impl.ProductTypeServiceImpl;
+import com.example.restea.service.impl.ProductPropertyServiceImpl;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,34 +29,29 @@ public class ProductDto {
     private String image;
 
     private int price;
-//    private String typeName;
 
     private ProductTypeDto type;
 
     private ProductOriginDto origin;
 
-//    private String originName;
-
-//    private Set<String> flavors;
     private Set<ProductFlavorDto> flavors;
     private Set<ProductPropertyDto> properties;
-    public ProductDto(Product product) {
+
+    public ProductDto(Product product){
         this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();
         this.image = product.getImage();
         this.price = product.getPrice();
-//        this.originName = product.getOrigin().getName();
-//        this.typeName = product.getType().getName();
         this.origin = new ProductOriginDto(product.getOrigin());
         this.type = new ProductTypeDto(product.getType());
-        this.flavors = flavorsDtoSet(product);
-        this.properties = propertyDtoSet(product);
+        this.flavors = flavorsSetToFlavorsDtoSet(product);
+        this.properties = propertySetToPropertyDtoSet(product);
     }
 
     @Autowired
-    public Product toProduct(ProductOriginServiceImpl originService, ProductTypeServiceImpl typeService,
-                             ProductFlavorServiceImpl flavorService){
+    public Product toProduct(ProductFlavorServiceImpl flavorService,
+                              ProductPropertyServiceImpl propertyService){
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
@@ -62,12 +59,12 @@ public class ProductDto {
         product.setPrice(price);
         product.setType(type.toType());
         product.setOrigin(origin.toOrigin());
-        product.setFlavors(flavorsSet());
-        product.setProperties(propertiesSet());
+        product.setFlavors(flavorService.flavorsDtoSetToFlavorSet(this.getFlavors()));
+        product.setProperties(propertyService.propertyDtoSetToPropertySet(this.getProperties()));
         return product;
     }
 
-    public Set<ProductFlavorDto> flavorsDtoSet(Product product){
+    public Set<ProductFlavorDto> flavorsSetToFlavorsDtoSet(Product product){
         Set<ProductFlavorDto> flavorsDto = new HashSet<ProductFlavorDto>();
         for (ProductFlavor productFlavor : product.getFlavors()){
             var flavorDto = new ProductFlavorDto();
@@ -78,18 +75,7 @@ public class ProductDto {
         return flavorsDto;
     }
 
-    public Set<ProductFlavor> flavorsSet(){
-        Set<ProductFlavor> flavors = new HashSet<ProductFlavor>();
-        for (ProductFlavorDto productFlavorDto : this.getFlavors()){
-            var flavor = new ProductFlavor();
-            flavor.setId(productFlavorDto.getId());
-            flavor.setName(productFlavorDto.getName());
-            flavors.add(flavor);
-        }
-        return flavors;
-    }
-
-    public Set<ProductPropertyDto> propertyDtoSet(Product product){
+    public Set<ProductPropertyDto> propertySetToPropertyDtoSet(Product product){
         Set<ProductPropertyDto> propertiesDto = new HashSet<ProductPropertyDto>();
         for (ProductFlavor productFlavor : product.getFlavors()){
             var propertyDto = new ProductPropertyDto();
@@ -100,14 +86,4 @@ public class ProductDto {
         return propertiesDto;
     }
 
-    public Set<ProductProperty> propertiesSet(){
-        Set<ProductProperty> properties = new HashSet<ProductProperty>();
-        for (ProductPropertyDto productPropertyDto : this.getProperties()){
-            var property = new ProductProperty();
-            property.setId(productPropertyDto.getId());
-            property.setName(productPropertyDto.getName());
-            properties.add(property);
-        }
-        return properties;
-    }
 }

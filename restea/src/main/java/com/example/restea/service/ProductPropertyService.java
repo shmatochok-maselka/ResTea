@@ -14,4 +14,5 @@ public interface ProductPropertyService {
     Set<ProductProperty> findAll();
 
     Set<ProductPropertyDto> propertySetToPropertyDtoSet(Set<ProductProperty> productProperties);
+    public Set<ProductProperty> propertyDtoSetToPropertySet(Set<ProductPropertyDto> productPropertiesDto);
 }

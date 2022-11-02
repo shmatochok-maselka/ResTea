@@ -14,4 +14,6 @@ public interface ProductFlavorService {
     Set<ProductFlavor> findAll();
 
     Set<ProductFlavorDto> flavorSetToFlavorDtoSet(Set<ProductFlavor> productFlavors);
+
+    Set<ProductFlavor> flavorsDtoSetToFlavorSet(Set<ProductFlavorDto> flavorsDto);
 }
