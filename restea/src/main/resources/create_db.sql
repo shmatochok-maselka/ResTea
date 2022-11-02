@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product`
 -- -----------------------------------------------------
 -- Table `ResTea`.`Cart`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `shop`.`Cart`;
+DROP TABLE IF EXISTS `ResTea`.`Cart`;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`cart`
 (
