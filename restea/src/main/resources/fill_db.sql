@@ -1,4 +1,5 @@
 USE restea;
+
 SET FOREIGN_KEY_CHECKS=0;
 DELETE FROM user;
 DELETE FROM role;
@@ -36,11 +37,12 @@ VALUES(1, 'property1'),
       (3, 'property3');
 
 INSERT INTO product_flavor(product_id, flavor_id)
-VALUES(1, 1),
-      (2, 1),
-      (2, 2),
-      (2, 3),
-      (3, 2);
+VALUES (1, 1),
+       (2, 1),
+       (2, 2),
+       (2, 3),
+       (3, 2);
+
 
 INSERT INTO product_properties(product_id, property_id)
 VALUES(1, 2),
@@ -49,16 +51,24 @@ VALUES(1, 2),
       (2, 3),
       (3, 1);
 
-INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
-INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Petro', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
-INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
-INSERT INTO user (name, surname, birthday, bonus, email) VALUES ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test@gmail.com');
+-- Password 1234 is encrypted
+INSERT INTO user (name, surname, birthday, bonus, email, password)
+VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK');
 
-INSERT INTO role VALUES (1, 'customer');
-INSERT INTO role VALUES (2, 'seller');
-INSERT INTO role VALUES (3, 'admin');
+INSERT INTO role
+VALUES (1, 'customer');
+INSERT INTO role
+VALUES (2, 'seller');
+INSERT INTO role
+VALUES (3, 'admin');
 
-INSERT INTO user_role VALUES (1, 2);
-INSERT INTO user_role VALUES (1, 3);
-INSERT INTO user_role VALUES (2, 3);
-SET FOREIGN_KEY_CHECKS=1;
+INSERT INTO user_role
+VALUES (1, 2);
+INSERT INTO user_role
+VALUES (1, 3);
+INSERT INTO user_role
+VALUES (2, 3);
+SET FOREIGN_KEY_CHECKS = 1;
