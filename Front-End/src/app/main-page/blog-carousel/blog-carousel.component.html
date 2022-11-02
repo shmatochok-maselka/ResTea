@@ -2,8 +2,8 @@
   <button *ngIf="controls" class="btn-carousel btn-prev"
           (click)="onPrevClick()">
     <i class="fas fa-arrow-circle-left icon-carousel icon-prev"></i></button>
-  <div fxLayout.lg="row" fxLayout.sm="row" fxLayout.xs="column" fxLayout.md="row"
-       class="flex-container">
+  <div fxLayout.lg = "row"  fxLayout.sm="row" fxLayout.xs="column" fxLayout.md="row"
+  class="flex-container">
     <img *ngFor="let post of posts; let i = index"
          [src]="post.imageSrc" [alt]="post.imageAlt"
          [ngClass]="{'post-active': selectedIndex === i}"
@@ -13,7 +13,7 @@
           class="post-text">
   <h1 [textContent]="post.postHeader"></h1>
   <p [textContent]="post.postText"></p>
-  <button mat-button color="#028C6A" class="btn btn-full-post">Show full</button>
+  <button class="btn btn-full-post">Show full</button>
 </span>
   </div>
   <button *ngIf="controls" class="btn-carousel btn-next"
