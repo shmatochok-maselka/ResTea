@@ -1,40 +1,55 @@
 USE restea;
 
-SET FOREIGN_KEY_CHECKS=0;
-DELETE FROM user;
-DELETE FROM role;
-DELETE FROM user_role;
-DELETE FROM product;
-DELETE FROM type;
-DELETE FROM origin;
-DELETE FROM flavor;
-DELETE FROM property;
-DELETE FROM product_flavor;
-DELETE FROM product_properties;
+SET FOREIGN_KEY_CHECKS = 0;
+DELETE
+FROM user;
+DELETE
+FROM role;
+DELETE
+FROM user_role;
+DELETE
+FROM product;
+DELETE
+FROM type;
+DELETE
+FROM origin;
+DELETE
+FROM flavor;
+DELETE
+FROM property;
+DELETE
+FROM product_flavor;
+DELETE
+FROM product_properties;
 
 INSERT INTO origin(id, name)
-VALUES(1, 'Китай'),
-      (2, 'Індія');
+VALUES (1, 'Китай'),
+       (2, 'Індія');
 
 INSERT INTO type(id, name)
-VALUES(1, 'Зелений'),
-      (2, 'Чорний'),
-      (3, 'Фруктовий');
+VALUES (1, 'Зелений'),
+       (2, 'Чорний'),
+       (3, 'Фруктовий');
 
 INSERT INTO product(id, name, description, image, price, type_id, origin_id)
-VALUES(1, 'product1', 'desc1','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 7, 1, 1),
-      (2, 'product2', 'desc2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 15, 2, 2),
-       (3, 'product3', 'desc3','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 11, 3, 1);
+VALUES (1, 'product1', 'desc1',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 7, 1, 1),
+       (2, 'product2', 'desc2',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 15, 2,
+        2),
+       (3, 'product3', 'desc3',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 11, 3,
+        1);
 
 INSERT INTO flavor(id, name)
-VALUES(1, 'flavor1'),
-      (2, 'flavor2'),
-      (3, 'flavor3');
+VALUES (1, 'flavor1'),
+       (2, 'flavor2'),
+       (3, 'flavor3');
 
 INSERT INTO property(id, name)
-VALUES(1, 'property1'),
-      (2, 'property2'),
-      (3, 'property3');
+VALUES (1, 'property1'),
+       (2, 'property2'),
+       (3, 'property3');
 
 INSERT INTO product_flavor(product_id, flavor_id)
 VALUES (1, 1),
@@ -45,18 +60,22 @@ VALUES (1, 1),
 
 
 INSERT INTO product_properties(product_id, property_id)
-VALUES(1, 2),
-      (2, 1),
-      (2, 2),
-      (2, 3),
-      (3, 1);
+VALUES (1, 2),
+       (2, 1),
+       (2, 2),
+       (2, 3),
+       (3, 1);
 
 -- Password 1234 is encrypted
-INSERT INTO user (name, surname, birthday, bonus, email, password)
-VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK');
+INSERT INTO user (id, name, surname, birthday, bonus, email, password)
+VALUES (1, 'Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com',
+        '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       (2, 'Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com',
+        '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       (3, 'Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com',
+        '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
+       (4, 'Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com',
+        '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK');
 
 INSERT INTO role
 VALUES (1, 'customer');
