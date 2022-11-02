@@ -4,11 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BlogComponent } from './blog/blog.component';
-import {SalesCarouselModule} from "./sales-carousel/sales-carousel.module";
-import {BlogCarouselModule} from "./blog-carousel/blog-carousel.module";
-import {SuggestedItemsModule} from "./suggested-items/suggested-items.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {AboutUsModule} from "./about-us/about-us.module";
+import {MainPageModule} from "./main-page/main-page.module";
+
 
 @NgModule({
   declarations: [
@@ -18,11 +16,8 @@ import {AboutUsModule} from "./about-us/about-us.module";
   ],
   imports: [
     BrowserModule,
-    SalesCarouselModule,
-    BlogCarouselModule,
-    SuggestedItemsModule,
     BrowserAnimationsModule,
-    AboutUsModule,
+    MainPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
