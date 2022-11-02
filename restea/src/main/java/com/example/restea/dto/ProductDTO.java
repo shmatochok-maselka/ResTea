@@ -2,16 +2,13 @@ package com.example.restea.dto;
 
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.Product;
-import com.example.restea.repository.ProductFlavorsRepository;
-import com.example.restea.service.ProductFlavorService;
+import com.example.restea.model.ProductProperty;
 import com.example.restea.service.impl.ProductFlavorServiceImpl;
 import com.example.restea.service.impl.ProductPropertyServiceImpl;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -77,10 +74,10 @@ public class ProductDto {
 
     public Set<ProductPropertyDto> propertySetToPropertyDtoSet(Product product){
         Set<ProductPropertyDto> propertiesDto = new HashSet<ProductPropertyDto>();
-        for (ProductFlavor productFlavor : product.getFlavors()){
+        for (ProductProperty productProperty : product.getProperties()){
             var propertyDto = new ProductPropertyDto();
-            propertyDto.setId(product.getId());
-            propertyDto.setName(productFlavor.getName());
+            propertyDto.setId(productProperty.getId());
+            propertyDto.setName(productProperty.getName());
             propertiesDto.add(propertyDto);
         }
         return propertiesDto;
