@@ -1,5 +1,7 @@
 package com.example.restea.service;
 
+import com.example.restea.dto.ProductOriginDto;
+import com.example.restea.dto.ProductTypeDto;
 import com.example.restea.model.ProductOrigin;
 import com.example.restea.model.ProductType;
 
@@ -11,4 +13,6 @@ public interface ProductOriginService {
     ProductOrigin findOriginByName(String name);
 
     Set<ProductOrigin> findAll();
+
+    Set<ProductOriginDto> originSetToOriginDtoSet(Set<ProductOrigin> productOrigin);
 }
