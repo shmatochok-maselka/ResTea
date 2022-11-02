@@ -14,7 +14,10 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = "user",
+        uniqueConstraints ={
+            @UniqueConstraint(columnNames = "email")
+        })
 public class User extends BaseEntity {
     @Column(name = "name")
     private String name;
@@ -31,7 +34,10 @@ public class User extends BaseEntity {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Column(name = "password")
+    private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
