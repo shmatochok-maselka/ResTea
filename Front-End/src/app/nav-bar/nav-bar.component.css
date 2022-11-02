@@ -17,6 +17,7 @@ nav{
 
 #logo {
   display: flex;
+  align-items: center;
   color: white;
   height: 50px;
   width: 50px;
@@ -25,38 +26,22 @@ nav{
 #text_buttons {
   margin-left: 2%;
   display: flex;
-  width: 70%;
+  width: 50%;
   height: 30px;
   gap: 2rem;
   align-items: center;
 }
-#text_buttons .btn{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  border: 0;
-  background-color: dodgerblue;
-  border-radius: 7%;
-  width: 20%;
-  height: 100%;
-}
+
 
 #right-items{
   display: flex;
   justify-content: end;
   margin-right: 2%;
-  width: 20%;
- }
-
-#icon_buttons {
-  width: 10%;
-  gap: 1rem;
-  display: flex;
   align-items: center;
-  margin-right: 2rem;
+  gap: 1rem;
 }
-
-#icon_buttons .btn {
-  border-radius: 100%;
+.mat-icon{
+  font-size: 34px;
+  height: 34px;
+  width: 34px;
 }
