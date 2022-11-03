@@ -14,13 +14,14 @@ export class ProductComponent implements OnInit {
     description: '',
     price: 0,
     image: '',
-    type: {id:0,name:''},
-    origin: {id:0,name:''},
-    flavors:[],
-    properties:[]
+    type: {id: 0, name: ''},
+    origin: {id: 0, name: ''},
+    flavors: [],
+    properties: []
   };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

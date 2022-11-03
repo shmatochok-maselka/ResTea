@@ -1,19 +1,24 @@
 .product-card {
   margin: 0 2rem;
 }
-mat-card{
+
+mat-card {
   padding: 0;
 }
+
 mat-card-title {
   display: flex;
   justify-content: center;
 }
-.product-image{
+
+.product-image {
   margin: 0;
   width: 100%;
+  object-fit: scale-down;
   height: auto;
 }
-.description{
+
+.description {
   padding: 10px;
 }
 
@@ -35,7 +40,8 @@ mat-card-actions {
   padding: 0;
   justify-content: flex-end;
 }
-.checkout-button{
+
+.checkout-button {
   padding: 0;
   display: flex;
   justify-content: flex-end;
