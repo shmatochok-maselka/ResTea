@@ -14,7 +14,7 @@
   height: 2rem;
 }
 
-.price{
+.price {
   display: flex;
   flex-direction: column;
 }
