@@ -12,17 +12,30 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class Cart {
+public class Cart implements  java.io.Serializable{
 
     @EmbeddedId
     private CartId id;
-    @OneToOne
-    @JoinColumn(name="cart_user_id")
-    private User user;
 
-    @OneToOne
-    @JoinColumn(name="cart_product_id")
-    private Product cartProduct;
+    @Transient
+    public User getUser() {
+        return this.id.getUser();
+    }
+
+    @Transient
+    public void setUser(User user) {
+        this.id.setUser(user);
+    }
+
+    @Transient
+    public Product getCartProduct() {
+        return this.id.getCartProduct();
+    }
+
+    @Transient
+    public void setCartProduct(Product product) {
+        this.id.setCartProduct(product);
+    }
 
     @Column(name = "weight")
     private int productWeight;
