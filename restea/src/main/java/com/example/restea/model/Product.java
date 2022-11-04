@@ -26,6 +26,9 @@ public class Product extends BaseEntity{
     @Column(name = "price")
     private int price;
 
+    @OneToOne(mappedBy = "product")
+    private Cart cart;
+
     @ManyToOne
     @JoinColumn(name="origin_id", nullable=false)
     private ProductOrigin origin;
