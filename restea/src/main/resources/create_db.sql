@@ -150,11 +150,10 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product` (
 DROP TABLE IF EXISTS `shop`.`Cart` ;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`cart` (
-                                               `id` INT NOT NULL AUTO_INCREMENT,
                                                `cart_user_id` INT NOT NULL,
                                                `cart_product_id` INT NOT NULL,
                                                `weight` INT NOT NULL,
-                                               PRIMARY KEY (`id`, `cart_user_id`, `cart_product_id`),
+                                               PRIMARY KEY (`cart_user_id`, `cart_product_id`),
                                                INDEX `product_id_idx` (`cart_product_id` ASC) VISIBLE,
                                                CONSTRAINT `cart_user_id`
                                                    FOREIGN KEY (`cart_user_id`)

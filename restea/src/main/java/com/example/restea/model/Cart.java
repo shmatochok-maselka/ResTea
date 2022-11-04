@@ -12,14 +12,17 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class Cart extends BaseEntity{
+public class Cart {
+
+    @EmbeddedId
+    private CartId id;
     @OneToOne
-    @JoinColumn(name="cart_user_id", nullable=false)
+    @JoinColumn(name="cart_user_id")
     private User user;
 
     @OneToOne
-    @JoinColumn(name="cart_product_id", nullable=false)
-    private Product product;
+    @JoinColumn(name="cart_product_id")
+    private Product cartProduct;
 
     @Column(name = "weight")
     private int productWeight;

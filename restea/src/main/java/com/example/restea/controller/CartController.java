@@ -36,7 +36,7 @@ public class CartController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Cart cartProduct = new Cart();
-        cartProduct.setProduct(productService.findProductById(productCartJSON.get("productId")));
+        cartProduct.setCartProduct(productService.findProductById(productCartJSON.get("productId")));
         cartProduct.setUser(userService.findUserById(productCartJSON.get("userId")));
         cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue());
         return new ResponseEntity<>(HttpStatus.CREATED);

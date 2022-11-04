@@ -26,7 +26,7 @@ public class Product extends BaseEntity{
     @Column(name = "price")
     private int price;
 
-    @OneToOne(mappedBy = "product")
+    @OneToOne(mappedBy = "cartProduct")
     private Cart cart;
 
     @ManyToOne
