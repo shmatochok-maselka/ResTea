@@ -1,5 +1,6 @@
 package com.example.restea.controller;
 
+import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Product;
 import com.example.restea.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
