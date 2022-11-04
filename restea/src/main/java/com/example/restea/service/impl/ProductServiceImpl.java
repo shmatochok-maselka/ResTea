@@ -1,19 +1,13 @@
 package com.example.restea.service.impl;
 
-import com.example.restea.dto.ProductDto;
-import com.example.restea.dto.ProductFlavorDto;
 import com.example.restea.model.Product;
-import com.example.restea.model.ProductFlavor;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Slf4j
 @Service

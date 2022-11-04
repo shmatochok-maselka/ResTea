@@ -5,23 +5,27 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "cart")
 @Getter
 @Setter
 @ToString
-public class Cart {
+public class Cart implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_user_id")
-    private Long cartUserId;
+    @OneToOne
+    @JoinColumn(name="cart_user_id", nullable=false)
+    private User user;
 
+    //@Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_product_id")
-    private Long cartProductId;
+    @OneToOne
+    @JoinColumn(name="cart_product_id", nullable=false)
+//    @Column(name = "cart_product_id")
+    private Product product;
 
     @Column(name = "weight")
-    private int weight;
+    private int productWeight;
 }

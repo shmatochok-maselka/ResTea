@@ -5,6 +5,7 @@ import com.example.restea.model.Product;
 import com.example.restea.model.ProductProperty;
 import com.example.restea.service.impl.ProductFlavorServiceImpl;
 import com.example.restea.service.impl.ProductPropertyServiceImpl;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +35,9 @@ public class ProductDto {
     private Set<ProductFlavorDto> flavors;
     private Set<ProductPropertyDto> properties;
 
+    @JsonIgnore
+    @Autowired
+    private ProductFlavorServiceImpl flavorService;
     public ProductDto(Product product){
         this.id = product.getId();
         this.name = product.getName();
@@ -48,7 +52,7 @@ public class ProductDto {
 
     @Autowired
     public Product toProduct(ProductFlavorServiceImpl flavorService,
-                              ProductPropertyServiceImpl propertyService){
+                             ProductPropertyServiceImpl propertyService){
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
