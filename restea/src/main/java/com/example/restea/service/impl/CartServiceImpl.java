@@ -30,7 +30,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Map<User, List<CartProductDto>> groupCartProductsByUserId() {
+    public Map<User, List<CartProductDto>> groupCartProductsByUser() {
         List<Cart> carts = cartRepository.findAll();
         Map<User, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
         for(Cart cart : carts){
@@ -44,5 +44,10 @@ public class CartServiceImpl implements CartService {
             listOfProductsByUserId.put(cart.getUser(), cartProductsDto);
         }
         return listOfProductsByUserId;
+    }
+
+    @Override
+    public void addProductToCart(Cart cart) {
+        cartRepository.save(cart);
     }
 }

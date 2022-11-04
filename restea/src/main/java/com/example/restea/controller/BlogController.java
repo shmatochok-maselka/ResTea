@@ -22,6 +22,7 @@ public class BlogController {
     public BlogController(BlogPostService blogPostService) {
         this.blogPostService = blogPostService;
     }
+
     @GetMapping
     public ResponseEntity<List<BlogPostDto>> findAllProducts() {
         return new ResponseEntity<>(blogPostService.findAll().stream()
