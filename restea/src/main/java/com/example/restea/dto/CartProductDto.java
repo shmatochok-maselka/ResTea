@@ -1,5 +1,7 @@
 package com.example.restea.dto;
 
+import com.example.restea.model.Cart;
+import com.example.restea.model.ProductFlavor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,4 +17,12 @@ public class CartProductDto {
     private String productImage;
     private int productPrice;
     private int productWeight;
+
+    public CartProductDto(Cart cart) {
+        this.productId = cart.getProduct().getId();
+        this.productName = cart.getProduct().getName();
+        this.productImage = cart.getProduct().getImage();
+        this.productPrice = cart.getProduct().getPrice();
+        this.productWeight = cart.getProductWeight();
+    }
 }
