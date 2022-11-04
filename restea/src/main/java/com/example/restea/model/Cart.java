@@ -12,13 +12,11 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class Cart implements Serializable {
-    @Id
+public class Cart extends BaseEntity{
     @OneToOne
     @JoinColumn(name="cart_user_id", nullable=false)
     private User user;
 
-    @Id
     @OneToOne
     @JoinColumn(name="cart_product_id", nullable=false)
     private Product product;
