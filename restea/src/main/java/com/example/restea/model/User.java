@@ -37,8 +37,8 @@ public class User extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-//    @OneToOne(mappedBy = "user")
-//    private Cart cart;
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_role",

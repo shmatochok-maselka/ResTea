@@ -32,24 +32,42 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public List<Cart> findById_OrderCode(Long userId) {
+        List<Cart> carts = this.findAll();
+        List<Cart> newCarts = new ArrayList<>();
+        for(Cart cart: carts){
+            if(cart.getId().getUserId() == userId)
+                newCarts.add(cart);
+        }
+        return newCarts;
+    }
+
+    @Override
     public void addProductToCart(Cart cart) {
         cartRepository.save(cart);
     }
+
 //    @Override
-//    public Map<User, List<CartProductDto>> groupCartProductsByUser() {
-//        List<Cart> carts = cartRepository.findAll();
-//        Map<User, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
-//        for(Cart cart : carts){
-//            List<CartProductDto> cartProductsDto;
-//            if(listOfProductsByUserId.containsKey(cart.getUser())){
-//                cartProductsDto = listOfProductsByUserId.get(cart.getUser());
-//            } else{
-//                cartProductsDto = new ArrayList<>();
-//            }
-//            cartProductsDto.add(new CartProductDto(cart));
-//            listOfProductsByUserId.put(cart.getUser(), cartProductsDto);
-//        }
-//        return listOfProductsByUserId;
-//    }
+    private Map<Long, List<CartProductDto>> groupCartProductsByUser() {
+        List<Cart> carts = cartRepository.findAll();
+        Map<Long, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
+        for(Cart cart : carts){
+            List<CartProductDto> cartProductsDto;
+            if(listOfProductsByUserId.containsKey(cart.getId().getUserId())){
+                cartProductsDto = listOfProductsByUserId.get(cart.getId().getUserId());
+            } else{
+                cartProductsDto = new ArrayList<>();
+            }
+            cartProductsDto.add(new CartProductDto(cart));
+            listOfProductsByUserId.put(cart.getId().getUserId(), cartProductsDto);
+        }
+        return listOfProductsByUserId;
+    }
+
+    @Override
+    public List<CartProductDto> getCartProductsByUserId(Long userId) {
+        Map<Long, List<CartProductDto>> groupCartProductsByUser = this.groupCartProductsByUser();
+        return groupCartProductsByUser.get(userId);
+    }
 
 }

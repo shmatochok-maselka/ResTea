@@ -13,11 +13,9 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 public class CartId implements Serializable {
-//    @Column(name = "cart_user_id", nullable=false)
     @Column(name = "cart_user_id")
     private long userId;
 
-    //    @Column(name = "cart_product_id", nullable=false)
     @Column(name = "cart_product_id")
     private long productId;
 

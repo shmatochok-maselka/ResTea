@@ -1,7 +1,9 @@
 package com.example.restea.dto;
 
 import com.example.restea.model.Cart;
+import com.example.restea.model.Product;
 import com.example.restea.repository.CartRepository;
+import com.example.restea.service.CartService;
 import com.example.restea.service.impl.CartServiceImpl;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,14 +21,10 @@ import java.util.List;
 @NoArgsConstructor
 public class CartDto {
     private Long userId;
-    private List<CartProductDto> products;
-    @Autowired
-    private CartRepository cartRepository;
-
-//    private CartServiceImpl cartService = new CartServiceImpl(cartRepository);
+    private List<Product> products;
 
     public CartDto(Cart cart) {
-//        this.userId = cart.getUser().getId();
-//        this.products = cartService.groupCartProductsByUser().get(this.userId);
+        this.userId = cart.getId().getUserId();
+        this.products = cart.getCartProducts();
     }
 }
