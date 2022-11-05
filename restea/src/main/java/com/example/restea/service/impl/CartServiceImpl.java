@@ -6,7 +6,9 @@ import com.example.restea.model.Product;
 import com.example.restea.model.User;
 import com.example.restea.repository.BlogPostRepository;
 import com.example.restea.repository.CartRepository;
+import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.CartService;
+import com.example.restea.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +22,12 @@ import java.util.TreeMap;
 @Transactional
 public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
+    private ProductService productService;
 
     @Autowired
-    public CartServiceImpl(CartRepository cartRepository) {
+    public CartServiceImpl(CartRepository cartRepository, ProductService productService) {
         this.cartRepository = cartRepository;
+        this.productService = productService;
     }
 
     @Override
@@ -47,7 +51,7 @@ public class CartServiceImpl implements CartService {
         cartRepository.save(cart);
     }
 
-//    @Override
+
     private Map<Long, List<CartProductDto>> groupCartProductsByUser() {
         List<Cart> carts = cartRepository.findAll();
         Map<Long, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
@@ -58,7 +62,7 @@ public class CartServiceImpl implements CartService {
             } else{
                 cartProductsDto = new ArrayList<>();
             }
-            cartProductsDto.add(new CartProductDto(cart));
+            cartProductsDto.add(new CartProductDto(cart, productService));
             listOfProductsByUserId.put(cart.getId().getUserId(), cartProductsDto);
         }
         return listOfProductsByUserId;

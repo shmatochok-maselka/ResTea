@@ -30,6 +30,16 @@ public class CartController {
         this.productService = productService;
         this.userService = userService;
     }
+    @PostMapping
+    public ResponseEntity<CartDto> findAllCartProducts(@RequestBody Map<String, Long> productCartJSON) {
+        if (productCartJSON == null || !productCartJSON.containsKey("userId")) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Long userId = productCartJSON.get("userId");
+        CartDto cartProducts = new CartDto(userId, cartService, productService);
+        return new ResponseEntity<>(cartProducts, HttpStatus.CREATED);
+    }
+
     @PostMapping(value = "/add")
     public ResponseEntity<List<Cart>> addProductToCart(@RequestBody Map<String, Long> productCartJSON) {
         if (productCartJSON == null || !productCartJSON.containsKey("userId") || !productCartJSON.containsKey("productId")
