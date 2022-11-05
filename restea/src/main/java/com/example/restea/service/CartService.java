@@ -9,6 +9,6 @@ import java.util.Map;
 
 public interface CartService {
     List<Cart> findAll();
-    Map<User, List<CartProductDto>> groupCartProductsByUser();
+//    Map<User, List<CartProductDto>> groupCartProductsByUser();
     void addProductToCart(Cart cart);
 }

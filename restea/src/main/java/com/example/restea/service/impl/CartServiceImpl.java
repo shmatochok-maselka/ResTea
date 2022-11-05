@@ -10,12 +10,14 @@ import com.example.restea.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 @Service
+@Transactional
 public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
 
@@ -30,24 +32,24 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Map<User, List<CartProductDto>> groupCartProductsByUser() {
-        List<Cart> carts = cartRepository.findAll();
-        Map<User, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
-        for(Cart cart : carts){
-            List<CartProductDto> cartProductsDto;
-            if(listOfProductsByUserId.containsKey(cart.getUser())){
-                cartProductsDto = listOfProductsByUserId.get(cart.getUser());
-            } else{
-                cartProductsDto = new ArrayList<>();
-            }
-            cartProductsDto.add(new CartProductDto(cart));
-            listOfProductsByUserId.put(cart.getUser(), cartProductsDto);
-        }
-        return listOfProductsByUserId;
-    }
-
-    @Override
     public void addProductToCart(Cart cart) {
         cartRepository.save(cart);
     }
+//    @Override
+//    public Map<User, List<CartProductDto>> groupCartProductsByUser() {
+//        List<Cart> carts = cartRepository.findAll();
+//        Map<User, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
+//        for(Cart cart : carts){
+//            List<CartProductDto> cartProductsDto;
+//            if(listOfProductsByUserId.containsKey(cart.getUser())){
+//                cartProductsDto = listOfProductsByUserId.get(cart.getUser());
+//            } else{
+//                cartProductsDto = new ArrayList<>();
+//            }
+//            cartProductsDto.add(new CartProductDto(cart));
+//            listOfProductsByUserId.put(cart.getUser(), cartProductsDto);
+//        }
+//        return listOfProductsByUserId;
+//    }
+
 }

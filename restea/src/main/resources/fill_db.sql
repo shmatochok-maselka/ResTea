@@ -53,13 +53,12 @@ VALUES(1, 2),
       (2, 3),
       (3, 1);
 
-INSERT INTO cart(cart_user_id, cart_product_id, weight)
-VALUES(1, 1, 25),
-    (1, 2, 50),
-    (1, 3, 75),
-    (2, 2, 80),
-    (2, 3, 80),
-    (3, 3, 100);
+# INSERT INTO cart(cart_user_id, cart_product_id, weight)
+# VALUES(1, 1, 25),
+#     (1, 2, 50),
+#     (1, 3, 75),
+#     (2, 2, 80),
+#     (2, 3, 80);
 
 INSERT INTO blog_post(id, title, content)
 VALUES(1, 'title1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),

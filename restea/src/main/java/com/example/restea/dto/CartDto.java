@@ -23,10 +23,10 @@ public class CartDto {
     @Autowired
     private CartRepository cartRepository;
 
-    private CartServiceImpl cartService = new CartServiceImpl(cartRepository);
+//    private CartServiceImpl cartService = new CartServiceImpl(cartRepository);
 
     public CartDto(Cart cart) {
-        this.userId = cart.getUser().getId();
-        this.products = cartService.groupCartProductsByUser().get(this.userId);
+//        this.userId = cart.getUser().getId();
+//        this.products = cartService.groupCartProductsByUser().get(this.userId);
     }
 }
