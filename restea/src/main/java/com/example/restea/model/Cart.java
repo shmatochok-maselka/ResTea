@@ -33,9 +33,9 @@ public class Cart implements  java.io.Serializable{
     @JoinColumn(name="cart_user_id", insertable=false, updatable=false)
     private User user;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cart")
-    private List<Product> cartProducts;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "cart")
+//    private List<Product> cartProducts;
 
     @Column(name = "weight")
     private int productWeight;

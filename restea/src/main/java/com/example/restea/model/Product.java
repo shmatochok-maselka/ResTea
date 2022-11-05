@@ -1,5 +1,6 @@
 package com.example.restea.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,8 +27,9 @@ public class Product extends BaseEntity{
     @Column(name = "price")
     private int price;
 
-    @ManyToOne()
-    private Cart cart;
+//    @JsonIgnore
+//    @ManyToOne()
+//    private Cart cart;
 
     @ManyToOne
     @JoinColumn(name="origin_id", nullable=false)

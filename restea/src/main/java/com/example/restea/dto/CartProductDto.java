@@ -26,10 +26,10 @@ public class CartProductDto {
 
     public CartProductDto(Cart cart, ProductService productService) {
         this.productId = cart.getId().getProductId();
-//        Product product = productService.findProductById(cart.getId().getProductId());
-//        this.productName = product.getName();
-//        this.productImage = product.getImage();
-//        this.productPrice = product.getPrice();
+        Product product = productService.findProductById(cart.getId().getProductId());
+        this.productName = product.getName();
+        this.productImage = product.getImage();
+        this.productPrice = product.getPrice();
         this.productWeight = cart.getProductWeight();
     }
 }
