@@ -12,6 +12,6 @@ public interface CartService {
 //    private Map<Long, List<CartProductDto>> groupCartProductsByUser();
 
     List<Cart> findById_OrderCode(Long userId);
-    List<CartProductDto> getCartProductsByUserId(Long userId);
+    List<CartProductDto> getCartProductsByUserId(Long userId, ProductService productService);
     void addProductToCart(Cart cart);
 }

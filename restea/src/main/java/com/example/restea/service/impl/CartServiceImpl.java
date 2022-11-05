@@ -52,7 +52,7 @@ public class CartServiceImpl implements CartService {
     }
 
 
-    private Map<Long, List<CartProductDto>> groupCartProductsByUser() {
+    private Map<Long, List<CartProductDto>> groupCartProductsByUser(ProductService productService) {
         List<Cart> carts = cartRepository.findAll();
         Map<Long, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
         for(Cart cart : carts){
@@ -69,8 +69,8 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartProductDto> getCartProductsByUserId(Long userId) {
-        Map<Long, List<CartProductDto>> groupCartProductsByUser = this.groupCartProductsByUser();
+    public List<CartProductDto> getCartProductsByUserId(Long userId, ProductService productService) {
+        Map<Long, List<CartProductDto>> groupCartProductsByUser = this.groupCartProductsByUser(productService);
         return groupCartProductsByUser.get(userId);
     }
 

@@ -29,29 +29,6 @@ public class CartDto {
 
     public CartDto(Long userId, CartService cartService, ProductService productService) {
         this.userId = userId;
-        this.products = getCartProductsByUserId(this.userId, cartService, productService);
-    }
-    private Map<Long, List<CartProductDto>> groupCartProductsByUser(CartService cartService,
-                                                                    ProductService productService) {
-        List<Cart> carts = cartService.findAll();
-        Map<Long, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
-        for(Cart cart : carts){
-            List<CartProductDto> cartProductsDto;
-            if(listOfProductsByUserId.containsKey(cart.getId().getUserId())){
-                cartProductsDto = listOfProductsByUserId.get(cart.getId().getUserId());
-            } else{
-                cartProductsDto = new ArrayList<>();
-            }
-            cartProductsDto.add(new CartProductDto(cart, productService));
-            listOfProductsByUserId.put(cart.getId().getUserId(), cartProductsDto);
-        }
-        return listOfProductsByUserId;
-    }
-
-    public List<CartProductDto> getCartProductsByUserId(Long userId, CartService cartService,
-                                                        ProductService productService) {
-        Map<Long, List<CartProductDto>> groupCartProductsByUser = this.groupCartProductsByUser(cartService,
-                productService);
-        return groupCartProductsByUser.get(userId);
+        this.products = cartService.getCartProductsByUserId(this.userId, productService);
     }
 }

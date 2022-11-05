@@ -28,15 +28,6 @@ public class Cart implements  java.io.Serializable{
     @EmbeddedId
     private CartId id;
 
-    @JsonIgnore
-    @OneToOne()
-    @JoinColumn(name="cart_user_id", insertable=false, updatable=false)
-    private User user;
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "cart")
-//    private List<Product> cartProducts;
-
     @Column(name = "weight")
     private int productWeight;
 }
