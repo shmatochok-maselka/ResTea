@@ -1,10 +1,10 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.CartDto;
-import com.example.restea.dto.CartProductDto;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
 import com.example.restea.model.Product;
+import com.example.restea.model.User;
 import com.example.restea.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestController
 @CrossOrigin
@@ -36,6 +37,11 @@ public class CartController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Long userId = productCartJSON.get("userId");
+        try{
+            User user = userService.findUserById(userId);
+        } catch (NoSuchElementException exception){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         CartDto cartProducts = new CartDto(userId, cartService, productService);
         return new ResponseEntity<>(cartProducts, HttpStatus.CREATED);
     }
@@ -46,13 +52,24 @@ public class CartController {
             || !productCartJSON.containsKey("productWeight")) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        Long productId = productCartJSON.get("productId");
+        Long userId = productCartJSON.get("userId");
+        try{
+            Product product = productService.findProductById(productId);
+            User user = userService.findUserById(userId);
+        } catch (NoSuchElementException exception){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         Cart cartProduct = new Cart();
-        cartProduct.setId(new CartId(productCartJSON.get("userId"), productCartJSON.get("productId")));
-//        cartProduct.setUser(userService.findUserById(productCartJSON.get("userId")));
-//        cartProduct.setCartProduct(productService.findProductById(productCartJSON.get("productId")));
-        cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue());
+        cartProduct.setId(new CartId(userId, productId));
+        Cart cartProductExist = cartService.findById(new CartId(userId, productId));
+        if(cartProductExist != null){
+            cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue() +
+                    cartProductExist.getProductWeight());
+        }else{
+            cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue());
+        }
         cartService.addProductToCart(cartProduct);
-//        return new ResponseEntity<>(cartService.getCartProductsByUserId(productCartJSON.get("userId")), HttpStatus.CREATED);
-        return new ResponseEntity<>(cartService.findById_OrderCode(productCartJSON.get("userId")), HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

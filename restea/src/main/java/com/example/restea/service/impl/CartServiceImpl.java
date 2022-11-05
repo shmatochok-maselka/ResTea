@@ -2,6 +2,7 @@ package com.example.restea.service.impl;
 
 import com.example.restea.dto.CartProductDto;
 import com.example.restea.model.Cart;
+import com.example.restea.model.CartId;
 import com.example.restea.model.Product;
 import com.example.restea.model.User;
 import com.example.restea.repository.BlogPostRepository;
@@ -36,14 +37,26 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<Cart> findById_OrderCode(Long userId) {
-        List<Cart> carts = this.findAll();
-        List<Cart> newCarts = new ArrayList<>();
-        for(Cart cart: carts){
+    public List<Cart> findByUserId(Long userId) {
+        List<Cart> allCartProducts = this.findAll();
+        List<Cart> userProductCarts = new ArrayList<>();
+        for(Cart cart: allCartProducts){
             if(cart.getId().getUserId() == userId)
-                newCarts.add(cart);
+                userProductCarts.add(cart);
         }
-        return newCarts;
+        return userProductCarts;
+    }
+
+    @Override
+    public Cart findById(CartId cartId) {
+        List<Cart> allCartProducts = this.findAll();
+        Cart cartProduct = null;
+        for(Cart cart : allCartProducts){
+            if(cart.getId().getUserId() == cartId.getUserId() && cart.getId().getProductId() == cartId.getProductId()){
+                cartProduct = cart;
+            }
+        }
+        return cartProduct;
     }
 
     @Override
