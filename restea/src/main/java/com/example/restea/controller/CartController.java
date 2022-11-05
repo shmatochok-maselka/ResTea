@@ -46,6 +46,29 @@ public class CartController {
         return new ResponseEntity<>(cartProducts, HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/delete")
+    public ResponseEntity<List<Cart>> deleteProductfromCart(@RequestBody Map<String, Long> productCartJSON) {
+        if (productCartJSON == null || !productCartJSON.containsKey("userId") ||
+                !productCartJSON.containsKey("productId")) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Long productId = productCartJSON.get("productId");
+        Long userId = productCartJSON.get("userId");
+        try{
+            Product product = productService.findProductById(productId);
+            User user = userService.findUserById(userId);
+        } catch (NoSuchElementException exception){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Cart cartProduct = new Cart();
+        CartId cartId = new CartId(userId, productId);
+        cartProduct.setId(cartId);
+        if(cartService.findById(cartId) != null){
+            cartService.deleteById(cartId);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @PostMapping(value = "/add")
     public ResponseEntity<List<Cart>> addProductToCart(@RequestBody Map<String, Long> productCartJSON) {
         if (productCartJSON == null || !productCartJSON.containsKey("userId") || !productCartJSON.containsKey("productId")

@@ -48,6 +48,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void deleteById(CartId cardId) {
+        cartRepository.delete(this.findById(cardId));
+    }
+
+    @Override
     public Cart findById(CartId cartId) {
         List<Cart> allCartProducts = this.findAll();
         Cart cartProduct = null;
