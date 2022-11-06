@@ -152,6 +152,7 @@ DROP TABLE IF EXISTS `shop`.`Cart` ;
 CREATE TABLE IF NOT EXISTS `ResTea`.`cart` (
                                                `cart_user_id` INT NOT NULL,
                                                `cart_product_id` INT NOT NULL,
+                                               `weight` INT NOT NULL,
                                                PRIMARY KEY (`cart_user_id`, `cart_product_id`),
                                                INDEX `product_id_idx` (`cart_product_id` ASC) VISIBLE,
                                                CONSTRAINT `cart_user_id`
@@ -165,7 +166,6 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`cart` (
                                                        ON DELETE NO ACTION
                                                        ON UPDATE NO ACTION)
     ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `ResTea`.`Order_Product`
