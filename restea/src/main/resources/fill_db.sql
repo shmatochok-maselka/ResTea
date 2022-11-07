@@ -68,11 +68,11 @@ VALUES(1, 'title1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, s
 -- INSERT INTO cart(cart_user_id, cart_product_id, weight)
 
 -- Password 1234 is encrypted
-INSERT INTO user (name, surname, birthday, bonus, email, password)
-VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK');
+INSERT INTO user (name, surname, birthday, bonus, email, password, image)
+VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK', 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
+       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK', 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
+       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK', 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
+       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK', 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80');
 
 INSERT INTO role
 VALUES (1, 'customer');

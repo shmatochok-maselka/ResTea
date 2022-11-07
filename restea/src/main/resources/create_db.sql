@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user` (
    `bonus` INT NOT NULL,
    `email` VARCHAR(45) NOT NULL UNIQUE,
    `password` VARCHAR(100) NOT NULL,
+   `image` VARCHAR(1000) NOT NULL,
    PRIMARY KEY (`id`))
 
     ENGINE = InnoDB;
