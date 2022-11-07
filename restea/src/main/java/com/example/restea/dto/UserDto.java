@@ -11,23 +11,23 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class UserDto {
-    private Long id;
     private String name;
     private String surname;
     private LocalDate birthday;
     private int bonus;
     private String email;
     private String password;
+    private String image;
 
 
     public UserDto(User user) {
-        this.id = user.getId();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.birthday = user.getBirthday();
         this.bonus = user.getBonus();
         this.email = user.getEmail();
         this.password = user.getPassword();
+        this.image = user.getImage();
     }
 
     public User toUser(){
@@ -38,6 +38,7 @@ public class UserDto {
         user.setBonus(bonus);
         user.setEmail(email);
         user.setPassword(password);
+        user.setImage(image);
         return user;
     }
 }
