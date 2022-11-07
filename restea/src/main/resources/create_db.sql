@@ -25,15 +25,17 @@ USE `ResTea`;
 -- -----------------------------------------------------
 -- Table `ResTea`.`user`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `ResTea`.`user`
 (
-    `id`       INT          NOT NULL AUTO_INCREMENT,
-    `name`     VARCHAR(15)  NOT NULL,
-    `surname`  VARCHAR(15)  NOT NULL,
-    `birthday` DATE         NOT NULL,
-    `bonus`    INT          NOT NULL,
-    `email`    VARCHAR(45)  NOT NULL UNIQUE,
-    `password` VARCHAR(100) NOT NULL,
+    `id`       INT           NOT NULL AUTO_INCREMENT,
+    `name`     VARCHAR(15)   NOT NULL,
+    `surname`  VARCHAR(15)   NOT NULL,
+    `birthday` DATE          NOT NULL,
+    `bonus`    INT           NOT NULL,
+    `email`    VARCHAR(45)   NOT NULL UNIQUE,
+    `password` VARCHAR(100)  NOT NULL,
+    `image`    VARCHAR(1000) NOT NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
@@ -162,10 +164,12 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `shop`.`Cart`;
 
+
 CREATE TABLE IF NOT EXISTS `ResTea`.`cart`
 (
     `cart_user_id`    INT NOT NULL,
     `cart_product_id` INT NOT NULL,
+    `weight`          INT NOT NULL,
     PRIMARY KEY (`cart_user_id`, `cart_product_id`),
     INDEX `product_id_idx` (`cart_product_id` ASC) VISIBLE,
     CONSTRAINT `cart_user_id`
@@ -180,7 +184,6 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`cart`
             ON UPDATE NO ACTION
 )
     ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `ResTea`.`Order_Product`
@@ -287,6 +290,21 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product_Properties`
 )
     ENGINE = InnoDB;
 
+
+
+-- -----------------------------------------------------
+-- Table `shop`.`Blog_Post`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ResTea`.`Blog_Post`;
+
+CREATE TABLE IF NOT EXISTS `ResTea`.`Blog_Post`
+(
+    `id`      INT          NOT NULL AUTO_INCREMENT,
+    `title`   VARCHAR(150) NOT NULL,
+    `content` TEXT         NOT NULL,
+    PRIMARY KEY (`id`)
+)
+    ENGINE = InnoDB;
 
 SET SQL_MODE = @OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
