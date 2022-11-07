@@ -1,5 +1,6 @@
 USE restea;
 
+
 SET FOREIGN_KEY_CHECKS=0;
 DELETE FROM user;
 DELETE FROM role;
@@ -15,28 +16,33 @@ DELETE FROM blog_post;
 DELETE FROM cart;
 
 INSERT INTO origin(id, name)
-VALUES(1, 'Китай'),
-      (2, 'Індія');
+VALUES (1, 'Китай'),
+       (2, 'Індія');
 
 INSERT INTO type(id, name)
-VALUES(1, 'Зелений'),
-      (2, 'Чорний'),
-      (3, 'Фруктовий');
+VALUES (1, 'Зелений'),
+       (2, 'Чорний'),
+       (3, 'Фруктовий');
 
 INSERT INTO product(id, name, description, image, price, type_id, origin_id)
-VALUES(1, 'product1', 'desc1','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 7, 1, 1),
-      (2, 'product2', 'desc2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 15, 2, 2),
-       (3, 'product3', 'desc3','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 11, 3, 1);
+VALUES (1, 'product1', 'desc1',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 7, 1, 1),
+       (2, 'product2', 'desc2',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 15, 2,
+        2),
+       (3, 'product3', 'desc3',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 11, 3,
+        1);
 
 INSERT INTO flavor(id, name)
-VALUES(1, 'flavor1'),
-      (2, 'flavor2'),
-      (3, 'flavor3');
+VALUES (1, 'flavor1'),
+       (2, 'flavor2'),
+       (3, 'flavor3');
 
 INSERT INTO property(id, name)
-VALUES(1, 'property1'),
-      (2, 'property2'),
-      (3, 'property3');
+VALUES (1, 'property1'),
+       (2, 'property2'),
+       (3, 'property3');
 
 INSERT INTO product_flavor(product_id, flavor_id)
 VALUES (1, 1),
@@ -47,11 +53,11 @@ VALUES (1, 1),
 
 
 INSERT INTO product_properties(product_id, property_id)
-VALUES(1, 2),
-      (2, 1),
-      (2, 2),
-      (2, 3),
-      (3, 1);
+VALUES (1, 2),
+       (2, 1),
+       (2, 2),
+       (2, 3),
+       (3, 1);
 
 # INSERT INTO cart(cart_user_id, cart_product_id, weight)
 # VALUES(1, 1, 25),
@@ -68,11 +74,12 @@ VALUES(1, 'title1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, s
 -- INSERT INTO cart(cart_user_id, cart_product_id, weight)
 
 -- Password 1234 is encrypted
-INSERT INTO user (name, surname, birthday, bonus, email, password)
-VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK'),
-       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK');
+
+INSERT INTO user (name, surname, birthday, bonus, email, password, image)
+VALUES ('Ivan', 'Ivanovich', '2022-10-28', 100, 'test1@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK', 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
+       ('Petro', 'Ivanovich', '2022-10-28', 100, 'test2@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK', 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
+       ('Dmitriy', 'Ivanovich', '2022-10-28', 100, 'test3@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK', 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
+       ('Oleg', 'Ivanovich', '2022-10-28', 100, 'test4@gmail.com', '$2a$10$9RwGiLB.ydD8c8oVxVamzOXxHYF1FQMhjrlHKY3pkCsjifrwCeJKK', 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80');
 
 INSERT INTO role
 VALUES (1, 'customer');
