@@ -22,5 +22,6 @@ public class MainPageDto {
 
     public MainPageDto(ProductService productService, BlogPostService blogPostService) {
         this.productsDto = productService.getProductsForMainPage();
+        this.blogPostsDto = blogPostService.getPostsForMainPage();
     }
 }

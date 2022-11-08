@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> getProductsForMainPage() {
-        List<Product> products = this.findAll().stream().limit(3).collect(Collectors.toList());
+        List<Product> products = this.findAll().stream().limit(4).collect(Collectors.toList());
         return productListToProductDtoList(products);
     }
 
