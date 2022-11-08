@@ -32,6 +32,12 @@ VALUES (1, 'product1', 'desc1',
         2),
        (3, 'product3', 'desc3',
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 11, 3,
+        1),
+       (4, 'product4', 'desc4',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 8, 1,
+        2),
+       (5, 'product5', 'desc5',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXEA1ARqIgj9GJ8Gj9bSwnrvuMh6fl7eHAgQ&usqp=CAU', 10, 1,
         1);
 
 INSERT INTO flavor(id, name)
@@ -49,7 +55,11 @@ VALUES (1, 1),
        (2, 1),
        (2, 2),
        (2, 3),
-       (3, 2);
+       (3, 2),
+       (4, 1),
+       (4, 3),
+       (5, 2),
+       (5, 3);
 
 
 INSERT INTO product_properties(product_id, property_id)
@@ -57,7 +67,11 @@ VALUES (1, 2),
        (2, 1),
        (2, 2),
        (2, 3),
-       (3, 1);
+       (3, 1),
+       (4, 2),
+       (4, 3),
+       (5, 1),
+       (5, 2);
 
 # INSERT INTO cart(cart_user_id, cart_product_id, weight)
 # VALUES(1, 1, 25),
@@ -66,10 +80,11 @@ VALUES (1, 2),
 #     (2, 2, 80),
 #     (2, 3, 80);
 
-INSERT INTO blog_post(id, title, content)
-VALUES(1, 'title1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
-    (2, 'title2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
-    (3, 'title3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+INSERT INTO blog_post(id, title, image, content)
+VALUES(1, 'title1','https://www.google.com/search?q=%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+%D1%87%D0%B0%D1%8E&sxsrf=ALiCzsZXZD8sV245KLCVT5oKHYVijocyIw:1667943992569&source=lnms&tbm=isch&sa=X&ved=2ahUKEwibqLrJx5_7AhXsoosKHWC1DYUQ_AUoAnoECAEQBA&biw=1396&bih=656&dpr=1.38#imgrc=o5H2jbLsKc3PPM', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+    (2, 'title2','https://www.google.com/search?q=%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+%D1%87%D0%B0%D1%8E&sxsrf=ALiCzsZXZD8sV245KLCVT5oKHYVijocyIw:1667943992569&source=lnms&tbm=isch&sa=X&ved=2ahUKEwibqLrJx5_7AhXsoosKHWC1DYUQ_AUoAnoECAEQBA&biw=1396&bih=656&dpr=1.38#imgrc=o5H2jbLsKc3PPM', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+    (3, 'title3','https://www.google.com/search?q=%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+%D1%87%D0%B0%D1%8E&sxsrf=ALiCzsZXZD8sV245KLCVT5oKHYVijocyIw:1667943992569&source=lnms&tbm=isch&sa=X&ved=2ahUKEwibqLrJx5_7AhXsoosKHWC1DYUQ_AUoAnoECAEQBA&biw=1396&bih=656&dpr=1.38#imgrc=o5H2jbLsKc3PPM', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+    (4, 'title4','https://www.google.com/search?q=%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+%D1%87%D0%B0%D1%8E&sxsrf=ALiCzsZXZD8sV245KLCVT5oKHYVijocyIw:1667943992569&source=lnms&tbm=isch&sa=X&ved=2ahUKEwibqLrJx5_7AhXsoosKHWC1DYUQ_AUoAnoECAEQBA&biw=1396&bih=656&dpr=1.38#imgrc=o5H2jbLsKc3PPM', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
 -- INSERT INTO cart(cart_user_id, cart_product_id, weight)
 

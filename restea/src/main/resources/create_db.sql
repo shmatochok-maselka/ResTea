@@ -301,6 +301,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Blog_Post`
 (
     `id`      INT          NOT NULL AUTO_INCREMENT,
     `title`   VARCHAR(150) NOT NULL,
+    `image`       VARCHAR(1000) NOT NULL,
     `content` TEXT         NOT NULL,
     PRIMARY KEY (`id`)
 )
