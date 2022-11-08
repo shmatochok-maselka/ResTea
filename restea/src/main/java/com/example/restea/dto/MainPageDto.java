@@ -16,12 +16,12 @@ import java.util.Set;
 @NoArgsConstructor
 public class MainPageDto {
 
-    private List<ProductDto> productsDto;
+    private List<MainPageProductDto> products;
 
-    private List<BlogPostDto> blogPostsDto;
+    private List<BlogPostDto> blogPosts;
 
     public MainPageDto(ProductService productService, BlogPostService blogPostService) {
-        this.productsDto = productService.getProductsForMainPage();
-        this.blogPostsDto = blogPostService.getPostsForMainPage();
+        this.products = productService.getProductsForMainPage();
+        this.blogPosts = blogPostService.getPostsForMainPage();
     }
 }
