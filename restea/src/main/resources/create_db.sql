@@ -162,8 +162,8 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product`
 -- -----------------------------------------------------
 -- Table `ResTea`.`Cart`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `shop`.`Cart`;
 
+DROP TABLE IF EXISTS `ResTea`.`Cart`;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`cart`
 (
@@ -306,6 +306,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Blog_Post`
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
+
 
 SET SQL_MODE = @OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;

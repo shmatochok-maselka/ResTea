@@ -3,6 +3,7 @@ package com.example.restea.dto;
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.Product;
 import com.example.restea.model.ProductProperty;
+
 import com.example.restea.service.ProductFlavorService;
 import com.example.restea.service.ProductPropertyService;
 import com.example.restea.service.impl.ProductFlavorServiceImpl;
@@ -48,6 +49,7 @@ public class ProductDto {
         this.flavors = flavorsSetToFlavorsDtoSet(product);
         this.properties = propertySetToPropertyDtoSet(product);
     }
+
 
     public Product toProduct(ProductFlavorService flavorService,
                              ProductPropertyService propertyService){

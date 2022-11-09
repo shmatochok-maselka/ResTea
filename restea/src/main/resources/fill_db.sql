@@ -15,6 +15,7 @@ DELETE FROM product_properties;
 DELETE FROM blog_post;
 DELETE FROM cart;
 
+
 INSERT INTO origin(id, name)
 VALUES (1, 'Китай'),
        (2, 'Індія');
