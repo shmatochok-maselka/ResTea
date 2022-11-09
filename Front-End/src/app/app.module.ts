@@ -15,6 +15,10 @@ import {CatalogComponent} from './shop/catalog/catalog.component';
 import {BlogPostComponent} from './blog/blog-post/blog-post.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatInputModule} from "@angular/material/input";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FormsModule} from "@angular/forms";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -27,15 +31,19 @@ import {MatGridListModule} from "@angular/material/grid-list";
     CatalogComponent,
     BlogPostComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatGridListModule,
+        HttpClientModule,
+        MatInputModule,
+        MatCheckboxModule,
+        FormsModule,
+        MatSliderModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

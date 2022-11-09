@@ -1,19 +1,31 @@
-export interface type{
+export interface Type{
   id: number;
   name: string;
 }
-export interface origin{
-  id: number;
-  name: string;
-}
-
-export interface flavour{
+export interface Origin{
   id: number;
   name: string;
 }
 
-export interface property{
+export interface Flavor {
   id: number;
   name: string;
 }
 
+export interface Property{
+  id: number;
+  name: string;
+}
+
+export interface EntityFilterModel<T>{
+  value:T;
+  checked:boolean;
+}
+
+export interface FilterParamsModel{
+  type:number[];
+  origin:number[];
+  flavor:number[];
+  property:number[];
+  name:string;
+}
