@@ -28,16 +28,20 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping("/add_order")
-    public ResponseEntity<Order> addOrder(@RequestBody OrderDto orderDto) {
-        try{
-            orderService.addOrder(orderDto.toOrder());
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @PostMapping
+//    @PostMapping("/add_order")
+    public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto orderDto) {
+//        try{
+//            orderService.addOrder(orderDto.toOrder());
+//        }catch (Exception e){
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
 //        Order order = orderDto.toOrder();
 //        orderService.addOrder(orderDto.toOrder());
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/order/add_order").toUriString());
+        return ResponseEntity.created(uri).body(new OrderDto(orderService.addOrder(orderDto.toOrder())));
+//                .saveUser(userDto.toUser())));
+//        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

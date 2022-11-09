@@ -35,11 +35,11 @@ public class Order extends BaseEntity{
     @Column(name = "address")
     private String address;
 
-    @Column(name = "date")
-    private LocalDateTime orderData;
+//    @Column(name = "order_date")
+//    private LocalDateTime orderData;
 
     @Column(name = "price")
-    private int orderPrice;
+    private double orderPrice;
 
     @OneToMany(mappedBy="order")
     private List<OrderProduct> orderProducts;

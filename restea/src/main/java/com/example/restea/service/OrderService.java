@@ -4,5 +4,5 @@ import com.example.restea.model.Cart;
 import com.example.restea.model.Order;
 
 public interface OrderService {
-    void addOrder(Order order);
+    Order addOrder(Order order);
 }

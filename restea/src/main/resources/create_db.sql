@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`order`
     `receiver_surname` VARCHAR(15) NOT NULL,
     `phone`            VARCHAR(10) NOT NULL,
     `address`          VARCHAR(100) NOT NULL,
-    `date`             DATETIME    NOT NULL,
+#     `order_date`             DATETIME    NOT NULL,
     `price`            DOUBLE      NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `user_id_idx` (`order_user_id` ASC) VISIBLE,
