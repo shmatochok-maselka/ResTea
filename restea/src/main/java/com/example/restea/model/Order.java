@@ -6,8 +6,10 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "order")
@@ -35,4 +37,7 @@ public class Order extends BaseEntity{
 
     @Column(name = "price")
     private int orderPrice;
+
+    @OneToMany(mappedBy="order")
+    private List<OrderProduct> orderProducts;
 }
