@@ -31,7 +31,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findAll() {
-        return productRepository.findAll();
+        List<Product> listOfProducts = new ArrayList<>();
+        var iterableProducts = productRepository.findAll();
+        iterableProducts.forEach(listOfProducts::add);
+        return listOfProducts;
     }
 
     @Override
@@ -47,6 +50,7 @@ public class ProductServiceImpl implements ProductService {
         }
         return productsDto;
     }
+
 
 //    @Override
 //    public List<ProductDto> findAll() {
