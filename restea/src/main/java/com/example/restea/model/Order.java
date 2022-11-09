@@ -23,6 +23,9 @@ public class Order extends BaseEntity{
     @Column(name = "receiver_name")
     private String receiverName;
 
+    @Column(name = "receiver_second_name")
+    private String receiverSecondName;
+
     @Column(name = "receiver_surname")
     private String receiverSurname;
 
