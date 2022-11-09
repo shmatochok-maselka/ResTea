@@ -1,7 +1,6 @@
 package com.example.restea.service.impl;
 
 import com.example.restea.dto.MainPageProductDto;
-import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Product;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.ProductService;
@@ -41,6 +40,16 @@ public class ProductServiceImpl implements ProductService {
     public List<MainPageProductDto> getProductsForMainPage() {
         List<Product> products = this.findAll().stream().limit(4).collect(Collectors.toList());
         return productListToProductDtoList(products);
+    }
+
+    @Override
+    public int minProductPrice() {
+        return productRepository.minProductPrice();
+    }
+
+    @Override
+    public int maxProductPrice() {
+        return productRepository.maxProductPrice();
     }
 
     private List<MainPageProductDto> productListToProductDtoList(List<Product> products){
