@@ -2,7 +2,6 @@ package com.example.restea.controller;
 
 import com.example.restea.model.ProductCategories;
 import com.example.restea.service.*;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,14 +28,13 @@ public class ProductCategoriesController {
         this.productPropertyService = productPropertyService;
         this.productService = productService;
     }
+
     @GetMapping("/max_min_price")
     @ResponseBody
     public ResponseEntity<Object> maxAndMinPricesOfProduct() {
         JSONObject minMaxPriceJsonObject = new JSONObject();
         minMaxPriceJsonObject.put("min", productService.minProductPrice());
         minMaxPriceJsonObject.put("max", productService.maxProductPrice());
-        JSONArray response = new JSONArray();
-        response.put(minMaxPriceJsonObject.toMap());
         return new ResponseEntity<>(minMaxPriceJsonObject.toMap(), HttpStatus.OK);
     }
 
@@ -45,9 +43,9 @@ public class ProductCategoriesController {
     public ResponseEntity<ProductCategories> findAllCategories() {
         ProductCategories productCategories = new ProductCategories
                 (productTypeService.typeSetToTypeDtoSet(productTypeService.findAll()),
-                productFlavorService.flavorSetToFlavorDtoSet(productFlavorService.findAll()),
-                productOriginService.originSetToOriginDtoSet(productOriginService.findAll()),
-                productPropertyService.propertySetToPropertyDtoSet(productPropertyService.findAll()));
+                        productFlavorService.flavorSetToFlavorDtoSet(productFlavorService.findAll()),
+                        productOriginService.originSetToOriginDtoSet(productOriginService.findAll()),
+                        productPropertyService.propertySetToPropertyDtoSet(productPropertyService.findAll()));
         return ResponseEntity.ok(productCategories);
     }
 }
