@@ -1,4 +1,4 @@
-import {flavour, type, origin, property} from "./categories";
+import {Flavor, Type, Origin, Property} from "./categories";
 
 export interface Product {
   id: number;
@@ -6,8 +6,8 @@ export interface Product {
   description: string;
   price: number;
   image: string;
-  type: type;
-  origin: origin;
-  flavors: Array<flavour>;
-  properties: Array<property>;
+  type: Type;
+  origin: Origin;
+  flavors: Array<Flavor>;
+  properties: Array<Property>;
 }
