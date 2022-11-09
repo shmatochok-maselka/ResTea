@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_client")
 @Getter
 @Setter
 @ToString
@@ -35,12 +35,12 @@ public class Order extends BaseEntity{
     @Column(name = "address")
     private String address;
 
-//    @Column(name = "order_date")
-//    private LocalDateTime orderData;
+    @Column(name = "order_date")
+    private LocalDateTime orderData;
 
     @Column(name = "price")
     private double orderPrice;
 
-    @OneToMany(mappedBy="order")
-    private List<OrderProduct> orderProducts;
+//    @OneToMany(mappedBy="order")
+//    private List<OrderProduct> orderProducts;
 }

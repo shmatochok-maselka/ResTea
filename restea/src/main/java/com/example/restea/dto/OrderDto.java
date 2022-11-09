@@ -34,14 +34,14 @@ public class OrderDto {
 
     private String address;
 
-//    private LocalDateTime orderData;
+    private LocalDateTime orderData;
 
     private double orderPrice;
 
-//    public void setOrderData(String dataTime) {
-//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//        this.orderData = LocalDateTime.parse(dataTime, dateTimeFormatter);
-//    }
+    public void setOrderData(String dataTime) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.orderData = LocalDateTime.parse(dataTime, dateTimeFormatter);
+    }
 
     public OrderDto(Order order){
         this.id = order.getId();
@@ -51,7 +51,7 @@ public class OrderDto {
         this.receiverSurname = order.getReceiverSurname();
         this.phone = order.getPhone();
         this.address = order.getAddress();
-//        this.orderData = order.getOrderData();
+        this.orderData = order.getOrderData();
         this.orderPrice = order.getOrderPrice();
     }
 
@@ -63,7 +63,7 @@ public class OrderDto {
         order.setReceiverSurname(this.receiverSurname);
         order.setPhone(this.phone);
         order.setAddress(this.address);
-//        order.setOrderData(this.orderData);
+        order.setOrderData(this.orderData);
         order.setOrderPrice(this.orderPrice);
         return order;
     }

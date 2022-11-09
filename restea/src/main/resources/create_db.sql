@@ -79,18 +79,18 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user_role`
 -- -----------------------------------------------------
 -- Table `ResTea`.`order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ResTea`.`order`
+CREATE TABLE IF NOT EXISTS `ResTea`.`order_client`
 (
-    `id`               INT         NOT NULL,
+    `id`       INT           NOT NULL AUTO_INCREMENT,
     `order_user_id`    INT         NOT NULL,
     `receiver_name`    VARCHAR(15) NOT NULL,
     `receiver_second_name`    VARCHAR(15) NOT NULL,
     `receiver_surname` VARCHAR(15) NOT NULL,
     `phone`            VARCHAR(10) NOT NULL,
     `address`          VARCHAR(100) NOT NULL,
-#     `order_date`             DATETIME    NOT NULL,
+    `order_date`             DATETIME    NOT NULL,
     `price`            DOUBLE      NOT NULL,
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`id`, `order_user_id`),
     INDEX `user_id_idx` (`order_user_id` ASC) VISIBLE,
     CONSTRAINT `order_user_id`
         FOREIGN KEY (`order_user_id`)

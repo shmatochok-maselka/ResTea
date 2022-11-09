@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -28,9 +30,24 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping
-//    @PostMapping("/add_order")
-    public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto orderDto) {
+    @PostMapping(value = "/add_order")
+    public ResponseEntity<OrderDto> addOrder(@RequestBody Map<String, String> orderJSON) {
+//        if (productCartJSON == null || !productCartJSON.containsKey("userId") || !productCartJSON.containsKey("productId")
+//                || !productCartJSON.containsKey("productWeight")) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        Long productId = orderJSON.get("productId");
+        OrderDto order = new OrderDto();
+        order.setUserId(Long.parseLong(orderJSON.get("userId")));
+        order.setReceiverName(orderJSON.get("receiverName"));
+        order.setReceiverSecondName(orderJSON.get("receiverSecondName"));
+        order.setReceiverSurname(orderJSON.get("receiverSurname"));
+        order.setPhone(orderJSON.get("phone"));
+        order.setAddress(orderJSON.get("address"));
+        order.setOrderData(orderJSON.get("orderData"));
+        order.setOrderPrice(Double.parseDouble(orderJSON.get("orderPrice")));
+        orderService.addOrder(order.toOrder());
+        return new ResponseEntity<>(HttpStatus.CREATED);
 //        try{
 //            orderService.addOrder(orderDto.toOrder());
 //        }catch (Exception e){
@@ -38,9 +55,9 @@ public class OrderController {
 //        }
 //        Order order = orderDto.toOrder();
 //        orderService.addOrder(orderDto.toOrder());
-
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/order/add_order").toUriString());
-        return ResponseEntity.created(uri).body(new OrderDto(orderService.addOrder(orderDto.toOrder())));
+//  "orderData": "2022-10-09 17:18:25",
+//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/order/add_order").toUriString());
+//        return ResponseEntity.created(uri).body(new OrderDto(orderService.addOrder(orderDto.toOrder())));
 //                .saveUser(userDto.toUser())));
 //        return new ResponseEntity<>(HttpStatus.CREATED);
     }
