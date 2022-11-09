@@ -3,8 +3,12 @@ package com.example.restea.dto;
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.Product;
 import com.example.restea.model.ProductProperty;
+
+import com.example.restea.service.ProductFlavorService;
+import com.example.restea.service.ProductPropertyService;
 import com.example.restea.service.impl.ProductFlavorServiceImpl;
 import com.example.restea.service.impl.ProductPropertyServiceImpl;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,9 +50,9 @@ public class ProductDto {
         this.properties = propertySetToPropertyDtoSet(product);
     }
 
-    @Autowired
-    public Product toProduct(ProductFlavorServiceImpl flavorService,
-                              ProductPropertyServiceImpl propertyService){
+
+    public Product toProduct(ProductFlavorService flavorService,
+                             ProductPropertyService propertyService){
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);

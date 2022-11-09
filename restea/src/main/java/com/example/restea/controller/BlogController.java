@@ -1,11 +1,8 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.BlogPostDto;
-import com.example.restea.dto.ProductDto;
 import com.example.restea.model.BlogPost;
-import com.example.restea.model.Product;
 import com.example.restea.service.BlogPostService;
-import com.example.restea.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +22,7 @@ public class BlogController {
     public BlogController(BlogPostService blogPostService) {
         this.blogPostService = blogPostService;
     }
+
     @GetMapping
     public ResponseEntity<List<BlogPostDto>> findAllProducts() {
         return new ResponseEntity<>(blogPostService.findAll().stream()

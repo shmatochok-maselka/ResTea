@@ -6,6 +6,7 @@ import com.example.restea.model.ProductOrigin;
 import com.example.restea.repository.ProductFlavorsRepository;
 import com.example.restea.service.ProductFlavorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;

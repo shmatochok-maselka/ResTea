@@ -25,15 +25,17 @@ USE `ResTea`;
 -- -----------------------------------------------------
 -- Table `ResTea`.`user`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `ResTea`.`user`
 (
-    `id`       INT          NOT NULL AUTO_INCREMENT,
-    `name`     VARCHAR(15)  NOT NULL,
-    `surname`  VARCHAR(15)  NOT NULL,
-    `birthday` DATE         NOT NULL,
-    `bonus`    INT          NOT NULL,
-    `email`    VARCHAR(45)  NOT NULL UNIQUE,
-    `password` VARCHAR(100) NOT NULL,
+    `id`       INT           NOT NULL AUTO_INCREMENT,
+    `name`     VARCHAR(15)   NOT NULL,
+    `surname`  VARCHAR(15)   NOT NULL,
+    `birthday` DATE          NOT NULL,
+    `bonus`    INT           NOT NULL,
+    `email`    VARCHAR(45)   NOT NULL UNIQUE,
+    `password` VARCHAR(100)  NOT NULL,
+    `image`    VARCHAR(1000) NOT NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
@@ -80,14 +82,14 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user_role`
 CREATE TABLE IF NOT EXISTS `ResTea`.`order`
 (
     `id`               INT         NOT NULL,
-    `phone`            VARCHAR(12) NOT NULL,
-    `address`          VARCHAR(50) NOT NULL,
+    `order_user_id`    INT         NOT NULL,
+    `receiver_name`    VARCHAR(15) NOT NULL,
+    `receiver_second_name`    VARCHAR(15) NOT NULL,
+    `receiver_surname` VARCHAR(15) NOT NULL,
+    `phone`            VARCHAR(10) NOT NULL,
+    `address`          VARCHAR(100) NOT NULL,
     `date`             DATETIME    NOT NULL,
     `price`            DOUBLE      NOT NULL,
-    `used_bonus`       INT         NOT NULL,
-    `receiver_name`    VARCHAR(15) NOT NULL,
-    `receiver_surname` VARCHAR(15) NOT NULL,
-    `order_user_id`    INT         NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `user_id_idx` (`order_user_id` ASC) VISIBLE,
     CONSTRAINT `order_user_id`
@@ -160,12 +162,14 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product`
 -- -----------------------------------------------------
 -- Table `ResTea`.`Cart`
 -- -----------------------------------------------------
+
 DROP TABLE IF EXISTS `ResTea`.`Cart`;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`cart`
 (
     `cart_user_id`    INT NOT NULL,
     `cart_product_id` INT NOT NULL,
+    `weight`          INT NOT NULL,
     PRIMARY KEY (`cart_user_id`, `cart_product_id`),
     INDEX `product_id_idx` (`cart_product_id` ASC) VISIBLE,
     CONSTRAINT `cart_user_id`
@@ -181,7 +185,6 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`cart`
 )
     ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `ResTea`.`Order_Product`
 -- -----------------------------------------------------
@@ -191,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`order_product`
 (
     `order_id`   INT NOT NULL,
     `product_id` INT NOT NULL,
-    `count`      INT NOT NULL,
+    `weight`      INT NOT NULL,
     PRIMARY KEY (`order_id`, `product_id`),
     INDEX `product_id_idx` (`product_id` ASC) VISIBLE,
     CONSTRAINT `order_id`
@@ -288,19 +291,23 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product_Properties`
     ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `shop`.`Blog_Post`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ResTea`.`Blog_Post` ;
+DROP TABLE IF EXISTS `ResTea`.`Blog_Post`;
 
-CREATE TABLE IF NOT EXISTS `ResTea`.`Blog_Post` (
-                                                  `id` INT NOT NULL AUTO_INCREMENT,
-                                                  `title` VARCHAR(150) NOT NULL,
-                                                  `content` TEXT NOT NULL,
-                                                  PRIMARY KEY (`id`))
+CREATE TABLE IF NOT EXISTS `ResTea`.`Blog_Post`
+(
+    `id`      INT          NOT NULL AUTO_INCREMENT,
+    `title`   VARCHAR(150) NOT NULL,
+    `image`       VARCHAR(1000) NOT NULL,
+    `content` TEXT         NOT NULL,
+    PRIMARY KEY (`id`)
+)
     ENGINE = InnoDB;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+SET SQL_MODE = @OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS;

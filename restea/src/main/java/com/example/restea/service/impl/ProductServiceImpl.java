@@ -1,9 +1,8 @@
 package com.example.restea.service.impl;
 
+import com.example.restea.dto.MainPageProductDto;
 import com.example.restea.dto.ProductDto;
-import com.example.restea.dto.ProductFlavorDto;
 import com.example.restea.model.Product;
-import com.example.restea.model.ProductFlavor;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -34,6 +32,20 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public List<MainPageProductDto> getProductsForMainPage() {
+        List<Product> products = this.findAll().stream().limit(4).collect(Collectors.toList());
+        return productListToProductDtoList(products);
+    }
+
+    private List<MainPageProductDto> productListToProductDtoList(List<Product> products){
+        List<MainPageProductDto> productsDto = new ArrayList<>();
+        for (Product product: products){
+            productsDto.add(new MainPageProductDto(product));
+        }
+        return productsDto;
     }
 
 //    @Override
