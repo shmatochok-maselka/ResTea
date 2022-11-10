@@ -28,4 +28,5 @@ export interface FilterParamsModel{
   flavor:number[];
   property:number[];
   name:string;
+  price:number;
 }

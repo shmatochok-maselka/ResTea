@@ -11,6 +11,9 @@ export class CategoryService {
   getCategories(): Observable<any> {
     return this.http.get<any>(this.categoriesUrl)
   }
+  getPrice():Observable<any>{
+    return  this.http.get<any>(`${this.categoriesUrl}/max_min_price`)
+  }
 
   constructor(private http: HttpClient) {}
   }
