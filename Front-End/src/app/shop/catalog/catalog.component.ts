@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {Product} from "../../models/product";
 import {ProductService} from "../../config/product.service"
 import {FilterParamsModel, Flavor} from "../../models/categories";
-import {Subscription} from "rxjs";
 
 function ContainSome(arr1: number[], arr2: Flavor[]): boolean {
   if (arr2.length==0) return true
@@ -23,7 +22,6 @@ export class CatalogComponent implements OnInit {
   breakpoint: number | undefined;
   private _filters: FilterParamsModel={type:[],origin:[],flavor:[],property:[],name:"",price:0};
   @Input() filterChange = new EventEmitter<FilterParamsModel>();
-  dataSubscription: Subscription | undefined;
 
   constructor(private _productService: ProductService) {
 
