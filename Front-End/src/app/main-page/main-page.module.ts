@@ -16,8 +16,8 @@ import {AboutUsModule} from "./about-us/about-us.module";
     CommonModule,
     SalesCarouselModule,
     BlogCarouselModule,
-    SuggestedItemsModule,
     AboutUsModule,
+    SuggestedItemsModule,
   ],
   exports: [
     MainPageComponent
