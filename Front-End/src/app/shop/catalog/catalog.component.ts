@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {Product} from "../../models/product";
 import {ProductService} from "../../config/product.service"
-import {EntityFilterModel, FilterParamsModel, Flavor, Type} from "../../models/categories";
-import {filter, Subscription} from "rxjs";
+import {FilterParamsModel, Flavor} from "../../models/categories";
 
 function ContainSome(arr1: number[], arr2: Flavor[]): boolean {
   if (arr2.length==0) return true
@@ -21,9 +20,8 @@ export class CatalogComponent implements OnInit {
   allProducts: Product[] = [];
   products: Product[] = [];
   breakpoint: number | undefined;
-  private _filters: FilterParamsModel={type:[],origin:[],flavor:[],property:[],name:""};
+  private _filters: FilterParamsModel={type:[],origin:[],flavor:[],property:[],name:"",price:0};
   @Input() filterChange = new EventEmitter<FilterParamsModel>();
-  dataSubscription: Subscription | undefined;
 
   constructor(private _productService: ProductService) {
 
@@ -52,7 +50,8 @@ export class CatalogComponent implements OnInit {
           this._filters.origin.includes(el.origin.id) &&
           ContainSome(this._filters.flavor,el.flavors) &&
           ContainSome(this._filters.flavor,el.flavors) &&
-          el.name.includes(this._filters.name))
+          el.name.includes(this._filters.name)&&
+          el.price<=this._filters.price)
           this.products.push(el)
       }
     )

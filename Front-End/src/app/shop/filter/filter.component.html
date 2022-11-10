@@ -7,7 +7,7 @@
 
 <div class="price-filter">
   <div class="example-label-container example-label-horizontal">
-    <label>Value:</label>
+    <label>Ціна:</label>
     <label>{{price}}</label>
   </div>
   <mat-slider
@@ -15,6 +15,7 @@
     min=0
     step=1
     [(ngModel)]="price"
+    (change)="OnChangeSlider($event)"
     aria-labelledby="example-name-label">
   </mat-slider>
 </div>
