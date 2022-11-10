@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -18,6 +18,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
 import {MatSliderModule} from "@angular/material/slider";
 import {ShopModule} from "./shop/shop.module";
+import {RouterLink, RouterModule} from "@angular/router";
 import {OneProductModule} from "./one-product/one-product.module";
 
 @NgModule({
@@ -25,9 +26,12 @@ import {OneProductModule} from "./one-product/one-product.module";
     AppComponent,
     NavBarComponent,
     BlogComponent,
+    BlogPostComponent,
   ],
   imports: [
     OneProductModule,
+    RouterLink,
+    RouterModule,
     ShopModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -45,6 +49,9 @@ import {OneProductModule} from "./one-product/one-product.module";
     AppRoutingModule,
   ],
   providers: [],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
