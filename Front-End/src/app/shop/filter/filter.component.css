@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-filter {
+  margin-bottom: 2rem;
+}
+
+mat-label {
+  color: black;
+}
+.mat-slider{
+  margin-left: -8px;
+}

@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+}
+mat-grid-list{
+  display: flex;
+  flex: 1;
+}
+mat-grid-tile{
+  padding: 0;
+}
