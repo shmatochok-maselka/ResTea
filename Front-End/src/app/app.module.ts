@@ -9,6 +9,7 @@ import {MainPageModule} from "./main-page/main-page.module";
 import {NavBarModule} from "./nav-bar/nav-bar.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {OneProductModule} from "./one-product/one-product.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {BlogPostComponent} from './blog/blog-post/blog-post.component';
 import {MatCardModule} from "@angular/material/card";
@@ -27,10 +28,12 @@ import {RouterLink, RouterModule} from "@angular/router";
     BlogComponent,
     BlogPostComponent,
   ],
+
   imports: [
     RouterLink,
     RouterModule,
     ShopModule,
+    OneProductModule,
     BrowserModule,
     BrowserAnimationsModule,
     MainPageModule,
@@ -46,6 +49,7 @@ import {RouterLink, RouterModule} from "@angular/router";
     MatSliderModule,
     AppRoutingModule,
   ],
+  
   providers: [],
   exports: [
     AppRoutingModule
