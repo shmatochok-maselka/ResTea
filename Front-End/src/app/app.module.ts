@@ -9,7 +9,7 @@ import {MainPageModule} from "./main-page/main-page.module";
 import {NavBarModule} from "./nav-bar/nav-bar.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {AppRoutingModule} from "./app-routing.module";
 import {BlogPostComponent} from './blog/blog-post/blog-post.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
@@ -18,6 +18,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
 import {MatSliderModule} from "@angular/material/slider";
 import {ShopModule} from "./shop/shop.module";
+import {RouterLink, RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,8 @@ import {ShopModule} from "./shop/shop.module";
     BlogPostComponent,
   ],
   imports: [
+    RouterLink,
+    RouterModule,
     ShopModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -45,6 +48,7 @@ import {ShopModule} from "./shop/shop.module";
   ],
   providers: [],
   exports: [
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })
