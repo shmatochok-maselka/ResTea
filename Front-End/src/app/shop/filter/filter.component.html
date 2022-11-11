@@ -1,0 +1,55 @@
+<form class="search">
+  <mat-form-field class="search-field" appearance="fill">
+    <mat-label>Search...</mat-label>
+    <input matInput placeholder="Search" [(ngModel)]="_name" name="search" (input)="OnChange($event)">
+  </mat-form-field>
+</form>
+
+<div class="price-filter">
+  <div class="example-label-container example-label-horizontal">
+    <label>Ціна:</label>
+    <label>{{price}}</label>
+  </div>
+  <mat-slider
+    [max]="max_value"
+    min=0
+    step=1
+    [(ngModel)]="price"
+    (change)="OnChangeSlider($event)"
+    aria-labelledby="example-name-label">
+  </mat-slider>
+</div>
+
+<div class="category-filter">
+  <p>Types</p>
+  <div *ngFor="let el of types">
+    <input type="checkbox" name="BrandList" [value]="el.value.name" (change)="OnChange($event)"
+           [(ngModel)]="el.checked">{{ el.value.name }}
+  </div>
+</div>
+
+<div class="category-filter">
+  <p>Origins</p>
+  <div *ngFor="let el of origins">
+    <input type="checkbox" name="BrandList" [value]="el.value.name" (change)="OnChange($event)"
+           [(ngModel)]="el.checked">{{ el.value.name }}
+  </div>
+</div>
+
+<div class="category-filter">
+  <p>Flavors</p>
+  <div *ngFor="let el of flavors">
+    <input type="checkbox" name="BrandList" [value]="el.value.name" (change)="OnChange($event)"
+           [(ngModel)]="el.checked">{{ el.value.name }}
+  </div>
+</div>
+
+<div class="category-filter">
+  <p>Properties</p>
+  <div *ngFor="let el of properties">
+    <input type="checkbox" name="BrandList" [value]="el.value.name" (change)="OnChange($event)"
+           [(ngModel)]="el.checked">{{ el.value.name }}
+  </div>
+</div>
+
+<h1></h1>
