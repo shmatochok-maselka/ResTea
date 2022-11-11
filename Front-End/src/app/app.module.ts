@@ -9,6 +9,7 @@ import {MainPageModule} from "./main-page/main-page.module";
 import {NavBarModule} from "./nav-bar/nav-bar.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {OneProductModule} from "./one-product/one-product.module";
 
 
 @NgModule({
@@ -17,14 +18,15 @@ import {MatButtonModule} from "@angular/material/button";
     NavBarComponent,
     BlogComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MainPageModule,
-    NavBarModule,
-    MatIconModule,
-    MatButtonModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MainPageModule,
+        NavBarModule,
+        MatIconModule,
+        MatButtonModule,
+        OneProductModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,48 @@
+.product-card {
+  margin: 0 2rem;
+  width: 100%;
+  border-radius: 25px;
+}
+
+mat-card {
+  padding: 0;
+}
+
+mat-card-title {
+  display: flex;
+  justify-content: center;
+}
+
+.product-image {
+  display: -webkit-box;
+  border-radius: 50px;
+  margin: auto;
+  width: 100%;
+  height: auto;
+}
+
+.description {
+  padding: 10px;
+}
+
+.checkout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: large;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+}
+
+button {
+  background: #028C6A;
+}
