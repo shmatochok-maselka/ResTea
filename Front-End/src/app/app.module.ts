@@ -20,6 +20,8 @@ import {FormsModule} from "@angular/forms";
 import {MatSliderModule} from "@angular/material/slider";
 import {ShopModule} from "./shop/shop.module";
 import {RouterLink, RouterModule} from "@angular/router";
+import {CartModule} from "./cart/cart.module";
+
 
 @NgModule({
   declarations: [
@@ -48,8 +50,9 @@ import {RouterLink, RouterModule} from "@angular/router";
     FormsModule,
     MatSliderModule,
     AppRoutingModule,
+    CartModule,
   ],
-  
+
   providers: [],
   exports: [
     AppRoutingModule
