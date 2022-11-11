@@ -4,6 +4,7 @@ import {ProductComponent} from "./product.component";
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
 
 
 
@@ -12,11 +13,12 @@ import {MatButtonModule} from "@angular/material/button";
   exports: [
     ProductComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterLink
+    ],
 })
 export class ProductModule { }
