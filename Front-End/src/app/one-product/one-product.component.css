@@ -1,21 +1,18 @@
-.image-container{
+.image-container {
   display: flex;
   width: 100%;
   margin-top: 5%;
+  justify-content: center;
+  align-items: center;
 }
 
-.image-container img{
-  display: flex;
+.image-container img {
   width: 500px;
   height: 500px;
-  margin-left: 15%;
+  margin: auto;
 }
 
-.instruction-images{
-  margin-left: 10%;
-}
-
-.instruction-images h1{
+.right-panel h1 {
   text-align: center;
   width: 550px;
   background-color: #028C6A;
@@ -23,27 +20,22 @@
   color: white;
 }
 
-.instruction-images img{
+.right-panel img {
   margin-top: 5%;
   display: inline-block;
   width: 125px;
   height: 125px;
 }
 
-.description{
-  margin-top: 5%;
-  width: 50%;
-  margin-left: 15%;
-}
-
-.price-container{
+.price-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20%;
+  gap: 10px;
 }
 
-.price-container p{
+.price-container p {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,14 +46,33 @@
   border-radius: 50px;
 }
 
-.price-container input{
+.price-container input {
   font-size: xx-large;
   width: 100px;
 }
 
-.instruction{
+.instruction {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 5%;
+}
+
+.description {
+  text-align: center;
+  margin-top: 5%;
+  margin-left: 10%;
+  width: 40%;
+  font-size: large;
+  height: 300px;
+  border: 5px darkslategrey solid;
+  border-radius: 25px;
+}
+
+#add-btn {
+  margin-top: 20px;
+  background-color: #028C6A;
+  color: white;
+  width: 300px;
 }
