@@ -60,10 +60,10 @@
 }
 
 .description {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   margin-top: 5%;
-  margin-left: 10%;
-  width: 40%;
+  width: 50%;
   font-size: large;
   height: 300px;
   border: 5px darkslategrey solid;
@@ -71,8 +71,39 @@
 }
 
 #add-btn {
+  margin-left: 120px;
   margin-top: 20px;
   background-color: #028C6A;
   color: white;
   width: 300px;
+}
+
+.bottom-panel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.properties{
+  display: flex;
+  align-items: center;
+  width: 30%;
+  font-size: 24px;
+}
+
+.properties ul{
+  list-style-type: none;
+  width: 100%;
+}
+
+.properties li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #028C6A;
+  margin-top: 20px;
+  color: white;
+  border-radius: 25px;
+  width: 100%;
 }
