@@ -21,6 +21,7 @@ import {ShopModule} from "./shop/shop.module";
 import {RouterLink, RouterModule} from "@angular/router";
 import {OneProductModule} from "./one-product/one-product.module";
 import {AboutUsPageModule} from "./about-us-page/about-us-page.module";
+import {ContactsPageModule} from "./contacts-page/contacts-page.module";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {AboutUsPageModule} from "./about-us-page/about-us-page.module";
         MatSliderModule,
         AppRoutingModule,
         AboutUsPageModule,
+        ContactsPageModule,
     ],
   providers: [],
   exports: [
