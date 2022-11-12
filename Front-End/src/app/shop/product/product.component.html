@@ -1,0 +1,12 @@
+<mat-card class="product-card">
+  <img mat-card-image class="product-image" src="{{products.image}}" alt="product image">
+  <mat-card-content>
+    <mat-card-title [routerLink]="['/shop', products.id]">{{products.name}}</mat-card-title>
+  </mat-card-content>
+  <mat-card-actions>
+    <p class="price">{{products.price}}грн/50г</p>
+    <button mat-button class="checkout-button">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
