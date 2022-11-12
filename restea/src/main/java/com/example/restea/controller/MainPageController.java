@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/main_page")
 public class MainPageController {
 
-    private ProductService productService;
-    private BlogPostService blogPostService;
+    private final ProductService productService;
+    private final BlogPostService blogPostService;
 
     @Autowired
     public MainPageController(ProductService productService, BlogPostService blogPostService) {

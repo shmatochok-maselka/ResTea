@@ -31,8 +31,8 @@ public class OrderController {
 
     @PostMapping(value = "/add_order")
     public ResponseEntity<Long> addOrder(@RequestBody OrderDto orderDto, Principal principal) {
-//        try {
-//            orderService.addOrder(orderDto.toOrder());
+        try {
+            orderService.addOrder(orderDto.toOrder());
 //            Long orderId = orderService.findByUserIdAndOrderData(orderDto.getUserId(), orderDto.getOrderData()).getId();
 ////            if(orderId == null){
 ////                throw new IllegalArgumentException();
@@ -47,11 +47,11 @@ public class OrderController {
 ////                orderProductService.addProductToOrder(orderProduct);
 ////            }
 ////            orderProductService.addAllProductsToOrder(orderProducts);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         orderService.addOrder(orderDto.toOrder());
-        Long orderId = orderService.findByUserIdAndOrderData(orderDto.getUserId(), orderDto.getOrderData()).getId();
-        return new ResponseEntity<>(orderId, HttpStatus.CREATED);
+//        Long orderId = orderService.findByUserIdAndOrderData(orderDto.getUserId(), orderDto.getOrderData()).getId();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

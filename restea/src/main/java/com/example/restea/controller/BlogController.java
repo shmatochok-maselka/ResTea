@@ -1,7 +1,6 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.BlogPostDto;
-import com.example.restea.model.BlogPost;
 import com.example.restea.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 @CrossOrigin
 @RequestMapping("/api/v1/blog")
 public class BlogController {
-    private BlogPostService blogPostService;
+    private final BlogPostService blogPostService;
 
     @Autowired
     public BlogController(BlogPostService blogPostService) {
@@ -38,7 +37,7 @@ public class BlogController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         try{
-            BlogPost blogPost = blogPostService.findPostById(postId);
+            blogPostService.findPostById(postId);
         } catch (NoSuchElementException exception){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

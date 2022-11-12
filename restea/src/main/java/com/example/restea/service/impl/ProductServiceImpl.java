@@ -58,22 +58,4 @@ public class ProductServiceImpl implements ProductService {
         }
         return productsDto;
     }
-
-
-//    @Override
-//    public List<ProductDto> findAll() {
-//        return productSetToProductDtoSet(productRepository.findAll());
-//    }
-//
-//    @Override
-//    public List<ProductDto> productSetToProductDtoSet(List<Product> products) {
-//        List<ProductDto> productsDto = new ArrayList<>();
-//        for (Product product : products){
-//            var productDto = new ProductDto();
-//            productDto.setId(product.getId());
-//            productDto.setName(product.getName());
-//            productsDto.add(productDto);
-//        }
-//        return productsDto;
-//    }
 }

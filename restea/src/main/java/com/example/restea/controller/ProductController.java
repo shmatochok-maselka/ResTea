@@ -1,7 +1,6 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.ProductDto;
-import com.example.restea.model.Product;
 import com.example.restea.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 @CrossOrigin
 @RequestMapping("/api/v1/products")
 public class ProductController {
-    private ProductService productService;
+    private final ProductService productService;
 
     @Autowired
     public ProductController(ProductService productService) {
@@ -37,7 +36,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         try {
-            Product product = productService.findProductById(productId);
+            productService.findProductById(productId);
         } catch (NoSuchElementException exception) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

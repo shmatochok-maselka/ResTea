@@ -25,8 +25,8 @@ import java.util.NoSuchElementException;
 @Transactional
 public class CartServiceImpl implements CartService {
     private final CartRepository cartRepository;
-    private ProductService productService;
-    private UserService userService;
+    private final ProductService productService;
+    private final UserService userService;
 
     @Autowired
     public CartServiceImpl(CartRepository cartRepository, ProductService productService, UserService userService) {
@@ -38,17 +38,6 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<Cart> findAll() {
         return cartRepository.findAll();
-    }
-
-    @Override
-    public List<Cart> findByUserId(Long userId) {
-        List<Cart> allCartProducts = this.findAll();
-        List<Cart> userProductCarts = new ArrayList<>();
-        for(Cart cart: allCartProducts){
-            if(cart.getId().getUserId() == userId)
-                userProductCarts.add(cart);
-        }
-        return userProductCarts;
     }
 
     @Override
@@ -68,14 +57,15 @@ public class CartServiceImpl implements CartService {
         return objectListToCartProduct(cartProducts);
     }
 
-    private List<CartProductDto> objectListToCartProduct(List<Object[]> cartProductsObject){
+    private List<CartProductDto> objectListToCartProduct(List<Object[]> cartProductsObject) {
         List<CartProductDto> cartProductsDto = new ArrayList<>();
-        for(Object[] objects : cartProductsObject){
+        for (Object[] objects : cartProductsObject) {
             CartProductDto cartProductDto = new CartProductDto(new ProductDto((Product) objects[0]), (Integer) objects[1]);
             cartProductsDto.add(cartProductDto);
         }
         return cartProductsDto;
     }
+
     @Override
     public ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal) {
         if (!productCartJSON.containsKey("productId") || !productCartJSON.containsKey("productWeight")) {
@@ -83,45 +73,26 @@ public class CartServiceImpl implements CartService {
         }
         Long productId = productCartJSON.get("productId");
         Long userId = userService.findUserByEmail(principal.getName()).getId();
-        try{
-            Product product = productService.findProductById(productId);
-        } catch (NoSuchElementException exception){
+        try {
+            productService.findProductById(productId);
+        } catch (NoSuchElementException exception) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Cart cartProduct = new Cart();
         cartProduct.setId(new CartId(userId, productId));
-        try{
+        try {
             Cart cartProductExist = findById(new CartId(userId, productId));
             cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue() +
                     cartProductExist.getProductWeight());
-        }catch (Exception e){
+        } catch (Exception e) {
             cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue());
         }
         cartRepository.save(cartProduct);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
-//    private Map<Long, List<CartProductDto>> groupCartProductsByUser(ProductService productService) {
-//        List<Cart> carts = cartRepository.findAll();
-//        Map<Long, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
-//        for(Cart cart : carts){
-//            List<CartProductDto> cartProductsDto;
-//            if(listOfProductsByUserId.containsKey(cart.getId().getUserId())){
-//                cartProductsDto = listOfProductsByUserId.get(cart.getId().getUserId());
-//            } else{
-//                cartProductsDto = new ArrayList<>();
-//            }
-//            cartProductsDto.add(new CartProductDto(cart, productService));
-//            listOfProductsByUserId.put(cart.getId().getUserId(), cartProductsDto);
-//        }
-//        return listOfProductsByUserId;
-//    }
-//
-//    @Override
-//    public List<CartProductDto> getCartProductsByUserId(Long userId, ProductService productService) {
-//        Map<Long, List<CartProductDto>> groupCartProductsByUser = this.groupCartProductsByUser(productService);
-//        return groupCartProductsByUser.get(userId);
-//    }
-
+    @Override
+    public void updateProductCart(Long userId, Long productId, int productWeight) {
+        cartRepository.updateCartProduct(new CartId(userId, productId), productWeight);
+    }
 }

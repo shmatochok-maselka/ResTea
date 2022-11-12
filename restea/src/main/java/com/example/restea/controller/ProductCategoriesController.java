@@ -2,7 +2,6 @@ package com.example.restea.controller;
 
 import com.example.restea.model.ProductCategories;
 import com.example.restea.service.*;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/api/v1/categories")
 public class ProductCategoriesController {
-    private ProductTypeService productTypeService;
-    private ProductOriginService productOriginService;
-    private ProductFlavorService productFlavorService;
-    private ProductPropertyService productPropertyService;
-    private ProductService productService;
+    private final ProductTypeService productTypeService;
+    private final ProductOriginService productOriginService;
+    private final ProductFlavorService productFlavorService;
+    private final ProductPropertyService productPropertyService;
+    private final ProductService productService;
 
     @Autowired
     public ProductCategoriesController(ProductTypeService productTypeService, ProductOriginService productOriginService,
