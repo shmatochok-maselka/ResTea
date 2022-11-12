@@ -11,6 +11,11 @@
 
 .contacts-text-container h3{
   opacity: 0.5;
+  font-size: large;
+}
+
+.contacts-text-container h1{
+  font-size: xx-large;
 }
 .contacts-text-container h1,.contacts-text-container h3{
   width: 50%;
