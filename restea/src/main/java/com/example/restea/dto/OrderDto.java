@@ -2,17 +2,11 @@ package com.example.restea.dto;
 
 import com.example.restea.model.Order;
 import com.example.restea.model.OrderProduct;
-import com.example.restea.model.Product;
-import com.example.restea.service.ProductFlavorService;
-import com.example.restea.service.ProductPropertyService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -35,8 +29,9 @@ public class OrderDto {
     private String address;
 
     private LocalDateTime orderData;
-
     private double orderPrice;
+
+    private List<OrderProductDto> orderProducts;
 
     public void setOrderData(String dataTime) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -53,6 +48,7 @@ public class OrderDto {
         this.address = order.getAddress();
         this.orderData = order.getOrderData();
         this.orderPrice = order.getOrderPrice();
+        this.orderProducts = order.getOrderProducts();
     }
 
     public Order toOrder(){
@@ -65,6 +61,11 @@ public class OrderDto {
         order.setAddress(this.address);
         order.setOrderData(this.orderData);
         order.setOrderPrice(this.orderPrice);
+//        order.setOrderProducts(this.orderProducts);
         return order;
+    }
+
+    private List<OrderProductDto> listOfOrderProductToListOfOrderProductDto(List<OrderProduct> orderProducts){
+        
     }
 }

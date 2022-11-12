@@ -22,4 +22,5 @@ public class OrderProduct implements  java.io.Serializable{
 
     @Column(name = "weight")
     private int weight;
+
 }

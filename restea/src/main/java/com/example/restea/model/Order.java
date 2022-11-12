@@ -41,6 +41,6 @@ public class Order extends BaseEntity{
     @Column(name = "price")
     private double orderPrice;
 
-//    @OneToMany(mappedBy="order")
-//    private List<OrderProduct> orderProducts;
+    @OneToMany(mappedBy="order")
+    private List<OrderProduct> orderProducts;
 }
