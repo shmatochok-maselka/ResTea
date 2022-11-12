@@ -27,8 +27,8 @@ public class CartDto {
     private Long userId;
     private List<CartProductDto> products;
 
-    public CartDto(Long userId, CartService cartService, ProductService productService) {
-        this.userId = userId;
-        this.products = cartService.getCartProductsByUserId(this.userId, productService);
-    }
+//    public CartDto(Long userId, CartService cartService, ProductService productService) {
+//        this.userId = userId;
+//        this.products = cartService.getCartProductsByUserId(this.userId, productService);
+//    }
 }

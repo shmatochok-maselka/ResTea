@@ -1,6 +1,7 @@
 package com.example.restea.service.impl;
 
 import com.example.restea.dto.CartProductDto;
+import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
 import com.example.restea.model.Product;
@@ -65,31 +66,45 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public List<CartProductDto> getCartProductsByUserId(Long userId) {
+        List<Object[]> cartProducts = cartRepository.findAllCartProductsByUserId(userId);
+        return objectListToCartProduct(cartProducts);
+    }
+
+    private List<CartProductDto> objectListToCartProduct(List<Object[]> cartProductsObject){
+        List<CartProductDto> cartProductsDto = new ArrayList<>();
+        for(Object[] objects : cartProductsObject){
+            CartProductDto cartProductDto = new CartProductDto(new ProductDto((Product) objects[0]), (Integer) objects[1]);
+            cartProductsDto.add(cartProductDto);
+        }
+        return cartProductsDto;
+    }
+    @Override
     public void addProductToCart(Cart cart) {
         cartRepository.save(cart);
     }
 
 
-    private Map<Long, List<CartProductDto>> groupCartProductsByUser(ProductService productService) {
-        List<Cart> carts = cartRepository.findAll();
-        Map<Long, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
-        for(Cart cart : carts){
-            List<CartProductDto> cartProductsDto;
-            if(listOfProductsByUserId.containsKey(cart.getId().getUserId())){
-                cartProductsDto = listOfProductsByUserId.get(cart.getId().getUserId());
-            } else{
-                cartProductsDto = new ArrayList<>();
-            }
-            cartProductsDto.add(new CartProductDto(cart, productService));
-            listOfProductsByUserId.put(cart.getId().getUserId(), cartProductsDto);
-        }
-        return listOfProductsByUserId;
-    }
-
-    @Override
-    public List<CartProductDto> getCartProductsByUserId(Long userId, ProductService productService) {
-        Map<Long, List<CartProductDto>> groupCartProductsByUser = this.groupCartProductsByUser(productService);
-        return groupCartProductsByUser.get(userId);
-    }
+//    private Map<Long, List<CartProductDto>> groupCartProductsByUser(ProductService productService) {
+//        List<Cart> carts = cartRepository.findAll();
+//        Map<Long, List<CartProductDto>> listOfProductsByUserId = new TreeMap<>();
+//        for(Cart cart : carts){
+//            List<CartProductDto> cartProductsDto;
+//            if(listOfProductsByUserId.containsKey(cart.getId().getUserId())){
+//                cartProductsDto = listOfProductsByUserId.get(cart.getId().getUserId());
+//            } else{
+//                cartProductsDto = new ArrayList<>();
+//            }
+//            cartProductsDto.add(new CartProductDto(cart, productService));
+//            listOfProductsByUserId.put(cart.getId().getUserId(), cartProductsDto);
+//        }
+//        return listOfProductsByUserId;
+//    }
+//
+//    @Override
+//    public List<CartProductDto> getCartProductsByUserId(Long userId, ProductService productService) {
+//        Map<Long, List<CartProductDto>> groupCartProductsByUser = this.groupCartProductsByUser(productService);
+//        return groupCartProductsByUser.get(userId);
+//    }
 
 }

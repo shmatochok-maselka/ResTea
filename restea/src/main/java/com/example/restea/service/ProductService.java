@@ -2,6 +2,7 @@ package com.example.restea.service;
 
 import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Product;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -10,7 +11,5 @@ public interface ProductService {
     List<Product> findAll();
     List<ProductDto> getProductsForMainPage();
 
-    int minProductPrice();
-
-    int maxProductPrice();
+    JSONObject minMaxProductPrice();
 }

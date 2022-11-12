@@ -32,10 +32,7 @@ public class ProductCategoriesController {
     @GetMapping("/max_min_price")
     @ResponseBody
     public ResponseEntity<Object> maxAndMinPricesOfProduct() {
-        JSONObject minMaxPriceJsonObject = new JSONObject();
-        minMaxPriceJsonObject.put("min", productService.minProductPrice());
-        minMaxPriceJsonObject.put("max", productService.maxProductPrice());
-        return new ResponseEntity<>(minMaxPriceJsonObject.toMap(), HttpStatus.OK);
+        return new ResponseEntity<>(productService.minMaxProductPrice().toMap(), HttpStatus.OK);
     }
 
     @GetMapping()

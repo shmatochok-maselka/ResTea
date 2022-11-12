@@ -11,6 +11,5 @@ import java.util.Set;
 public interface BlogPostService {
     BlogPost findPostById(Long id);
     List<BlogPost> findAll();
-
     List<BlogPostDto> getPostsForMainPage();
 }

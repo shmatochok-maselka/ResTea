@@ -33,7 +33,6 @@ public class ProductDto {
     private ProductTypeDto type;
 
     private ProductOriginDto origin;
-
     private Set<ProductFlavorDto> flavors;
     private Set<ProductPropertyDto> properties;
 

@@ -12,6 +12,6 @@ public interface CartService {
 
     void deleteById(CartId cartId);
     Cart findById(CartId cartId);
-    List<CartProductDto> getCartProductsByUserId(Long userId, ProductService productService);
+    List<CartProductDto> getCartProductsByUserId(Long userId);
     void addProductToCart(Cart cart);
 }

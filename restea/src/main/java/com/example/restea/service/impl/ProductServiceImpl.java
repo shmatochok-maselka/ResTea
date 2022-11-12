@@ -5,6 +5,7 @@ import com.example.restea.model.Product;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,13 +44,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int minProductPrice() {
-        return productRepository.minProductPrice();
-    }
-
-    @Override
-    public int maxProductPrice() {
-        return productRepository.maxProductPrice();
+    public JSONObject minMaxProductPrice() {
+        JSONObject minMaxPriceJsonObject = new JSONObject();
+        minMaxPriceJsonObject.put("min", productRepository.minProductPrice());
+        minMaxPriceJsonObject.put("max", productRepository.maxProductPrice());
+        return minMaxPriceJsonObject;
     }
 
     private List<ProductDto> productListToProductDtoList(List<Product> products){

@@ -1,6 +1,7 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.CartDto;
+import com.example.restea.dto.CartProductDto;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
 import com.example.restea.model.Product;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -33,19 +35,22 @@ public class CartController {
         this.productService = productService;
         this.userService = userService;
     }
-    @PostMapping
-    public ResponseEntity<CartDto> findAllCartProducts(@RequestBody Map<String, Long> productCartJSON) {
-        if (productCartJSON == null || !productCartJSON.containsKey("userId")) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        Long userId = productCartJSON.get("userId");
-        try{
-            User user = userService.findUserById(userId);
-        } catch (NoSuchElementException exception){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        CartDto cartProducts = new CartDto(userId, cartService, productService);
-        return new ResponseEntity<>(cartProducts, HttpStatus.CREATED);
+
+    @GetMapping
+    public ResponseEntity<List<CartProductDto>> findAllCartProducts(Principal principal) {
+//    public ResponseEntity<CartDto> findAllCartProducts(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
+//        if (productCartJSON == null || !productCartJSON.containsKey("userId")) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+        Long userId = userService.findUserByEmail(principal.getName()).getId();
+//        try{
+//            User user = userService.findUserById(userId);
+//        } catch (NoSuchElementException exception){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        CartDto cartProducts = new CartDto(userId, cartService, productService);
+//        return new ResponseEntity<>(cartProducts, HttpStatus.CREATED);
+        return new ResponseEntity<>(cartService.getCartProductsByUserId(userId), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/delete")
@@ -72,13 +77,15 @@ public class CartController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<List<Cart>> addProductToCart(@RequestBody Map<String, Long> productCartJSON) {
+    public ResponseEntity<List<Cart>> addProductToCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
         if (productCartJSON == null || !productCartJSON.containsKey("userId") || !productCartJSON.containsKey("productId")
             || !productCartJSON.containsKey("productWeight")) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Long productId = productCartJSON.get("productId");
-        Long userId = productCartJSON.get("userId");
+//        Long userId = productCartJSON.get("userId");
+        String email = principal.getName();
+        Long userId = userService.findUserByEmail(email).getId();
         try{
             Product product = productService.findProductById(productId);
             User user = userService.findUserById(userId);
