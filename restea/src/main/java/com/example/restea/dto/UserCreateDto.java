@@ -7,24 +7,27 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-@NoArgsConstructor
 @Getter
 @Setter
-public class UserDto {
+@NoArgsConstructor
+public class UserCreateDto {
     private Long id;
     private String name;
     private String surname;
     private LocalDate birthday;
     private int bonus;
     private String email;
+    private String password;
 
-    public UserDto(User user) {
+
+    public UserCreateDto(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.birthday = user.getBirthday();
         this.bonus = user.getBonus();
         this.email = user.getEmail();
+        this.password = user.getPassword();
     }
 
     public User toUser(){
@@ -34,6 +37,8 @@ public class UserDto {
         user.setBirthday(birthday);
         user.setBonus(bonus);
         user.setEmail(email);
+        user.setPassword(password);
         return user;
     }
 }
+
