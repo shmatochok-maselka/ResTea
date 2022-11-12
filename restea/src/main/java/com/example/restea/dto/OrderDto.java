@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -48,7 +49,8 @@ public class OrderDto {
         this.address = order.getAddress();
         this.orderData = order.getOrderData();
         this.orderPrice = order.getOrderPrice();
-        this.orderProducts = order.getOrderProducts();
+//        this.orderProducts = order.getOrderProducts();
+        this.orderProducts = listOfOrderProductToListOfOrderProductDto(order.getOrderProducts());
     }
 
     public Order toOrder(){
@@ -66,6 +68,10 @@ public class OrderDto {
     }
 
     private List<OrderProductDto> listOfOrderProductToListOfOrderProductDto(List<OrderProduct> orderProducts){
-        
+        List<OrderProductDto> productsDto = new ArrayList<>();
+        for(OrderProduct orderProduct: orderProducts){
+            productsDto.add(new OrderProductDto(orderProduct));
+        }
+        return productsDto;
     }
 }

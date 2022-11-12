@@ -1,6 +1,8 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.OrderDto;
+import com.example.restea.dto.OrderProductDto;
+import com.example.restea.model.Order;
 import com.example.restea.model.OrderProduct;
 import com.example.restea.model.OrderProductId;
 import com.example.restea.service.OrderProductService;
@@ -9,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -27,12 +32,21 @@ public class OrderController {
     public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto orderDto) {
         try {
             orderService.addOrder(orderDto.toOrder());
-            var orderProducts = orderDto.getOrderProducts();
-            for (OrderProduct orderProduct: orderProducts){
-                orderProduct.setId(new OrderProductId(orderDto.getId().longValue(), orderProduct.getId().getProductId()));
+            Order order = orderService.findByUserIdAndOrderData(orderDto.getUserId(), orderDto.getOrderData());
+            if(order == null){
+                throw new IllegalArgumentException();
             }
-            orderProductService.addAllProductsToOrder(orderProducts);
-//            orderProductService.addProductToOrder();
+//            if(orderDto.getId() == null){
+//                throw new IllegalArgumentException();
+//            }
+//            var orderProductsDto = orderDto.getOrderProducts();
+//            List<OrderProduct> orderProducts = new ArrayList<>();
+//            for (OrderProductDto orderProductDto: orderProductsDto){
+//                OrderProduct orderProduct = new OrderProduct();
+//                orderProduct.setId(new OrderProductId(orderDto.getId().longValue(), orderProductDto.getProductId()));
+////                orderProduct.setWeight(orderProductDto.getWeight());
+//            }
+//            orderProductService.addAllProductsToOrder(orderProducts);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
