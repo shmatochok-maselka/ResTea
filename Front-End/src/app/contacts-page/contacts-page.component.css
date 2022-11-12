@@ -27,6 +27,7 @@
   height: 400px;
   margin: auto;
 }
+
 .map-container{
   margin-top: 2%;
   display: flex;
@@ -58,4 +59,14 @@
 
 .icons-container p{
   font-size: medium;
+}
+
+@media screen and (max-width: 600px){
+  .map-container iframe{
+    width: 90%;
+  }
+  .contacts-text-container h1,.contacts-text-container h3{
+    width: 90%;
+    margin: auto;
+  }
 }
