@@ -11,6 +11,11 @@
 
 .contacts-text-container h3{
   opacity: 0.5;
+  font-size: large;
+}
+
+.contacts-text-container h1{
+  font-size: xx-large;
 }
 .contacts-text-container h1,.contacts-text-container h3{
   width: 50%;
@@ -43,13 +48,13 @@
   justify-content: center;
   justify-self: center;
   align-items: center;
-  gap:20%;
+  gap:10%;
 }
 
 .icons-container mat-icon{
-  font-size: 100px;
-  width: 100px;
-  height: 100px;
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .email-icon,.phone-icon,.social-icon{
