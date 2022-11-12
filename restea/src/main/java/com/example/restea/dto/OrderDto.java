@@ -49,8 +49,6 @@ public class OrderDto {
         this.address = order.getAddress();
         this.orderData = order.getOrderData();
         this.orderPrice = order.getOrderPrice();
-//        this.orderProducts = order.getOrderProducts();
-        this.orderProducts = listOfOrderProductToListOfOrderProductDto(order.getOrderProducts());
     }
 
     public Order toOrder(){
@@ -63,7 +61,6 @@ public class OrderDto {
         order.setAddress(this.address);
         order.setOrderData(this.orderData);
         order.setOrderPrice(this.orderPrice);
-//        order.setOrderProducts(this.orderProducts);
         return order;
     }
 

@@ -1,6 +1,7 @@
 package com.example.restea.service.impl;
 
 import com.example.restea.model.Order;
+import com.example.restea.repository.CartRepository;
 import com.example.restea.repository.OrderRepository;
 import com.example.restea.repository.ProductFlavorsRepository;
 import com.example.restea.service.OrderService;
@@ -14,14 +15,17 @@ import java.time.LocalDateTime;
 @Transactional
 public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
+    private CartRepository cartRepository;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, CartRepository cartRepository) {
         this.orderRepository = orderRepository;
+        this.cartRepository = cartRepository;
     }
 
     @Override
-    public Order addOrder(Order order) {
+    public Order addOrder(Order order, Long userId) {
+        cartRepository.deleteAllByUserId(userId);
         return orderRepository.save(order);
     }
 

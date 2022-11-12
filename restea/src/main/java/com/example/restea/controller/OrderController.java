@@ -7,6 +7,7 @@ import com.example.restea.model.OrderProduct;
 import com.example.restea.model.OrderProductId;
 import com.example.restea.service.OrderProductService;
 import com.example.restea.service.OrderService;
+import com.example.restea.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,37 +22,26 @@ import java.util.List;
 @RequestMapping("/api/v1/order")
 public class OrderController {
     private OrderService orderService;
+
+    private UserService userService;
     private OrderProductService orderProductService;
 
     @Autowired
-    public OrderController(OrderService orderService, OrderProductService orderProductService) {
+    public OrderController(OrderService orderService, OrderProductService orderProductService, UserService userService) {
         this.orderService = orderService;
         this.orderProductService = orderProductService;
+        this.userService = userService;
     }
 
     @PostMapping(value = "/add_order")
     public ResponseEntity<Long> addOrder(@RequestBody OrderDto orderDto, Principal principal) {
-        try {
-            orderService.addOrder(orderDto.toOrder());
-//            Long orderId = orderService.findByUserIdAndOrderData(orderDto.getUserId(), orderDto.getOrderData()).getId();
-////            if(orderId == null){
-////                throw new IllegalArgumentException();
-////            }
-////            List<OrderProductDto> orderProductsDto = orderDto.getOrderProducts();
-////            List<OrderProduct> orderProducts = new ArrayList<>();
-////            for (OrderProductDto orderProductDto: orderProductsDto){
-////                OrderProduct orderProduct = new OrderProduct();
-////                orderProduct.setId(new OrderProductId(orderId, orderProductDto.getProductId()));
-////                orderProduct.setWeight(orderProductDto.getWeight());
-////                orderProducts.add(orderProduct);
-////                orderProductService.addProductToOrder(orderProduct);
-////            }
-////            orderProductService.addAllProductsToOrder(orderProducts);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        orderService.addOrder(orderDto.toOrder());
-//        Long orderId = orderService.findByUserIdAndOrderData(orderDto.getUserId(), orderDto.getOrderData()).getId();
+//        try {
+            Long userId = userService.findUserByEmail(principal.getName()).getId();
+            orderDto.setUserId(userId);
+            orderService.addOrder(orderDto.toOrder(), userId);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
