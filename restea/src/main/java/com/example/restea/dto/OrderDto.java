@@ -32,7 +32,6 @@ public class OrderDto {
     private LocalDateTime orderData;
     private double orderPrice;
 
-    private List<OrderProductDto> orderProducts;
 
     public void setOrderData(String dataTime) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -62,13 +61,5 @@ public class OrderDto {
         order.setOrderData(this.orderData);
         order.setOrderPrice(this.orderPrice);
         return order;
-    }
-
-    private List<OrderProductDto> listOfOrderProductToListOfOrderProductDto(List<OrderProduct> orderProducts){
-        List<OrderProductDto> productsDto = new ArrayList<>();
-        for(OrderProduct orderProduct: orderProducts){
-            productsDto.add(new OrderProductDto(orderProduct));
-        }
-        return productsDto;
     }
 }

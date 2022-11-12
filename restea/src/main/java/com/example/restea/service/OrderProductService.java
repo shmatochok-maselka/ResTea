@@ -9,4 +9,5 @@ public interface OrderProductService {
     void addProductToOrder(OrderProduct orderProduct);
 
     void addAllProductsToOrder(List<OrderProduct> orderProducts);
+
 }

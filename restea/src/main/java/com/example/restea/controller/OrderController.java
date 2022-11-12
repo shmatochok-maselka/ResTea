@@ -5,6 +5,7 @@ import com.example.restea.dto.OrderProductDto;
 import com.example.restea.model.Order;
 import com.example.restea.model.OrderProduct;
 import com.example.restea.model.OrderProductId;
+import com.example.restea.service.CartService;
 import com.example.restea.service.OrderProductService;
 import com.example.restea.service.OrderService;
 import com.example.restea.service.UserService;
@@ -26,11 +27,15 @@ public class OrderController {
     private UserService userService;
     private OrderProductService orderProductService;
 
+    private CartService cartService;
+
     @Autowired
-    public OrderController(OrderService orderService, OrderProductService orderProductService, UserService userService) {
+    public OrderController(OrderService orderService, OrderProductService orderProductService, UserService userService,
+                           CartService cartService) {
         this.orderService = orderService;
         this.orderProductService = orderProductService;
         this.userService = userService;
+        this.cartService = cartService;
     }
 
     @PostMapping(value = "/add_order")
@@ -38,7 +43,7 @@ public class OrderController {
 //        try {
             Long userId = userService.findUserByEmail(principal.getName()).getId();
             orderDto.setUserId(userId);
-            orderService.addOrder(orderDto.toOrder(), userId);
+            orderService.addOrder(orderDto.toOrder(), userId, cartService);
 //        } catch (Exception e) {
 //            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 //        }
