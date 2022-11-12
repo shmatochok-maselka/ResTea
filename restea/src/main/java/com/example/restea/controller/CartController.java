@@ -1,6 +1,5 @@
 package com.example.restea.controller;
 
-import com.example.restea.dto.CartDto;
 import com.example.restea.dto.CartProductDto;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
@@ -38,70 +37,34 @@ public class CartController {
 
     @GetMapping
     public ResponseEntity<List<CartProductDto>> findAllCartProducts(Principal principal) {
-//    public ResponseEntity<CartDto> findAllCartProducts(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
-//        if (productCartJSON == null || !productCartJSON.containsKey("userId")) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
         Long userId = userService.findUserByEmail(principal.getName()).getId();
-//        try{
-//            User user = userService.findUserById(userId);
-//        } catch (NoSuchElementException exception){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        CartDto cartProducts = new CartDto(userId, cartService, productService);
-//        return new ResponseEntity<>(cartProducts, HttpStatus.CREATED);
         return new ResponseEntity<>(cartService.getCartProductsByUserId(userId), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/delete")
-    public ResponseEntity<List<Cart>> deleteProductfromCart(@RequestBody Map<String, Long> productCartJSON) {
-        if (productCartJSON == null || !productCartJSON.containsKey("userId") ||
-                !productCartJSON.containsKey("productId")) {
+    public ResponseEntity<List<Cart>> deleteProductFromCart(@RequestBody Map<String, Long> productCartJSON) {
+        if (productCartJSON == null || !productCartJSON.containsKey("productId")) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Long productId = productCartJSON.get("productId");
         Long userId = productCartJSON.get("userId");
-        try{
+        try {
             Product product = productService.findProductById(productId);
             User user = userService.findUserById(userId);
-        } catch (NoSuchElementException exception){
+        } catch (NoSuchElementException exception) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Cart cartProduct = new Cart();
         CartId cartId = new CartId(userId, productId);
         cartProduct.setId(cartId);
-        if(cartService.findById(cartId) != null){
+        if (cartService.findById(cartId) != null) {
             cartService.deleteById(cartId);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<List<Cart>> addProductToCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
-        if (productCartJSON == null || !productCartJSON.containsKey("userId") || !productCartJSON.containsKey("productId")
-            || !productCartJSON.containsKey("productWeight")) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        Long productId = productCartJSON.get("productId");
-//        Long userId = productCartJSON.get("userId");
-        String email = principal.getName();
-        Long userId = userService.findUserByEmail(email).getId();
-        try{
-            Product product = productService.findProductById(productId);
-            User user = userService.findUserById(userId);
-        } catch (NoSuchElementException exception){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        Cart cartProduct = new Cart();
-        cartProduct.setId(new CartId(userId, productId));
-        Cart cartProductExist = cartService.findById(new CartId(userId, productId));
-        if(cartProductExist != null){
-            cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue() +
-                    cartProductExist.getProductWeight());
-        }else{
-            cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue());
-        }
-        cartService.addProductToCart(cartProduct);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Object> addProductToCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
+        return cartService.addProductToCart(productCartJSON, principal);
     }
 }

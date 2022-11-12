@@ -11,25 +11,28 @@ import com.example.restea.repository.CartRepository;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.CartService;
 import com.example.restea.service.ProductService;
+import com.example.restea.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.security.Principal;
+import java.util.*;
 
 @Service
 @Transactional
 public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
     private ProductService productService;
+    private UserService userService;
 
     @Autowired
-    public CartServiceImpl(CartRepository cartRepository, ProductService productService) {
+    public CartServiceImpl(CartRepository cartRepository, ProductService productService, UserService userService) {
         this.cartRepository = cartRepository;
         this.productService = productService;
+        this.userService = userService;
     }
 
     @Override
@@ -55,14 +58,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart findById(CartId cartId) {
-        List<Cart> allCartProducts = this.findAll();
-        Cart cartProduct = null;
-        for(Cart cart : allCartProducts){
-            if(cart.getId().getUserId() == cartId.getUserId() && cart.getId().getProductId() == cartId.getProductId()){
-                cartProduct = cart;
-            }
-        }
-        return cartProduct;
+        return cartRepository.findById(cartId).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
@@ -79,9 +75,33 @@ public class CartServiceImpl implements CartService {
         }
         return cartProductsDto;
     }
+//    @Override
+//    public void addProductToCart(Cart cart) {
+//        cartRepository.save(cart);
+//    }
     @Override
-    public void addProductToCart(Cart cart) {
-        cartRepository.save(cart);
+    public ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal) {
+        if (!productCartJSON.containsKey("productId") || !productCartJSON.containsKey("productWeight")) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Long productId = productCartJSON.get("productId");
+        Long userId = userService.findUserByEmail(principal.getName()).getId();
+        try{
+            Product product = productService.findProductById(productId);
+        } catch (NoSuchElementException exception){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Cart cartProduct = new Cart();
+        cartProduct.setId(new CartId(userId, productId));
+        try{
+            Cart cartProductExist = findById(new CartId(userId, productId));
+            cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue() +
+                    cartProductExist.getProductWeight());
+        }catch (Exception e){
+            cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue());
+        }
+        cartRepository.save(cartProduct);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 

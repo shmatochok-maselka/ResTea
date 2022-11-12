@@ -25,7 +25,9 @@ import java.util.TreeMap;
 @NoArgsConstructor
 public class CartDto {
     private Long userId;
-    private List<CartProductDto> products;
+    private Long productId;
+    private int weight;
+//    private List<CartProductDto> products;
 
 //    public CartDto(Long userId, CartService cartService, ProductService productService) {
 //        this.userId = userId;
