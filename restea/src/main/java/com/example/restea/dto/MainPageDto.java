@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class MainPageDto {
 
-    private List<MainPageProductDto> products;
+    private List<ProductDto> products;
 
     private List<BlogPostDto> blogPosts;
 
