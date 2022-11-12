@@ -17,5 +17,4 @@ public interface CartService {
     Cart findById(CartId cartId);
     List<CartProductDto> getCartProductsByUserId(Long userId);
     ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal);
-//    void addProductToCart(Cart cart);
 }

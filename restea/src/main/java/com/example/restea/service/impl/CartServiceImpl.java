@@ -5,10 +5,7 @@ import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
 import com.example.restea.model.Product;
-import com.example.restea.model.User;
-import com.example.restea.repository.BlogPostRepository;
 import com.example.restea.repository.CartRepository;
-import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.CartService;
 import com.example.restea.service.ProductService;
 import com.example.restea.service.UserService;
@@ -19,12 +16,15 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
 public class CartServiceImpl implements CartService {
-    private CartRepository cartRepository;
+    private final CartRepository cartRepository;
     private ProductService productService;
     private UserService userService;
 
@@ -56,6 +56,7 @@ public class CartServiceImpl implements CartService {
         cartRepository.delete(this.findById(cardId));
     }
 
+
     @Override
     public Cart findById(CartId cartId) {
         return cartRepository.findById(cartId).orElseThrow(IllegalArgumentException::new);
@@ -75,10 +76,6 @@ public class CartServiceImpl implements CartService {
         }
         return cartProductsDto;
     }
-//    @Override
-//    public void addProductToCart(Cart cart) {
-//        cartRepository.save(cart);
-//    }
     @Override
     public ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal) {
         if (!productCartJSON.containsKey("productId") || !productCartJSON.containsKey("productWeight")) {
