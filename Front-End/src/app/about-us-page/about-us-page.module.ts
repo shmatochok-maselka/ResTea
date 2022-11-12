@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutUsPageComponent } from './about-us-page.component';
 import {MatButtonModule} from "@angular/material/button";
+import {FlexModule} from "@angular/flex-layout";
 
 
 
@@ -11,7 +12,8 @@ import {MatButtonModule} from "@angular/material/button";
   ],
     imports: [
         CommonModule,
-        MatButtonModule
+        MatButtonModule,
+        FlexModule
     ],
   exports: [
     AboutUsPageComponent
