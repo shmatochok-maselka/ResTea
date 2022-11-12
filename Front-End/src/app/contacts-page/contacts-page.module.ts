@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactsPageComponent } from './contacts-page.component';
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -9,7 +11,9 @@ import { ContactsPageComponent } from './contacts-page.component';
     ContactsPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatListModule,
+    MatIconModule
   ],
   exports: [
     ContactsPageComponent
