@@ -20,6 +20,7 @@ import {MatSliderModule} from "@angular/material/slider";
 import {ShopModule} from "./shop/shop.module";
 import {RouterLink, RouterModule} from "@angular/router";
 import {OneProductModule} from "./one-product/one-product.module";
+import {AboutUsPageModule} from "./about-us-page/about-us-page.module";
 
 @NgModule({
   declarations: [
@@ -28,26 +29,27 @@ import {OneProductModule} from "./one-product/one-product.module";
     BlogComponent,
     BlogPostComponent,
   ],
-  imports: [
-    OneProductModule,
-    RouterLink,
-    RouterModule,
-    ShopModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MainPageModule,
-    NavBarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    HttpClientModule,
-    MatInputModule,
-    MatCheckboxModule,
-    FormsModule,
-    MatSliderModule,
-    AppRoutingModule,
-  ],
+    imports: [
+        OneProductModule,
+        RouterLink,
+        RouterModule,
+        ShopModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        MainPageModule,
+        NavBarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatGridListModule,
+        HttpClientModule,
+        MatInputModule,
+        MatCheckboxModule,
+        FormsModule,
+        MatSliderModule,
+        AppRoutingModule,
+        AboutUsPageModule,
+    ],
   providers: [],
   exports: [
   ],

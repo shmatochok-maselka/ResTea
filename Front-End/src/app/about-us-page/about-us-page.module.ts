@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutUsPageComponent } from './about-us-page.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -8,9 +9,10 @@ import { AboutUsPageComponent } from './about-us-page.component';
   declarations: [
     AboutUsPageComponent
   ],
-  imports: [
-    CommonModule
-  ],
+    imports: [
+        CommonModule,
+        MatButtonModule
+    ],
   exports: [
     AboutUsPageComponent
   ]
