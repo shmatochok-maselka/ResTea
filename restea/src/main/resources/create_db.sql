@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user`
     `surname`  VARCHAR(15)   NOT NULL,
     `patronymic`  VARCHAR(20)   NOT NULL,
     `birthday` DATE          NOT NULL,
-    `bonus`    INT           NOT NULL DEFAULT 0,
     `email`    VARCHAR(45)   NOT NULL UNIQUE,
     `password` VARCHAR(100)  NOT NULL,
     `image`    VARCHAR(1000) NOT NULL DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149071.png',

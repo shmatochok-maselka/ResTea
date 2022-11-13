@@ -32,9 +32,6 @@ public class User extends BaseEntity {
     @Column(name = "birthday")
     private LocalDate birthday;
 
-    @Column(name = "bonus")
-    private int bonus = 0;
-
     @Column(name = "email")
     private String email;
 

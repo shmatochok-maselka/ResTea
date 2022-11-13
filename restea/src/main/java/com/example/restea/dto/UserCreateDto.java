@@ -38,7 +38,6 @@ public class UserCreateDto {
         user.setBirthday(birthday);
         user.setEmail(email);
         user.setPassword(password);
-
         return user;
     }
 }

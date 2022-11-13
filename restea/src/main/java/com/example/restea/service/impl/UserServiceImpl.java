@@ -93,9 +93,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if(userDataDto.getBirthday() != null){
             toUpdate.setBirthday(userDataDto.getBirthday());
         }
-        if(userDataDto.getBonus() != null){
-            toUpdate.setBonus(userDataDto.getBonus());
-        }
         if(userDataDto.getImage() != null){
             toUpdate.setImage(userDataDto.getImage());
         }
