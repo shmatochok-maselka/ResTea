@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user`
     `id`       INT           NOT NULL AUTO_INCREMENT,
     `name`     VARCHAR(15)   NOT NULL,
     `surname`  VARCHAR(15)   NOT NULL,
+    `patronymic`  VARCHAR(20)   NOT NULL,
     `birthday` DATE          NOT NULL,
     `bonus`    INT           NOT NULL,
     `email`    VARCHAR(45)   NOT NULL UNIQUE,
