@@ -25,6 +25,9 @@ public class User extends BaseEntity {
     @Column(name = "surname")
     private String surname;
 
+    @Column(name = "patronymic")
+    private String patronymic;
+
     @Column(name = "birthday")
     private LocalDate birthday;
 

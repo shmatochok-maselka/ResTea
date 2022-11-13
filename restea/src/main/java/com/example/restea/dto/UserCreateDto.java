@@ -14,6 +14,7 @@ public class UserCreateDto {
     private Long id;
     private String name;
     private String surname;
+    private String patronymic;
     private LocalDate birthday;
     private int bonus;
     private String email;
@@ -24,6 +25,7 @@ public class UserCreateDto {
         this.id = user.getId();
         this.name = user.getName();
         this.surname = user.getSurname();
+        this.patronymic = user.getPatronymic();
         this.birthday = user.getBirthday();
         this.bonus = user.getBonus();
         this.email = user.getEmail();
