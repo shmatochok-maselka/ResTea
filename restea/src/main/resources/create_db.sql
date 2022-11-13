@@ -31,11 +31,12 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user`
     `id`       INT           NOT NULL AUTO_INCREMENT,
     `name`     VARCHAR(15)   NOT NULL,
     `surname`  VARCHAR(15)   NOT NULL,
+    `patronymic`  VARCHAR(20)   NOT NULL,
     `birthday` DATE          NOT NULL,
-    `bonus`    INT           NOT NULL,
+    `bonus`    INT           NOT NULL DEFAULT 0,
     `email`    VARCHAR(45)   NOT NULL UNIQUE,
     `password` VARCHAR(100)  NOT NULL,
-    `image`    VARCHAR(1000) NOT NULL,
+    `image`    VARCHAR(1000) NOT NULL DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
