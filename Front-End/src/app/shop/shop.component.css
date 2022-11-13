@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex: 1;
+  width: 73%;
+  margin: 0 auto;
+  align-content: center;
+}
+
+app-filter {
+  display: flex;
+  width: 20%;
+}
+
+app-catalog {
+  display: flex;
+  width: 80%
+}

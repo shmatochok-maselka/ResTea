@@ -44,6 +44,7 @@ public class User extends BaseEntity {
     @Column(name = "image")
     private String image = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),

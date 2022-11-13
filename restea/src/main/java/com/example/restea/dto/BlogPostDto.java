@@ -12,11 +12,13 @@ import lombok.Setter;
 public class BlogPostDto {
     private Long id;
     private String title;
+    private String image;
     private String content;
 
     public BlogPostDto(BlogPost blogPost) {
         this.id = blogPost.getId();
         this.title = blogPost.getTitle();
+        this.image = blogPost.getImage();
         this.content = blogPost.getContent();
     }
 
@@ -24,6 +26,7 @@ public class BlogPostDto {
         BlogPost blogPost = new BlogPost();
         blogPost.setId(this.id);
         blogPost.setTitle(this.title);
+        blogPost.setImage(this.image);
         blogPost.setContent(this.content);
         return blogPost;
     }
