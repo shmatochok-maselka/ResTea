@@ -18,6 +18,7 @@ public class UserDto {
     private LocalDate birthday;
     private int bonus;
     private String email;
+    private String image;
 
     public UserDto(User user) {
         this.id = user.getId();
@@ -27,15 +28,18 @@ public class UserDto {
         this.birthday = user.getBirthday();
         this.bonus = user.getBonus();
         this.email = user.getEmail();
+        this.image = user.getImage();
     }
 
     public User toUser(){
         User user = new User();
         user.setName(name);
         user.setSurname(surname);
+        user.setPatronymic(patronymic);
         user.setBirthday(birthday);
         user.setBonus(bonus);
         user.setEmail(email);
+        user.setImage(image);
         return user;
     }
 }

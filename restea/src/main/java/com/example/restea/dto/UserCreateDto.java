@@ -18,6 +18,7 @@ public class UserCreateDto {
     private LocalDate birthday;
     private int bonus;
     private String email;
+    private String image;
     private String password;
 
 
@@ -29,6 +30,7 @@ public class UserCreateDto {
         this.birthday = user.getBirthday();
         this.bonus = user.getBonus();
         this.email = user.getEmail();
+        this.image = user.getImage();
         this.password = user.getPassword();
     }
 
@@ -36,10 +38,13 @@ public class UserCreateDto {
         User user = new User();
         user.setName(name);
         user.setSurname(surname);
+        user.setPatronymic(patronymic);
         user.setBirthday(birthday);
         user.setBonus(bonus);
         user.setEmail(email);
+        user.setImage(image);
         user.setPassword(password);
+
         return user;
     }
 }
