@@ -12,6 +12,5 @@ public class UserDataDto {
     private String surname;
     private String patronymic;
     private LocalDate birthday;
-    private Integer bonus;
     private String image;
 }
