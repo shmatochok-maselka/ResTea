@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,7 +33,7 @@ public class User extends BaseEntity {
     private LocalDate birthday;
 
     @Column(name = "bonus")
-    private int bonus;
+    private int bonus = 0;
 
     @Column(name = "email")
     private String email;
@@ -41,7 +42,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = "image")
-    private String image;
+    private String image = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_role",

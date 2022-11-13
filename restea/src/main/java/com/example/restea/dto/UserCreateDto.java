@@ -16,9 +16,7 @@ public class UserCreateDto {
     private String surname;
     private String patronymic;
     private LocalDate birthday;
-    private int bonus;
     private String email;
-    private String image;
     private String password;
 
 
@@ -28,9 +26,7 @@ public class UserCreateDto {
         this.surname = user.getSurname();
         this.patronymic = user.getPatronymic();
         this.birthday = user.getBirthday();
-        this.bonus = user.getBonus();
         this.email = user.getEmail();
-        this.image = user.getImage();
         this.password = user.getPassword();
     }
 
@@ -40,9 +36,7 @@ public class UserCreateDto {
         user.setSurname(surname);
         user.setPatronymic(patronymic);
         user.setBirthday(birthday);
-        user.setBonus(bonus);
         user.setEmail(email);
-        user.setImage(image);
         user.setPassword(password);
 
         return user;
