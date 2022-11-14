@@ -5,8 +5,10 @@ import com.example.restea.model.Cart;
 import com.example.restea.model.Order;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface OrderService {
-    Order addOrder(OrderDto orderDto, Long userId, CartService cartService);
-    Order findByUserIdAndOrderData(Long userId, LocalDateTime orderData);
+    Order addOrder(Order order, Long userId, CartService cartService);
+//    Order addOrder(OrderDto orderDto, Long userId, CartService cartService);
+    List<OrderDto> findAllUserOrders(Long userId);
 }

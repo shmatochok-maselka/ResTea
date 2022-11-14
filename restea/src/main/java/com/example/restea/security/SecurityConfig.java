@@ -43,10 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/v1/blog/**", "/api/v1/main_page",
                 "/api/v1/categories/**", "/api/v1/products/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/users/**").hasAnyAuthority("admin");
-//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/cart").hasAnyAuthority("customer");
-//        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/cart/**",
-//                "/api/v1/order/add_order").hasAnyAuthority("customer");
-//        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/v1/cart").hasAnyAuthority("customer");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/cart").hasAnyAuthority("customer");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/cart/**",
+                "/api/v1/order/add_order").hasAnyAuthority("customer");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/v1/cart").hasAnyAuthority("customer");
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
