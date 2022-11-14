@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -48,5 +49,5 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     @ToString.Exclude
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 }

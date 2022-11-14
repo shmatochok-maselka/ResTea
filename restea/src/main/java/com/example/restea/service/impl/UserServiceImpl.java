@@ -78,7 +78,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        addRoleToUser(savedUser.getId(), "customer");
+        return savedUser;
     }
 
     @Override

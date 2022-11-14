@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ResTea`.`role`
 (
-    `id`   INT         NOT NULL,
+    `id`   INT         NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(20) NOT NULL UNIQUE,
     PRIMARY KEY (`id`)
 )

@@ -14,7 +14,7 @@ import java.security.Principal;
 @CrossOrigin
 @RequestMapping("/api/v1/user/config")
 public class UserConfigController {
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserConfigController(UserService userService) {
