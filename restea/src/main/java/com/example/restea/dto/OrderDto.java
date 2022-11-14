@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,14 +29,9 @@ public class OrderDto {
 
     private String address;
 
-    private LocalDateTime orderData;
+    private String orderData;
     private double orderPrice;
 
-
-    public void setOrderData(String dataTime) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.orderData = LocalDateTime.parse(dataTime, dateTimeFormatter);
-    }
 
     public OrderDto(Order order){
         this.id = order.getId();

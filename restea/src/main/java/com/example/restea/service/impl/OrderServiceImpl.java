@@ -1,6 +1,7 @@
 package com.example.restea.service.impl;
 
 import com.example.restea.dto.CartProductDto;
+import com.example.restea.dto.OrderDto;
 import com.example.restea.model.Order;
 import com.example.restea.model.OrderProduct;
 import com.example.restea.model.OrderProductId;
@@ -39,32 +40,19 @@ public class OrderServiceImpl implements OrderService {
     public Order addOrder(Order order, Long userId, CartService cartService) {
         var addedOrder = orderRepository.save(order);
         List<CartProductDto> products = cartService.getCartProductsByUserId(userId);
-//        orderProductRepository.saveAll(cartProductsToOrderProducts(products, order.getId()));
         cartProductsToOrderProducts(products, order.getId());
         cartRepository.deleteAllByUserId(userId);
         return addedOrder;
     }
 
-//    public Long orderId(Order order){
-//        var addedOrder = orderRepository.save(order);
-//        return order.getId();
-//    }
-
     private void cartProductsToOrderProducts(List<CartProductDto> cartProductsDto, Long orderId){
-        List<OrderProduct> orderProducts = new ArrayList<>();
         for (CartProductDto cartProduct : cartProductsDto){
             OrderProduct orderProduct = new OrderProduct();
-//            if(orderId == null || cartProductDto.getProduct().getId() == null){
-//                throw new IllegalArgumentException();
-//            }
-            Long cartProductId = cartProduct.getProduct().getId();
-            orderProduct.setId(new OrderProductId(orderId, cartProductId));
-//            orderProduct.setId(new OrderProductId(orderId, cartProductDto.getProduct().getId()));
-            orderProduct.setWeight(cartProduct.getProductWeight());
-            orderProductRepository.save(orderProduct);
-//            orderProducts.add(new OrderProduct());
-        }
-//        return orderProducts;
+                Long cartProductId = cartProduct.getProduct().getId();
+                orderProduct.setId(new OrderProductId(orderId, cartProductId));
+                orderProduct.setWeight(cartProduct.getProductWeight());
+                orderProductRepository.save(orderProduct);
+            }
     }
 
     @Override

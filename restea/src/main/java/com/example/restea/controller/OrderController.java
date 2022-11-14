@@ -42,15 +42,19 @@ public class OrderController {
     }
 
     @PostMapping(value = "/add_order")
-    public ResponseEntity<List<CartProductDto>> addOrder(@RequestBody OrderDto orderDto, Principal principal) {
+    public ResponseEntity<Object> addOrder(@RequestBody OrderDto orderDto, Principal principal) {
+////        try {
+//            Long userId = userService.findUserByEmail(principal.getName()).getId();
+//            orderDto.setUserId(userId);
+//            orderService.addOrder(orderDto, userId, cartService);
+////        } catch (Exception e) {
+////            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+////        }
 //        try {
             Long userId = userService.findUserByEmail(principal.getName()).getId();
             orderDto.setUserId(userId);
             orderService.addOrder(orderDto.toOrder(), userId, cartService);
 //        orderService.orderId(orderDto.toOrder());
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -36,11 +40,9 @@ public class Order extends BaseEntity{
     private String address;
 
     @Column(name = "order_date")
-    private LocalDateTime orderData;
+    private String orderData;
 
     @Column(name = "price")
     private double orderPrice;
 
-//    @OneToMany(mappedBy="order")
-//    private List<OrderProduct> orderProducts;
 }
