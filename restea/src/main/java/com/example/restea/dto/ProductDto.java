@@ -1,8 +1,6 @@
 package com.example.restea.dto;
 
-import com.example.restea.model.Product;
-import com.example.restea.model.ProductFlavor;
-import com.example.restea.model.ProductProperty;
+import com.example.restea.model.*;
 
 import com.example.restea.service.ProductFlavorService;
 import com.example.restea.service.ProductPropertyService;
@@ -27,9 +25,11 @@ public class ProductDto {
 
     private int price;
 
-    private ProductTypeDto type;
+    private ProductType type;
+//    private ProductTypeDto type;
 
-    private ProductOriginDto origin;
+//    private ProductOriginDto origin;
+    private ProductOrigin origin;
     private Set<ProductFlavorDto> flavors;
     private Set<ProductPropertyDto> properties;
 
@@ -39,8 +39,8 @@ public class ProductDto {
         this.description = product.getDescription();
         this.image = product.getImage();
         this.price = product.getPrice();
-        this.origin = new ProductOriginDto(product.getOrigin());
-        this.type = new ProductTypeDto(product.getType());
+        this.origin = product.getOrigin();
+        this.type = product.getType();
         this.flavors = flavorsSetToFlavorsDtoSet(product);
         this.properties = propertySetToPropertyDtoSet(product);
     }
@@ -53,8 +53,8 @@ public class ProductDto {
         product.setDescription(description);
         product.setImage(image);
         product.setPrice(price);
-        product.setType(type.toType());
-        product.setOrigin(origin.toOrigin());
+        product.setType(type);
+        product.setOrigin(origin);
         product.setFlavors(flavorService.flavorsDtoSetToFlavorSet(this.getFlavors()));
         product.setProperties(propertyService.propertyDtoSetToPropertySet(this.getProperties()));
         return product;

@@ -38,9 +38,9 @@ public class ProductCategoriesController {
     @ResponseBody
     public ResponseEntity<ProductCategories> findAllCategories() {
         ProductCategories productCategories = new ProductCategories
-                (productTypeService.typeSetToTypeDtoSet(productTypeService.findAll()),
+                (productTypeService.findAll(),
                         productFlavorService.flavorSetToFlavorDtoSet(productFlavorService.findAll()),
-                        productOriginService.originSetToOriginDtoSet(productOriginService.findAll()),
+                        productOriginService.findAll(),
                         productPropertyService.propertySetToPropertyDtoSet(productPropertyService.findAll()));
         return ResponseEntity.ok(productCategories);
     }

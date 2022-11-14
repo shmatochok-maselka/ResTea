@@ -1,6 +1,7 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.ProductDto;
+import com.example.restea.model.Product;
 import com.example.restea.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,7 @@ public class ProductController {
                 .map(ProductDto::new)
                 .collect(Collectors.toList()),
                 HttpStatus.OK);
+//        return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{productId}")
