@@ -1,10 +1,7 @@
 package com.example.restea.service.impl;
 
-import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Product;
 import com.example.restea.repository.ProductRepository;
-import com.example.restea.service.ProductFlavorService;
-import com.example.restea.service.ProductPropertyService;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
@@ -40,9 +37,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> getProductsForMainPage() {
-        List<Product> products = this.findAll().stream().limit(4).collect(Collectors.toList());
-        return productListToProductDtoList(products);
+    public List<Product> getProductsForMainPage() {
+        return this.findAll().stream().limit(4).collect(Collectors.toList());
+//        return productListToProductDtoList(products);
     }
 
     @Override
@@ -53,11 +50,11 @@ public class ProductServiceImpl implements ProductService {
         return minMaxPriceJsonObject;
     }
 
-    private List<ProductDto> productListToProductDtoList(List<Product> products){
-        List<ProductDto> productsDto = new ArrayList<>();
-        for (Product product: products){
-            productsDto.add(new ProductDto(product));
-        }
-        return productsDto;
-    }
+//    private List<ProductDto> productListToProductDtoList(List<Product> products){
+//        List<ProductDto> productsDto = new ArrayList<>();
+//        for (Product product: products){
+//            productsDto.add(new ProductDto(product));
+//        }
+//        return productsDto;
+//    }
 }
