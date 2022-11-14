@@ -1,0 +1,38 @@
+<div class="login-form">
+  <div class="filling"><h2>Створити акаунт</h2>
+    <div class="surname text-input">
+      <label>Імя</label>
+      <input type="text" id="surname">
+    </div>
+    <div class="name text-input">
+      <label>Прізвище</label>
+      <input type="text" id="name">
+    </div>
+    <div class="daddy text-input">
+      <label>По-батькові</label>
+      <input type="text" id="daddy">
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [max]="maxDate" [matDatepicker]="picker">
+      <mat-hint>Дата Народження</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker  panelClass="datepicker-one"></mat-datepicker>
+    </mat-form-field>
+    <div class="mail text-input">
+      <label>Пошта</label>
+      <input type="email" id="mail">
+    </div>
+    <div class="password text-input">
+      <label>Введіть пароль</label>
+      <input type="password" id="pass">
+    </div>
+    <div class="password text-input">
+      <label>Повторіть пароль</label>
+      <input type="password" id="repeat-pass">
+    </div>
+
+
+    <button mat-raised-button class="sign-up">Зареєструватися</button>
+  </div>
+</div>

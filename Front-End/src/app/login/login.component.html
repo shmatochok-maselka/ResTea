@@ -1,0 +1,15 @@
+<div class="login-form">
+  <div class="filling"><h2>Вже маєте акаунт?</h2>
+    <div class="email">
+      <label>Пошта</label>
+      <input type="email" id="mail">
+    </div>
+    <div class="password">
+      <label>Пароль</label>
+      <input type="password" id="pass">
+    </div>
+    <mat-checkbox class="remember" [(ngModel)]="checked">Запам'ятати мене</mat-checkbox>
+    <button mat-raised-button>Увійти</button>
+    <button mat-raised-button routerLink="/register" class="sign-up">Регістрація</button>
+  </div>
+</div>
