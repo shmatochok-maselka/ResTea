@@ -1,0 +1,33 @@
+<div *ngIf="posts && posts.length > 0" class="carousel-container">
+  <button *ngIf="controls" class="btn-carousel btn-prev"
+          (click)="onPrevClick()">
+    <i class="fas fa-arrow-circle-left icon-carousel icon-prev"></i></button>
+  <div fxLayout.lg = "row"  fxLayout.sm="row" fxLayout.xs="column" fxLayout.md="row"
+  class="flex-container">
+    <img *ngFor="let post of posts; let i = index"
+         [src]="post.imageSrc" [alt]="post.imageAlt"
+         [ngClass]="{'post-active': selectedIndex === i}"
+    >
+    <span *ngFor="let post of posts; let i = index"
+          [ngClass]="{'post-active': selectedIndex === i}"
+          class="post-text">
+  <h1 [textContent]="post.postHeader"></h1>
+  <p [textContent]="post.postText"></p>
+  <button mat-button color="accent" class="btn btn-full-post">Show full</button>
+</span>
+  </div>
+  <button *ngIf="controls" class="btn-carousel btn-next"
+          (click)="onNextClick()">
+    <i class="fas fa-arrow-circle-right icon-carousel icon-next"></i></button>
+</div>
+
+<div *ngIf="indicators" class="carousel-dot-container">
+    <span *ngFor="let dot of posts; let i=index"
+          class="dot"
+          [ngClass]="{'active': selectedIndex === i}"
+          (click)="selectPost(i)"
+    >
+    </span>
+</div>
+
+

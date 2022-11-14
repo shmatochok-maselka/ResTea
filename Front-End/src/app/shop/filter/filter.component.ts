@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EntityFilterModel, FilterParamsModel, Flavor, Origin, Property, Type} from "../../models/categories";
 import {CategoryService} from "../../config/category.service";
-import {FilterTypes} from "./model";
+import {MatSliderChange} from "@angular/material/slider";
 
 
 @Component({
@@ -15,10 +15,10 @@ export class FilterComponent implements OnInit {
   origins: EntityFilterModel<Origin>[] = [];
   flavors: EntityFilterModel<Flavor>[] = [];
   properties: EntityFilterModel<Property>[] = [];
-  filtersObject: FilterParamsModel = {type: [], origin: [], flavor: [], property: [], name: ""};
+  filtersObject: FilterParamsModel = {type: [], origin: [], flavor: [], property: [], name: "",price:0};
   @Output() filterChange = new EventEmitter<FilterParamsModel>();
-  price: number = 50;
-  max_value: number = 100;
+  max_value: number = 0;
+  price: number = 0;
 
   constructor(private _categoryService: CategoryService,) {
   }
@@ -40,6 +40,9 @@ export class FilterComponent implements OnInit {
       value: el,
       checked: true
     })));
+    this._categoryService.getPrice().subscribe(el=>{
+      this.price=(el.max);
+      this.max_value= (el.max)})
   }
 
   OnChange($event: Event): void {
@@ -48,7 +51,7 @@ export class FilterComponent implements OnInit {
   }
 
   private updateFilterObject() {
-    this.filtersObject = {type: [], origin: [], flavor: [], property: [], name: ""};
+    this.filtersObject = {type: [], origin: [], flavor: [], property: [], name: "", price:0};
     this.types.forEach(el => {
       if (el.checked) this.filtersObject.type.push(el.value.id)
     })
@@ -62,5 +65,11 @@ export class FilterComponent implements OnInit {
       if (el.checked) this.filtersObject.property.push(el.value.id)
     })
     this.filtersObject.name = this._name;
+    this.filtersObject.price=this.price;
+  }
+
+  OnChangeSlider($event: MatSliderChange) {
+    this.updateFilterObject();
+    this.filterChange.emit(this.filtersObject);
   }
 }

@@ -1,0 +1,63 @@
+<div class="image-container">
+  <img
+    src="{{product.image}}"
+  alt="image">
+  <div class="right-panel">
+    <h1>{{product.name}}</h1>
+    <table class="instruction">
+      <tr>
+        <td>
+          <img
+            src="assets/temperature.png"
+            alt="image">
+        </td>
+        <td>
+          <img
+            src="assets/time.png"
+            alt="image">
+        </td>
+        <td>
+          <img
+            src="assets/count.png"
+            alt="image">
+        </td>
+        <td>
+          <img
+            src="assets/portion.png"
+            alt="image">
+        </td>
+      </tr>
+    </table>
+    <div class="price-container">
+      <p>Вага</p>
+      <input type="number" name="price">
+    </div>
+    <button mat-button color="primary" id="add-btn"> Додати у кошик</button>
+  </div>
+</div>
+
+<div class="bottom-panel">
+  <div class="description">
+    <p>
+      {{product.description}}
+    </p>
+  </div>
+
+  <div class="properties">
+    <ul>
+      <li>
+        Країна-виробник: {{product.origin.name}} <p></p>
+      </li>
+      <li>
+        Категорія: {{product.type.name}}
+        <p></p>
+      </li>
+      <li>
+        Смаки чаю: {{flavorsNames.join(", ")}}<p></p>
+      </li>
+      <li>
+        Властивості чаю: {{propertiesNames.join(", ")}} <p></p>
+      </li>
+    </ul>
+  </div>
+</div>

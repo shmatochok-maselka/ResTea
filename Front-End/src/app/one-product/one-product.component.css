@@ -1,0 +1,112 @@
+.image-container {
+  display: flex;
+  width: 100%;
+  margin-top: 5%;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+}
+.right-panel{
+  margin-right: 5%;
+}
+.right-panel h1 {
+  text-align: center;
+  width: 550px;
+  background-color: #028C6A;
+  border-radius: 25px;
+  color: white;
+}
+
+.right-panel img {
+  margin-top: 5%;
+  display: inline-block;
+  width: 125px;
+  height: 125px;
+}
+
+.price-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  gap: 10px;
+}
+
+.price-container p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 150px;
+  height: 50px;
+  font-size: xx-large;
+  background-color: #028C6A;
+  border-radius: 50px;
+}
+
+.price-container input {
+  font-size: xx-large;
+  width: 100px;
+}
+
+.instruction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  width: 50%;
+  font-size: large;
+  height: 300px;
+  border: 5px #028C6A solid;
+  border-radius: 25px;
+}
+
+#add-btn {
+  margin-left: 120px;
+  margin-top: 20px;
+  background-color: #028C6A;
+  color: white;
+  width: 300px;
+}
+
+.bottom-panel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.properties{
+  display: flex;
+  align-items: center;
+  width: 30%;
+  font-size: 24px;
+}
+
+.properties ul{
+  list-style-type: none;
+  width: 100%;
+}
+
+.properties li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #028C6A;
+  margin-top: 20px;
+  color: white;
+  border-radius: 25px;
+  width: 100%;
+}

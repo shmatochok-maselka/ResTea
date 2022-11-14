@@ -1,18 +1,18 @@
 <nav>
   <div id="left-items">
-    <div id="logo">
-      <img src="" alt="Logo">
+    <div routerLink="" id="logo">
+      <img src="assets/logo.svg" alt="Logo">
     </div>
     <div id="text_buttons">
-      <button mat-button color="accent">Головна</button>
-      <button mat-button color="accent">Магазин</button>
-      <button mat-button color="accent">Блог</button>
-      <button mat-button color="accent">Контакти</button>
-      <button mat-button color="accent">Про нас</button>
+      <button mat-button routerLink="" color="accent">Головна</button>
+      <button mat-button routerLink="shop" color="accent">Магазин</button>
+      <button mat-button routerLink="blog" color="accent">Блог</button>
+      <button mat-button routerLink="contacts" color="accent">Контакти</button>
+      <button mat-button routerLink="about-us" color="accent">Про нас</button>
     </div>
   </div>
   <div id="right-items">
     <mat-icon color="accent" >shopping_cart</mat-icon>
-    <mat-icon color="accent">account_circle</mat-icon>
+    <mat-icon routerLink="login" color="accent">account_circle</mat-icon>
   </div>
 </nav>

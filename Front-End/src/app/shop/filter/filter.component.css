@@ -10,3 +10,6 @@
 mat-label {
   color: black;
 }
+.mat-slider{
+  margin-left: -8px;
+}

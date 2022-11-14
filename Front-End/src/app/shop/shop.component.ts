@@ -7,7 +7,7 @@ import {FilterParamsModel} from "../models/categories";
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  filterParameters:FilterParamsModel={type:[], origin:[], flavor:[], property:[], name:""};
+  filterParameters:FilterParamsModel={type:[], origin:[], flavor:[], property:[], name:"",price:0};
 
   constructor() { }
 

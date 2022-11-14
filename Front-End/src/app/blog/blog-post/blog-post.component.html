@@ -1,11 +1,9 @@
 <div class="post">
-  <img class="post-image" src="assets/test.img" alt="post image">
+  <img class="post-image" src="{{blogPost.image}}" alt="post image">
   <div class="post-description">
-    <h3 class="post-name">Ice Матча Латте рецепт</h3>
-    <p class="post-create-date">19.08.2020</p>
-    <p class="post-description-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur,
-      assumenda! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequatur dolores enim esse eum odio
-      possimus reiciendis! Deleniti molestias, quam.
+    <h3 class="post-name">{{blogPost.title}}</h3>
+    <p class="post-create-date">{{blogPost.id}}</p>
+    <p class="post-description-text">{{blogPost.content}}"
     </p>
     <button mat-raised-button color="black">Читати більше</button>
   </div>
