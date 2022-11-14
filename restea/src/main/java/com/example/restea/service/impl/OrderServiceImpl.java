@@ -37,9 +37,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order addOrder(Order order, Long userId, CartService cartService) {
-        var addedOrder = orderRepository.save(order);
+    public Order addOrder(OrderDto orderDto, Long userId, CartService cartService) {
         List<CartProductDto> products = cartService.getCartProductsByUserId(userId);
+        if(products.isEmpty()){
+            return null;
+        }
+        orderDto.setUserId(userId);
+        Order order = orderDto.toOrder();
+        var addedOrder = orderRepository.save(order);
         cartProductsToOrderProducts(products, order.getId());
         cartRepository.deleteAllByUserId(userId);
         return addedOrder;
