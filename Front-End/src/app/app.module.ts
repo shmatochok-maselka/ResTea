@@ -22,6 +22,8 @@ import {RouterLink, RouterModule} from "@angular/router";
 import {OneProductModule} from "./one-product/one-product.module";
 import {AboutUsPageModule} from "./about-us-page/about-us-page.module";
 import {ContactsPageModule} from "./contacts-page/contacts-page.module";
+import {LoginModule} from "./login/login.module";
+import {RegistrationModule} from "./registration/registration.module";
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import {ContactsPageModule} from "./contacts-page/contacts-page.module";
         AppRoutingModule,
         AboutUsPageModule,
         ContactsPageModule,
+        LoginModule,
+        RegistrationModule,
     ],
   providers: [],
   exports: [
