@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,17 +36,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order addOrder(OrderDto orderDto, Long userId, CartService cartService) {
+    public Order addOrder(Order order, Long userId, CartService cartService) {
         List<CartProductDto> products = cartService.getCartProductsByUserId(userId);
         if (products.isEmpty()) {
             return null;
         }
-        orderDto.setUserId(userId);
-        Order order = orderDto.toOrder();
+        order.setUserId(userId);
         var addedOrder = orderRepository.save(order);
         cartProductsToOrderProducts(products, order.getId());
         cartRepository.deleteAllByUserId(userId);
         return addedOrder;
+    }
+
+    @Override
+    public List<OrderDto> findAllUserOrders(Long userId) {
+        List<Order> userOrders = orderRepository.findAllByUserIdOrderByOrderDataDesc(userId);
+        return ordersListToOrdersDtoList(userOrders);
     }
 
     private void cartProductsToOrderProducts(List<CartProductDto> cartProductsDto, Long orderId) {
@@ -58,8 +64,12 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @Override
-    public Order findByUserIdAndOrderData(Long userId, LocalDateTime orderData) {
-        return orderRepository.findByUserIdAndOrderData(userId, orderData).get(1);
+    private List<OrderDto> ordersListToOrdersDtoList(List<Order> orders) {
+        List<OrderDto> ordersDto = new ArrayList<>();
+        for (Order order : orders) {
+            OrderDto orderDto = new OrderDto(order);
+            ordersDto.add(orderDto);
+        }
+        return ordersDto;
     }
 }

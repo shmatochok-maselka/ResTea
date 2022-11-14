@@ -1,5 +1,6 @@
 package com.example.restea.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,6 +21,7 @@ public class ProductFlavor extends BaseEntity{
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "flavors")
     private Set<Product> products = new HashSet<Product>();
 }

@@ -1,17 +1,12 @@
 package com.example.restea.service.impl;
 
-import com.example.restea.dto.BlogPostDto;
-import com.example.restea.dto.ProductDto;
 import com.example.restea.model.BlogPost;
-import com.example.restea.model.Product;
 import com.example.restea.repository.BlogPostRepository;
 import com.example.restea.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,16 +29,7 @@ public class BlogPostServiceImpl implements BlogPostService {
     }
 
     @Override
-    public List<BlogPostDto> getPostsForMainPage() {
-        List<BlogPost> blogPosts = this.findAll().stream().limit(3).collect(Collectors.toList());
-        return postsListToPostsDtoList(blogPosts);
-    }
-
-    private List<BlogPostDto> postsListToPostsDtoList(List<BlogPost> blogPosts){
-        List<BlogPostDto> blogPostsDto = new ArrayList<>();
-        for (BlogPost post: blogPosts){
-            blogPostsDto.add(new BlogPostDto(post));
-        }
-        return blogPostsDto;
+    public List<BlogPost> getPostsForMainPage() {
+        return this.findAll().stream().limit(3).collect(Collectors.toList());
     }
 }
