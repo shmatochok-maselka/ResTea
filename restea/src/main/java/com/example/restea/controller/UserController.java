@@ -1,5 +1,6 @@
 package com.example.restea.controller;
 
+import com.example.restea.dto.UserCreateDto;
 import com.example.restea.dto.UserDto;
 import com.example.restea.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @CrossOrigin
 @RequestMapping("/api/v1/users")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -51,8 +52,8 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<UserDto> saveUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> saveUser(@RequestBody UserCreateDto userCreateDto) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/users").toUriString());
-        return ResponseEntity.created(uri).body(new UserDto(userService.saveUser(userDto.toUser())));
+        return ResponseEntity.created(uri).body(new UserDto(userService.saveUser(userCreateDto.toUser())));
     }
 }

@@ -31,11 +31,11 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user`
     `id`       INT           NOT NULL AUTO_INCREMENT,
     `name`     VARCHAR(15)   NOT NULL,
     `surname`  VARCHAR(15)   NOT NULL,
+    `patronymic`  VARCHAR(20)   NOT NULL,
     `birthday` DATE          NOT NULL,
-    `bonus`    INT           NOT NULL,
     `email`    VARCHAR(45)   NOT NULL UNIQUE,
     `password` VARCHAR(100)  NOT NULL,
-    `image`    VARCHAR(1000) NOT NULL,
+    `image`    VARCHAR(1000) NOT NULL DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ResTea`.`role`
 (
-    `id`   INT         NOT NULL,
+    `id`   INT         NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(20) NOT NULL UNIQUE,
     PRIMARY KEY (`id`)
 )
@@ -162,8 +162,8 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Product`
 -- -----------------------------------------------------
 -- Table `ResTea`.`Cart`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `shop`.`Cart`;
 
+DROP TABLE IF EXISTS `ResTea`.`Cart`;
 
 CREATE TABLE IF NOT EXISTS `ResTea`.`cart`
 (
@@ -306,6 +306,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`Blog_Post`
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
+
 
 SET SQL_MODE = @OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;

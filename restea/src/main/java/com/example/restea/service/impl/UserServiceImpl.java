@@ -1,5 +1,7 @@
 package com.example.restea.service.impl;
 
+import com.example.restea.dto.UserDataDto;
+import com.example.restea.dto.UserDto;
 import com.example.restea.model.Role;
 import com.example.restea.model.User;
 import com.example.restea.repository.RoleRepository;
@@ -14,10 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Supplier;
 
 @Service
 @Transactional
@@ -76,7 +78,27 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        addRoleToUser(savedUser.getId(), "customer");
+        return savedUser;
+    }
+
+    @Override
+    public UserDto update(UserDataDto userDataDto, Principal principal) {
+        User toUpdate = userRepository.findByEmail(principal.getName()).orElseThrow(IllegalArgumentException::new);
+        if(userDataDto.getName() != null){
+            toUpdate.setName(userDataDto.getName());
+        }
+        if(userDataDto.getSurname() != null){
+            toUpdate.setSurname(userDataDto.getSurname());
+        }
+        if(userDataDto.getBirthday() != null){
+            toUpdate.setBirthday(userDataDto.getBirthday());
+        }
+        if(userDataDto.getImage() != null){
+            toUpdate.setImage(userDataDto.getImage());
+        }
+        return new UserDto(userRepository.save(toUpdate));
     }
 
     @Override
