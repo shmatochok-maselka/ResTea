@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`order_product`
     INDEX `product_id_idx` (`product_id` ASC) VISIBLE,
     CONSTRAINT `order_id`
         FOREIGN KEY (`order_id`)
-            REFERENCES `ResTea`.`order` (`id`)
+            REFERENCES `ResTea`.`order_client` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT `product_id`
