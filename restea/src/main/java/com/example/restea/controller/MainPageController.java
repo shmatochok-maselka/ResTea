@@ -2,6 +2,8 @@ package com.example.restea.controller;
 
 import com.example.restea.dto.MainPageDto;
 import com.example.restea.service.BlogPostService;
+import com.example.restea.service.ProductFlavorService;
+import com.example.restea.service.ProductPropertyService;
 import com.example.restea.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/main_page")
 public class MainPageController {
 
-    private ProductService productService;
-    private BlogPostService blogPostService;
+    private final ProductService productService;
+    private final BlogPostService blogPostService;
 
     @Autowired
     public MainPageController(ProductService productService, BlogPostService blogPostService) {

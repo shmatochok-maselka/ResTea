@@ -30,4 +30,5 @@ public class Cart implements  java.io.Serializable{
 
     @Column(name = "weight")
     private int productWeight;
+
 }

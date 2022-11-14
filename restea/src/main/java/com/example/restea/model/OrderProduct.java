@@ -16,10 +16,6 @@ public class OrderProduct implements  java.io.Serializable{
     @EmbeddedId
     private OrderProductId id;
 
-    @ManyToOne
-    @JoinColumn(name="order_id", nullable=false, insertable = false, updatable = false)
-    private Order order;
-
     @Column(name = "weight")
     private int weight;
 }

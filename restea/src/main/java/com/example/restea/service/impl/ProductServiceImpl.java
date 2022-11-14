@@ -1,10 +1,13 @@
 package com.example.restea.service.impl;
 
-import com.example.restea.dto.MainPageProductDto;
+import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Product;
 import com.example.restea.repository.ProductRepository;
+import com.example.restea.service.ProductFlavorService;
+import com.example.restea.service.ProductPropertyService;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,44 +40,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<MainPageProductDto> getProductsForMainPage() {
+    public List<ProductDto> getProductsForMainPage() {
         List<Product> products = this.findAll().stream().limit(4).collect(Collectors.toList());
         return productListToProductDtoList(products);
     }
 
     @Override
-    public int minProductPrice() {
-        return productRepository.minProductPrice();
+    public JSONObject minMaxProductPrice() {
+        JSONObject minMaxPriceJsonObject = new JSONObject();
+        minMaxPriceJsonObject.put("min", productRepository.minProductPrice());
+        minMaxPriceJsonObject.put("max", productRepository.maxProductPrice());
+        return minMaxPriceJsonObject;
     }
 
-    @Override
-    public int maxProductPrice() {
-        return productRepository.maxProductPrice();
-    }
-
-    private List<MainPageProductDto> productListToProductDtoList(List<Product> products){
-        List<MainPageProductDto> productsDto = new ArrayList<>();
+    private List<ProductDto> productListToProductDtoList(List<Product> products){
+        List<ProductDto> productsDto = new ArrayList<>();
         for (Product product: products){
-            productsDto.add(new MainPageProductDto(product));
+            productsDto.add(new ProductDto(product));
         }
         return productsDto;
     }
-
-
-//    @Override
-//    public List<ProductDto> findAll() {
-//        return productSetToProductDtoSet(productRepository.findAll());
-//    }
-//
-//    @Override
-//    public List<ProductDto> productSetToProductDtoSet(List<Product> products) {
-//        List<ProductDto> productsDto = new ArrayList<>();
-//        for (Product product : products){
-//            var productDto = new ProductDto();
-//            productDto.setId(product.getId());
-//            productDto.setName(product.getName());
-//            productsDto.add(productDto);
-//        }
-//        return productsDto;
-//    }
 }

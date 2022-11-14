@@ -1,7 +1,6 @@
 package com.example.restea.dto;
 
 import com.example.restea.model.BlogPost;
-import com.example.restea.model.ProductType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

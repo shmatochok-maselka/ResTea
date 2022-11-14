@@ -9,10 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_client")
 @Getter
 @Setter
 @ToString
@@ -35,12 +39,10 @@ public class Order extends BaseEntity{
     @Column(name = "address")
     private String address;
 
-    @Column(name = "date")
-    private LocalDateTime orderData;
+    @Column(name = "order_date")
+    private String orderData;
 
     @Column(name = "price")
-    private int orderPrice;
+    private double orderPrice;
 
-    @OneToMany(mappedBy="order")
-    private List<OrderProduct> orderProducts;
 }
