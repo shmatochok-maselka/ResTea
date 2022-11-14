@@ -24,16 +24,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDto>> findAllProducts() {
-        return new ResponseEntity<>(productService.findAll().stream()
-                .map(ProductDto::new)
-                .collect(Collectors.toList()),
-                HttpStatus.OK);
-//        return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Product>> findAllProducts() {
+        return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<ProductDto> findProductById(@PathVariable Long productId) {
+    public ResponseEntity<Product> findProductById(@PathVariable Long productId) {
         if (productId == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -42,8 +38,7 @@ public class ProductController {
         } catch (NoSuchElementException exception) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(new ProductDto(productService.findProductById(productId)),
-                HttpStatus.OK);
+        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.OK);
     }
 
 }

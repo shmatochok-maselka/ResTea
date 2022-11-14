@@ -27,12 +27,10 @@ public class Product extends BaseEntity{
     @Column(name = "price")
     private int price;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="origin_id", nullable=false)
     private ProductOrigin origin;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="type_id", nullable=false)
     private ProductType type;

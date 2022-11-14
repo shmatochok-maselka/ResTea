@@ -15,23 +15,15 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class ProductDto {
-
     private Long id;
     private String name;
-
     private String description;
-
     private String image;
-
     private int price;
-
     private ProductType type;
-//    private ProductTypeDto type;
-
-//    private ProductOriginDto origin;
     private ProductOrigin origin;
-    private Set<ProductFlavorDto> flavors;
-    private Set<ProductPropertyDto> properties;
+    private Set<ProductFlavor> flavors;
+    private Set<ProductProperty> properties;
 
     public ProductDto(Product product){
         this.id = product.getId();
@@ -41,13 +33,14 @@ public class ProductDto {
         this.price = product.getPrice();
         this.origin = product.getOrigin();
         this.type = product.getType();
-        this.flavors = flavorsSetToFlavorsDtoSet(product);
-        this.properties = propertySetToPropertyDtoSet(product);
+        this.flavors = product.getFlavors();
+//                flavorsSetToFlavorsDtoSet(product);
+        this.properties = product.getProperties();
+//                propertySetToPropertyDtoSet(product);
     }
 
 
-    public Product toProduct(ProductFlavorService flavorService,
-                             ProductPropertyService propertyService){
+    public Product toProduct(){
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
@@ -55,31 +48,7 @@ public class ProductDto {
         product.setPrice(price);
         product.setType(type);
         product.setOrigin(origin);
-        product.setFlavors(flavorService.flavorsDtoSetToFlavorSet(this.getFlavors()));
-        product.setProperties(propertyService.propertyDtoSetToPropertySet(this.getProperties()));
         return product;
-    }
-
-    public Set<ProductFlavorDto> flavorsSetToFlavorsDtoSet(Product product){
-        Set<ProductFlavorDto> flavorsDto = new HashSet<>();
-        for (ProductFlavor productFlavor : product.getFlavors()){
-            var flavorDto = new ProductFlavorDto();
-            flavorDto.setId(productFlavor.getId());
-            flavorDto.setName(productFlavor.getName());
-            flavorsDto.add(flavorDto);
-        }
-        return flavorsDto;
-    }
-
-    public Set<ProductPropertyDto> propertySetToPropertyDtoSet(Product product){
-        Set<ProductPropertyDto> propertiesDto = new HashSet<>();
-        for (ProductProperty productProperty : product.getProperties()){
-            var propertyDto = new ProductPropertyDto();
-            propertyDto.setId(productProperty.getId());
-            propertyDto.setName(productProperty.getName());
-            propertiesDto.add(propertyDto);
-        }
-        return propertiesDto;
     }
 
 }
