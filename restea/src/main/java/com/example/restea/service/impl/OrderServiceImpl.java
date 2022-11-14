@@ -8,7 +8,6 @@ import com.example.restea.model.OrderProductId;
 import com.example.restea.repository.CartRepository;
 import com.example.restea.repository.OrderProductRepository;
 import com.example.restea.repository.OrderRepository;
-import com.example.restea.repository.ProductFlavorsRepository;
 import com.example.restea.service.CartService;
 import com.example.restea.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order addOrder(OrderDto orderDto, Long userId, CartService cartService) {
         List<CartProductDto> products = cartService.getCartProductsByUserId(userId);
-        if(products.isEmpty()){
+        if (products.isEmpty()) {
             return null;
         }
         orderDto.setUserId(userId);
@@ -50,14 +48,14 @@ public class OrderServiceImpl implements OrderService {
         return addedOrder;
     }
 
-    private void cartProductsToOrderProducts(List<CartProductDto> cartProductsDto, Long orderId){
-        for (CartProductDto cartProduct : cartProductsDto){
+    private void cartProductsToOrderProducts(List<CartProductDto> cartProductsDto, Long orderId) {
+        for (CartProductDto cartProduct : cartProductsDto) {
             OrderProduct orderProduct = new OrderProduct();
-                Long cartProductId = cartProduct.getProduct().getId();
-                orderProduct.setId(new OrderProductId(orderId, cartProductId));
-                orderProduct.setWeight(cartProduct.getProductWeight());
-                orderProductRepository.save(orderProduct);
-            }
+            Long cartProductId = cartProduct.getProduct().getId();
+            orderProduct.setId(new OrderProductId(orderId, cartProductId));
+            orderProduct.setWeight(cartProduct.getProductWeight());
+            orderProductRepository.save(orderProduct);
+        }
     }
 
     @Override

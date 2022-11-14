@@ -12,4 +12,5 @@ public interface ProductService {
     List<ProductDto> getProductsForMainPage();
 
     JSONObject minMaxProductPrice();
+
 }

@@ -1,15 +1,9 @@
 package com.example.restea.dto;
 
 import com.example.restea.model.Order;
-import com.example.restea.model.OrderProduct;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

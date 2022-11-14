@@ -3,6 +3,8 @@ package com.example.restea.service.impl;
 import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Product;
 import com.example.restea.repository.ProductRepository;
+import com.example.restea.service.ProductFlavorService;
+import com.example.restea.service.ProductPropertyService;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;

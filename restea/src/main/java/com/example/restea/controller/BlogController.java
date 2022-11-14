@@ -23,7 +23,7 @@ public class BlogController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BlogPostDto>> findAllProducts() {
+    public ResponseEntity<List<BlogPostDto>> findAllPosts() {
         return new ResponseEntity<>(blogPostService.findAll().stream()
                 .map(BlogPostDto::new)
                 .collect(Collectors.toList()),
@@ -31,7 +31,7 @@ public class BlogController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<BlogPostDto> findProductById(@PathVariable Long postId) {
+    public ResponseEntity<BlogPostDto> findPostById(@PathVariable Long postId) {
         if(postId == null)
         {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
