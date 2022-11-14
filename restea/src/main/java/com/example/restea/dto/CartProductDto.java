@@ -1,5 +1,6 @@
 package com.example.restea.dto;
 
+import com.example.restea.model.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,10 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CartProductDto {
-    private ProductDto product;
+    private Product product;
     private int productWeight;
 
-    public CartProductDto(ProductDto product, int productWeight) {
+    public CartProductDto(Product product, int productWeight) {
         this.product = product;
         this.productWeight = productWeight;
     }

@@ -1,5 +1,6 @@
 package com.example.restea.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,7 +19,7 @@ public class ProductType extends BaseEntity{
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy="type")
     private List<Product> products;
-
 }

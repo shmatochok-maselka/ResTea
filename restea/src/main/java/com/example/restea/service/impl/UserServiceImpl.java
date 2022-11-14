@@ -24,8 +24,6 @@ import java.util.List;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
-
-
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
@@ -86,16 +84,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDto update(UserDataDto userDataDto, Principal principal) {
         User toUpdate = userRepository.findByEmail(principal.getName()).orElseThrow(IllegalArgumentException::new);
-        if(userDataDto.getName() != null){
+        if (userDataDto.getName() != null) {
             toUpdate.setName(userDataDto.getName());
         }
-        if(userDataDto.getSurname() != null){
+        if (userDataDto.getSurname() != null) {
             toUpdate.setSurname(userDataDto.getSurname());
         }
-        if(userDataDto.getBirthday() != null){
+        if (userDataDto.getBirthday() != null) {
             toUpdate.setBirthday(userDataDto.getBirthday());
         }
-        if(userDataDto.getImage() != null){
+        if (userDataDto.getImage() != null) {
             toUpdate.setImage(userDataDto.getImage());
         }
         return new UserDto(userRepository.save(toUpdate));
