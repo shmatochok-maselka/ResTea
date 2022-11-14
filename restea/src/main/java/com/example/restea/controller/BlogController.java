@@ -23,10 +23,6 @@ public class BlogController {
 
     @GetMapping
     public ResponseEntity<List<BlogPost>> findAllPosts() {
-//        return new ResponseEntity<>(blogPostService.findAll().stream()
-//                .map(BlogPostDto::new)
-//                .collect(Collectors.toList()),
-//                HttpStatus.OK);
         return new ResponseEntity<>(blogPostService.findAll(), HttpStatus.OK);
     }
 

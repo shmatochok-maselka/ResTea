@@ -18,7 +18,6 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         this.typeRepository = typeRepository;
     }
 
-
     @Override
     public Set<ProductType> findAll() {
         return new HashSet<>(typeRepository.findAll());

@@ -32,12 +32,4 @@ public class BlogPostServiceImpl implements BlogPostService {
     public List<BlogPost> getPostsForMainPage() {
         return this.findAll().stream().limit(3).collect(Collectors.toList());
     }
-
-//    private List<BlogPostDto> postsListToPostsDtoList(List<BlogPost> blogPosts){
-//        List<BlogPostDto> blogPostsDto = new ArrayList<>();
-//        for (BlogPost post: blogPosts){
-//            blogPostsDto.add(new BlogPostDto(post));
-//        }
-//        return blogPostsDto;
-//    }
 }

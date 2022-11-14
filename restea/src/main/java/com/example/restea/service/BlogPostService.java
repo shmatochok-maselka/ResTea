@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface BlogPostService {
     BlogPost findPostById(Long id);
+
     List<BlogPost> findAll();
+
     List<BlogPost> getPostsForMainPage();
 }

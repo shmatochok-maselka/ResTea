@@ -7,9 +7,12 @@ import java.util.List;
 
 public interface ProductService {
     Product findProductById(Long id);
+
     List<Product> findAll();
+
     List<Product> getProductsForMainPage();
 
     JSONObject minMaxProductPrice();
 
+    void addProduct(Product product);
 }

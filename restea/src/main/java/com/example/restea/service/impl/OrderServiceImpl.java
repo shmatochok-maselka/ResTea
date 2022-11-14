@@ -64,9 +64,9 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    private List<OrderDto> ordersListToOrdersDtoList(List<Order> orders){
+    private List<OrderDto> ordersListToOrdersDtoList(List<Order> orders) {
         List<OrderDto> ordersDto = new ArrayList<>();
-        for (Order order: orders){
+        for (Order order : orders) {
             OrderDto orderDto = new OrderDto(order);
             ordersDto.add(orderDto);
         }

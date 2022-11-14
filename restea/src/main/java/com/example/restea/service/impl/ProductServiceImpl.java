@@ -39,7 +39,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductsForMainPage() {
         return this.findAll().stream().limit(4).collect(Collectors.toList());
-//        return productListToProductDtoList(products);
     }
 
     @Override
@@ -50,11 +49,8 @@ public class ProductServiceImpl implements ProductService {
         return minMaxPriceJsonObject;
     }
 
-//    private List<ProductDto> productListToProductDtoList(List<Product> products){
-//        List<ProductDto> productsDto = new ArrayList<>();
-//        for (Product product: products){
-//            productsDto.add(new ProductDto(product));
-//        }
-//        return productsDto;
-//    }
+    @Override
+    public void addProduct(Product product) {
+        productRepository.save(product);
+    }
 }
