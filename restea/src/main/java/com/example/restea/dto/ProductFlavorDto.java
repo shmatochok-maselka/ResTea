@@ -1,7 +1,6 @@
 package com.example.restea.dto;
 
 import com.example.restea.model.ProductFlavor;
-import com.example.restea.model.ProductOrigin;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

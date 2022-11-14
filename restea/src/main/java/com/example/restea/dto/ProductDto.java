@@ -1,18 +1,14 @@
 package com.example.restea.dto;
 
-import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.Product;
+import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.ProductProperty;
 
 import com.example.restea.service.ProductFlavorService;
 import com.example.restea.service.ProductPropertyService;
-import com.example.restea.service.impl.ProductFlavorServiceImpl;
-import com.example.restea.service.impl.ProductPropertyServiceImpl;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -34,7 +30,6 @@ public class ProductDto {
     private ProductTypeDto type;
 
     private ProductOriginDto origin;
-
     private Set<ProductFlavorDto> flavors;
     private Set<ProductPropertyDto> properties;
 
@@ -66,7 +61,7 @@ public class ProductDto {
     }
 
     public Set<ProductFlavorDto> flavorsSetToFlavorsDtoSet(Product product){
-        Set<ProductFlavorDto> flavorsDto = new HashSet<ProductFlavorDto>();
+        Set<ProductFlavorDto> flavorsDto = new HashSet<>();
         for (ProductFlavor productFlavor : product.getFlavors()){
             var flavorDto = new ProductFlavorDto();
             flavorDto.setId(productFlavor.getId());
@@ -77,7 +72,7 @@ public class ProductDto {
     }
 
     public Set<ProductPropertyDto> propertySetToPropertyDtoSet(Product product){
-        Set<ProductPropertyDto> propertiesDto = new HashSet<ProductPropertyDto>();
+        Set<ProductPropertyDto> propertiesDto = new HashSet<>();
         for (ProductProperty productProperty : product.getProperties()){
             var propertyDto = new ProductPropertyDto();
             propertyDto.setId(productProperty.getId());

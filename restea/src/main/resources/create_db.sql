@@ -31,11 +31,11 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user`
     `id`       INT           NOT NULL AUTO_INCREMENT,
     `name`     VARCHAR(15)   NOT NULL,
     `surname`  VARCHAR(15)   NOT NULL,
+    `patronymic`  VARCHAR(20)   NOT NULL,
     `birthday` DATE          NOT NULL,
-    `bonus`    INT           NOT NULL,
     `email`    VARCHAR(45)   NOT NULL UNIQUE,
     `password` VARCHAR(100)  NOT NULL,
-    `image`    VARCHAR(1000) NOT NULL,
+    `image`    VARCHAR(1000) NOT NULL DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ResTea`.`role`
 (
-    `id`   INT         NOT NULL,
+    `id`   INT         NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(20) NOT NULL UNIQUE,
     PRIMARY KEY (`id`)
 )
@@ -79,18 +79,18 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`user_role`
 -- -----------------------------------------------------
 -- Table `ResTea`.`order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ResTea`.`order`
+CREATE TABLE IF NOT EXISTS `ResTea`.`order_client`
 (
-    `id`               INT         NOT NULL,
+    `id`       INT           NOT NULL AUTO_INCREMENT,
     `order_user_id`    INT         NOT NULL,
     `receiver_name`    VARCHAR(15) NOT NULL,
     `receiver_second_name`    VARCHAR(15) NOT NULL,
     `receiver_surname` VARCHAR(15) NOT NULL,
     `phone`            VARCHAR(10) NOT NULL,
     `address`          VARCHAR(100) NOT NULL,
-    `date`             DATETIME    NOT NULL,
+    `order_date`             DATETIME    NOT NULL,
     `price`            DOUBLE      NOT NULL,
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`id`, `order_user_id`),
     INDEX `user_id_idx` (`order_user_id` ASC) VISIBLE,
     CONSTRAINT `order_user_id`
         FOREIGN KEY (`order_user_id`)
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `ResTea`.`order_product`
     INDEX `product_id_idx` (`product_id` ASC) VISIBLE,
     CONSTRAINT `order_id`
         FOREIGN KEY (`order_id`)
-            REFERENCES `ResTea`.`order` (`id`)
+            REFERENCES `ResTea`.`order_client` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT `product_id`

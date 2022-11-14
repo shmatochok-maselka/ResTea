@@ -4,9 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -25,11 +27,11 @@ public class User extends BaseEntity {
     @Column(name = "surname")
     private String surname;
 
+    @Column(name = "patronymic")
+    private String patronymic;
+
     @Column(name = "birthday")
     private LocalDate birthday;
-
-    @Column(name = "bonus")
-    private int bonus;
 
     @Column(name = "email")
     private String email;
@@ -38,7 +40,8 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = "image")
-    private String image;
+    private String image = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_role",
@@ -46,5 +49,5 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     @ToString.Exclude
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 }

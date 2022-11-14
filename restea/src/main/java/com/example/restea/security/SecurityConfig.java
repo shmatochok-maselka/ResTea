@@ -16,6 +16,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+
 
 @Configuration
 @EnableWebSecurity
@@ -37,7 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/v1/login/**", "/api/v1/token/**", "api/v1/users").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/v1/blog/**", "/api/v1/main_page",
+                "/api/v1/categories/**", "/api/v1/products/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/users/**").hasAnyAuthority("admin");
+//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/cart").hasAnyAuthority("customer");
+//        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/cart/**",
+//                "/api/v1/order/add_order").hasAnyAuthority("customer");
+//        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/v1/cart").hasAnyAuthority("customer");
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
