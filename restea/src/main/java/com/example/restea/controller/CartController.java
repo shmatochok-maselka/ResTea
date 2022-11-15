@@ -40,7 +40,7 @@ public class CartController {
         }
         Long userId = productCartJSON.get("userId");
         try{
-            User user = userService.findUserById(userId);
+            userService.findUserById(userId);
         } catch (NoSuchElementException exception){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -58,7 +58,7 @@ public class CartController {
         Long userId = productCartJSON.get("userId");
         try{
             Product product = productService.findProductById(productId);
-            User user = userService.findUserById(userId);
+            userService.findUserById(userId);
         } catch (NoSuchElementException exception){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -81,7 +81,7 @@ public class CartController {
         Long userId = productCartJSON.get("userId");
         try{
             Product product = productService.findProductById(productId);
-            User user = userService.findUserById(userId);
+            userService.findUserById(userId);
         } catch (NoSuchElementException exception){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
