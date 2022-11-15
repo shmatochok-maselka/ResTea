@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MainPageDto {
     private List<Product> products;
-    private List<BlogPost> blogPosts;
+    private List<BlogPostDto> blogPosts;
 
     public MainPageDto(ProductService productService, BlogPostService blogPostService) {
         this.products = productService.getProductsForMainPage();

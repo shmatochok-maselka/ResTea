@@ -1,13 +1,13 @@
 package com.example.restea.service;
 
-import com.example.restea.model.BlogPost;
+import com.example.restea.dto.BlogPostDto;
 
 import java.util.List;
 
 public interface BlogPostService {
-    BlogPost findPostById(Long id);
+    BlogPostDto findPostById(Long id);
 
-    List<BlogPost> findAll();
+    List<BlogPostDto> findAll();
 
-    List<BlogPost> getPostsForMainPage();
+    List<BlogPostDto> getPostsForMainPage();
 }
