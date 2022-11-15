@@ -13,7 +13,9 @@ import java.util.Set;
 @Table(name = "role")
 public class Role extends BaseEntity {
     @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private RoleEnum name;
+
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
