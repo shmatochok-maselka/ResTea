@@ -15,6 +15,11 @@
       </mat-form-field>
 
       <mat-form-field>
+        <input type="text" matInput placeholder="Patronymic" formControlName="patronymic">
+        <mat-error *ngIf="patronymic.touched && patronymic.hasError('required')">Username is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
         <input type="date" matInput placeholder="Birthday" formControlName="birthday">
         <mat-error *ngIf="birthday.touched && birthday.hasError('required')">Birthday is required</mat-error>
       </mat-form-field>
@@ -23,11 +28,6 @@
         <input type="email" matInput placeholder="Email" formControlName="email">
         <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
         <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input type="text" matInput placeholder="Patronymic" formControlName="patronymic">
-        <mat-error *ngIf="patronymic.touched && patronymic.hasError('required')">Username is required</mat-error>
       </mat-form-field>
 
       <mat-form-field>

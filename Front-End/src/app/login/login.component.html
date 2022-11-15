@@ -1,15 +1,24 @@
-<div class="login-form">
-  <div class="filling"><h2>Вже маєте акаунт?</h2>
-    <div class="email">
-      <label>Пошта</label>
-      <input type="email" id="mail">
-    </div>
-    <div class="password">
-      <label>Пароль</label>
-      <input type="password" id="pass">
-    </div>
-    <mat-checkbox class="remember" [(ngModel)]="checked">Запам'ятати мене</mat-checkbox>
-    <button mat-raised-button>Увійти</button>
-    <button mat-raised-button routerLink="/register" class="sign-up">Регістрація</button>
-  </div>
-</div>
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <mat-form-field>
+        <input type="email" matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
+      </mat-form-field>
+
+      <div class="button">
+        <button mat-button type="submit" [disabled]="!form.valid">Login</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+
+</mat-card>

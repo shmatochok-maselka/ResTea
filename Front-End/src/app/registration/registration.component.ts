@@ -14,7 +14,7 @@ export class RegistrationComponent  {
 
   form: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
-      patronymic: new FormControl(null, [Validators.required]),
+    patronymic: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required]),
     passwordConfirm: new FormControl(null, [Validators.required]),
     name:new FormControl(null, [Validators.required]),
@@ -58,7 +58,6 @@ export class RegistrationComponent  {
 
   register() {
     if(this.form.valid){
-      console.log(this.birthday.value)
       this._userService.create({
         name:this.name.value,
         surname:this.surname.value,
