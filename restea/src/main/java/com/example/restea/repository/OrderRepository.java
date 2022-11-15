@@ -12,6 +12,5 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-//    @Query(value = "SELECT id FROM Order_client WHERE order_data = order.getOrderData()")
-    List<Order> findByUserIdAndOrderData(Long userId, LocalDateTime orderData);
+    List<Order> findAllByUserIdOrderByOrderDataDesc(Long userId);
 }

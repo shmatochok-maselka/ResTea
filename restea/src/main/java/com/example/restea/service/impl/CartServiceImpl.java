@@ -1,7 +1,6 @@
 package com.example.restea.service.impl;
 
 import com.example.restea.dto.CartProductDto;
-import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
 import com.example.restea.model.Product;
@@ -60,7 +59,7 @@ public class CartServiceImpl implements CartService {
     private List<CartProductDto> objectListToCartProduct(List<Object[]> cartProductsObject) {
         List<CartProductDto> cartProductsDto = new ArrayList<>();
         for (Object[] objects : cartProductsObject) {
-            CartProductDto cartProductDto = new CartProductDto(new ProductDto((Product) objects[0]), (Integer) objects[1]);
+            CartProductDto cartProductDto = new CartProductDto((Product) objects[0], (Integer) objects[1]);
             cartProductsDto.add(cartProductDto);
         }
         return cartProductsDto;

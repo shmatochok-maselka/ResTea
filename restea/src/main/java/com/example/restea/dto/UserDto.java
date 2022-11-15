@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class UserDto {
+    private Long id;
     private String name;
     private String surname;
     private String patronymic;
@@ -21,6 +22,7 @@ public class UserDto {
 
 
     public UserDto(User user) {
+        this.id = user.getId();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.patronymic = user.getPatronymic();
@@ -31,6 +33,7 @@ public class UserDto {
 
     public User toUser(){
         User user = new User();
+        user.setId(id);
         user.setName(name);
         user.setSurname(surname);
         user.setPatronymic(patronymic);

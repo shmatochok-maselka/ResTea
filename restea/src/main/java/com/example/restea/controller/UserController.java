@@ -3,57 +3,88 @@ package com.example.restea.controller;
 import com.example.restea.dto.UserCreateDto;
 import com.example.restea.dto.UserDto;
 import com.example.restea.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/users")
 public class UserController {
+
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
-    @GetMapping
-    public ResponseEntity<List<UserDto>> findAllUsers() {
-        return new ResponseEntity<>(userService.findAll().stream()
-                .map(UserDto::new)
-                .collect(Collectors.toList()),
-                HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<UserDto> findUserById(@PathVariable Long id) {
-        return new ResponseEntity<>(new UserDto(userService.findUserById(id)),
-                HttpStatus.OK);
-    }
-
-    @GetMapping("/findByName/{name}")
-    public ResponseEntity<UserDto> findUserByName(@PathVariable String name) {
-        return new ResponseEntity<>(new UserDto(userService.findUserByName(name)),
-                HttpStatus.OK);
-    }
-
-    @GetMapping("/findByEmail/{email}")
-    public ResponseEntity<UserDto> findUserByEmail(@PathVariable String email) {
-        return new ResponseEntity<>(new UserDto(userService.findUserByEmail(email)),
-                HttpStatus.OK);
-    }
-
-
+    /**
+     * Method for creating an user.
+     *
+     * @return {@link UserDto} instance.
+     * @author Oliyarnik Serhiy.
+     */
+    @Operation(summary = "Create new user")
     @PostMapping
     public ResponseEntity<UserDto> saveUser(@RequestBody UserCreateDto userCreateDto) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/users").toUriString());
-        return ResponseEntity.created(uri).body(new UserDto(userService.saveUser(userCreateDto.toUser())));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userService.saveUser(userCreateDto));
     }
+
+
+    /**
+     * Method for finding user all user.
+     *
+     * @return {@link UserDto} instance.
+     * @author Oliyarnik Serhiy.
+     */
+    @Operation(summary = "Get all users")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping
+    public ResponseEntity<List<UserDto>> findAllUsers() {
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+    }
+
+    /**
+     * Method for finding user by id.
+     *
+     * @return {@link UserDto} instance.
+     * @author Oliyarnik Serhiy.
+     */
+    @Operation(summary = "Find user by id")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> findUserById(@PathVariable Long id) {
+        return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
+    }
+
+    /**
+     * Method for finding user by name.
+     *
+     * @return {@link UserDto} instance.
+     * @author Oliyarnik Serhiy.
+     */
+    @Operation(summary = "Find user by name")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<UserDto> findUserByName(@PathVariable String name) {
+        return new ResponseEntity<>(userService.findUserByName(name), HttpStatus.OK);
+    }
+
+    /**
+     * Method for finding user by email.
+     *
+     * @return {@link UserDto} instance.
+     * @author Oliyarnik Serhiy.
+     */
+    @Operation(summary = "Find user by email")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("/findByEmail/{email}")
+    public ResponseEntity<UserDto> findUserByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(userService.findUserByEmail(email), HttpStatus.OK);
+    }
+
 }

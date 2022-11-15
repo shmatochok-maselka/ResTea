@@ -15,6 +15,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
@@ -38,15 +41,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager());
         customAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
         http.csrf().disable();
+        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
+        http.authorizeRequests().antMatchers("/swagger-ui.html","/swagger-ui/**", "/v3/api-docs/**").permitAll();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/v1/login/**", "/api/v1/token/**", "api/v1/users").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/v1/blog/**", "/api/v1/main_page",
-                "/api/v1/categories/**", "/api/v1/products/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/users/**").hasAnyAuthority("admin");
-//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/cart").hasAnyAuthority("customer");
-//        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/cart/**",
-//                "/api/v1/order/add_order").hasAnyAuthority("customer");
-//        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/v1/cart").hasAnyAuthority("customer");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/login/**", "/api/v1/token/**", "api/v1/users").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/blog/**", "/api/v1/main_page",
+                "/api/v1/categories/**", "/api/v1/products/{productId}", "/api/v1/products").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/users/**", "/api/v1/products/add-product").hasAnyAuthority("admin");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/cart", "/api/v1/order").hasAnyAuthority("customer");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/cart/**",
+                "/api/v1/order/add_order").hasAnyAuthority("customer");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/v1/cart").hasAnyAuthority("customer");
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
@@ -56,4 +61,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
+
 }

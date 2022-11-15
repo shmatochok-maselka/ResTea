@@ -11,9 +11,13 @@ import java.util.Map;
 
 public interface CartService {
     List<Cart> findAll();
+
     void deleteById(CartId cartId);
+
     Cart findById(CartId cartId);
+
     List<CartProductDto> getCartProductsByUserId(Long userId);
+
     ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal);
 
     void updateProductCart(Long userId, Long productId, int productWeight);

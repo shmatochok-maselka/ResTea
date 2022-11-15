@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -24,24 +23,17 @@ public class BlogController {
 
     @GetMapping
     public ResponseEntity<List<BlogPostDto>> findAllPosts() {
-        return new ResponseEntity<>(blogPostService.findAll().stream()
-                .map(BlogPostDto::new)
-                .collect(Collectors.toList()),
-                HttpStatus.OK);
+        return new ResponseEntity<>(blogPostService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{postId}")
     public ResponseEntity<BlogPostDto> findPostById(@PathVariable Long postId) {
-        if(postId == null)
-        {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         try{
             blogPostService.findPostById(postId);
         } catch (NoSuchElementException exception){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(new BlogPostDto(blogPostService.findPostById(postId)),
+        return new ResponseEntity<>(blogPostService.findPostById(postId),
                 HttpStatus.OK);
     }
 }

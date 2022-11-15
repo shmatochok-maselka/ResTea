@@ -10,8 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BlogPostDto {
     private Long id;
+
     private String title;
+
     private String image;
+
     private String content;
 
     public BlogPostDto(BlogPost blogPost) {
@@ -21,7 +24,7 @@ public class BlogPostDto {
         this.content = blogPost.getContent();
     }
 
-    public BlogPost toBlogPost(){
+    public BlogPost toBlogPost() {
         BlogPost blogPost = new BlogPost();
         blogPost.setId(this.id);
         blogPost.setTitle(this.title);
