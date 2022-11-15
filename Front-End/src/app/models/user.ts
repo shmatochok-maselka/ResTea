@@ -6,3 +6,11 @@ export interface User{
   email:string,
   password:string
 }
+export interface LoginResponseI{
+  access_token: string
+}
+
+export interface LoginUserI{
+  email:string;
+  password:string;
+}
