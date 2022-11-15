@@ -1,7 +1,6 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.BlogPostDto;
-import com.example.restea.dto.UserDto;
 import com.example.restea.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,9 +40,9 @@ public class BlogController {
      */
     @GetMapping("/{postId}")
     public ResponseEntity<BlogPostDto> findPostById(@PathVariable Long postId) {
-        try{
+        try {
             blogPostService.findPostById(postId);
-        } catch (NoSuchElementException exception){
+        } catch (NoSuchElementException exception) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(blogPostService.findPostById(postId),

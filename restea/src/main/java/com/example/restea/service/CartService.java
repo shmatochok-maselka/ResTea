@@ -19,7 +19,7 @@ public interface CartService {
 
     List<CartProductDto> getCartProductsByUserId(Long userId);
 
-    ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal);
+    void addProductToCart(CartAddDto cartAddDto, Principal principal);
 
     void updateProductCart(Long userId, CartAddDto cartAddDto);
 }

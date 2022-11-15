@@ -29,47 +29,62 @@ public class CartController {
         this.userService = userService;
     }
 
+    /**
+     * Method for return all cart products.
+     *
+     * @return {@link CartProductDto} instance.
+     * @author Iryna Kopchak.
+     */
     @GetMapping
     public ResponseEntity<List<CartProductDto>> findAllCartProducts(Principal principal) {
         Long userId = userService.findUserByIdPrincipal(principal);
         return new ResponseEntity<>(cartService.getCartProductsByUserId(userId), HttpStatus.CREATED);
     }
 
+    /**
+     * Method for add product to the cart.
+     *
+     * @return {@link CartProductDto} instance.
+     * @author Iryna Kopchak.
+     */
     @PostMapping(value = "/add")
-    public ResponseEntity<Object> addProductToCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
-        return cartService.addProductToCart(productCartJSON, principal);
+    public ResponseEntity<CartProductDto> addProductToCart(@RequestBody CartAddDto cartAddDto, Principal principal) {
+        try {
+            cartService.addProductToCart(cartAddDto, principal);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Method for update product in the cart.
+     *
+     * @return {@link CartProductDto} instance.
+     * @author Iryna Kopchak.
+     */
     @PutMapping
-    public ResponseEntity<Object> editProductCart(@RequestBody CartAddDto cartAddDto, Principal principal) {
-//    public ResponseEntity<Object> editProductCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
-//        if (productCartJSON == null || !productCartJSON.containsKey("productId") ||
-//                !productCartJSON.containsKey("productWeight")) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//        Long productId = productCartJSON.get("productId");
-//        int productWeight = productCartJSON.get("productWeight").intValue();
-//        Long userId = userService.findUserByIdPrincipal(principal);
-//        cartService.updateProductCart(userId, productId, productWeight);
-//        return new ResponseEntity<>(HttpStatus.OK);
-        try{
+    public ResponseEntity<CartProductDto> editProductCart(@RequestBody CartAddDto cartAddDto, Principal principal) {
+        try {
             Long userId = userService.findUserByIdPrincipal(principal);
-//        cartService.updateProductCart(userId, productId, productWeight);
             cartService.updateProductCart(userId, cartAddDto);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Method for delete product from the cart.
+     *
+     * @return {@link CartProductDto} instance.
+     * @author Iryna Kopchak.
+     */
     @PostMapping(value = "/delete")
     public ResponseEntity<Object> deleteProductFromCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
-        if (productCartJSON == null || !productCartJSON.containsKey("productId")) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        Long productId = productCartJSON.get("productId");
-        Long userId = userService.findUserByEmail(principal.getName()).getId();
         try {
+            Long productId = productCartJSON.get("productId");
+            Long userId = userService.findUserByIdPrincipal(principal);
             cartService.deleteById(new CartId(userId, productId));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
