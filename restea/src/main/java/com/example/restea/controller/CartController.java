@@ -1,5 +1,6 @@
 package com.example.restea.controller;
 
+import com.example.restea.dto.CartAddDto;
 import com.example.restea.dto.CartProductDto;
 import com.example.restea.model.CartId;
 import com.example.restea.service.CartService;
@@ -30,7 +31,7 @@ public class CartController {
 
     @GetMapping
     public ResponseEntity<List<CartProductDto>> findAllCartProducts(Principal principal) {
-        Long userId = userService.findUserByEmail(principal.getName()).getId();
+        Long userId = userService.findUserByIdPrincipal(principal);
         return new ResponseEntity<>(cartService.getCartProductsByUserId(userId), HttpStatus.CREATED);
     }
 
@@ -40,15 +41,24 @@ public class CartController {
     }
 
     @PutMapping
-    public ResponseEntity<Object> editProductCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
-        if (productCartJSON == null || !productCartJSON.containsKey("productId") ||
-                !productCartJSON.containsKey("productWeight")) {
+    public ResponseEntity<Object> editProductCart(@RequestBody CartAddDto cartAddDto, Principal principal) {
+//    public ResponseEntity<Object> editProductCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
+//        if (productCartJSON == null || !productCartJSON.containsKey("productId") ||
+//                !productCartJSON.containsKey("productWeight")) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        Long productId = productCartJSON.get("productId");
+//        int productWeight = productCartJSON.get("productWeight").intValue();
+//        Long userId = userService.findUserByIdPrincipal(principal);
+//        cartService.updateProductCart(userId, productId, productWeight);
+//        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            Long userId = userService.findUserByIdPrincipal(principal);
+//        cartService.updateProductCart(userId, productId, productWeight);
+            cartService.updateProductCart(userId, cartAddDto);
+        }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Long productId = productCartJSON.get("productId");
-        int productWeight = productCartJSON.get("productWeight").intValue();
-        Long userId = userService.findUserByEmail(principal.getName()).getId();
-        cartService.updateProductCart(userId, productId, productWeight);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

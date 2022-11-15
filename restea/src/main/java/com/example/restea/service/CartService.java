@@ -1,5 +1,6 @@
 package com.example.restea.service;
 
+import com.example.restea.dto.CartAddDto;
 import com.example.restea.dto.CartProductDto;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
@@ -20,5 +21,5 @@ public interface CartService {
 
     ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal);
 
-    void updateProductCart(Long userId, Long productId, int productWeight);
+    void updateProductCart(Long userId, CartAddDto cartAddDto);
 }

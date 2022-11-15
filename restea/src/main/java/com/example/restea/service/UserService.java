@@ -9,13 +9,12 @@ import java.security.Principal;
 import java.util.List;
 
 public interface UserService {
-
     List<UserDto> findAll();
     UserDto findUserById(Long id);
     UserDto findUserByName(String name);
     UserDto findUserByEmail(String name);
+    Long findUserByIdPrincipal(Principal principal);
     UserDto saveUser(UserCreateDto user);
     UserDto update(UserDataDto userDataDto, Principal principal);
     void addRoleToUser(Long id, RoleEnum roleName);
-
 }

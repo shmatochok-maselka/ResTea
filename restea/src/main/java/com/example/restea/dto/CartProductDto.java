@@ -11,7 +11,6 @@ import lombok.Setter;
 public class CartProductDto {
     private Product product;
     private int productWeight;
-
     public CartProductDto(Product product, int productWeight) {
         this.product = product;
         this.productWeight = productWeight;

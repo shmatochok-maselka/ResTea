@@ -1,5 +1,6 @@
 package com.example.restea.service.impl;
 
+import com.example.restea.dto.CartAddDto;
 import com.example.restea.dto.CartProductDto;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
@@ -67,9 +68,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal) {
-        if (!productCartJSON.containsKey("productId") || !productCartJSON.containsKey("productWeight")) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         Long productId = productCartJSON.get("productId");
         Long userId = userService.findUserByEmail(principal.getName()).getId();
         try {
@@ -90,8 +88,17 @@ public class CartServiceImpl implements CartService {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+
+
+//    @Override
+//    public void updateProductCart(Long userId, Long productId, int productWeight) {
+//        cartRepository.updateCartProduct(new CartId(userId, productId), productWeight);
+//    }
+
     @Override
-    public void updateProductCart(Long userId, Long productId, int productWeight) {
+    public void updateProductCart(Long userId, CartAddDto cartAddDto) {
+        Long productId = cartAddDto.getProductId();
+        int productWeight = cartAddDto.getProductWeight();
         cartRepository.updateCartProduct(new CartId(userId, productId), productWeight);
     }
 }

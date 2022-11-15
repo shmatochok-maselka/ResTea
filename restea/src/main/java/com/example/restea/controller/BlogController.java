@@ -1,6 +1,7 @@
 package com.example.restea.controller;
 
 import com.example.restea.dto.BlogPostDto;
+import com.example.restea.dto.UserDto;
 import com.example.restea.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +22,23 @@ public class BlogController {
         this.blogPostService = blogPostService;
     }
 
+    /**
+     * Method for return all posts.
+     *
+     * @return {@link BlogPostDto} instance.
+     * @author Iryna Kopchak.
+     */
     @GetMapping
     public ResponseEntity<List<BlogPostDto>> findAllPosts() {
         return new ResponseEntity<>(blogPostService.findAll(), HttpStatus.OK);
     }
 
+    /**
+     * Method for return particular post by id.
+     *
+     * @return {@link BlogPostDto} instance.
+     * @author Iryna Kopchak.
+     */
     @GetMapping("/{postId}")
     public ResponseEntity<BlogPostDto> findPostById(@PathVariable Long postId) {
         try{

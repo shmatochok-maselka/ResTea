@@ -71,6 +71,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public Long findUserByIdPrincipal(Principal principal) {
+        String userEmail = principal.getName();
+        return this.findUserByEmail(userEmail).getId();
+    }
+
+    @Override
     public List<UserDto> findAll() {
         return userRepository.findAll().stream()
                 .map(UserDto::new)

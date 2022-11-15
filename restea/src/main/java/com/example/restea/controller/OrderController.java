@@ -36,14 +36,14 @@ public class OrderController {
     @JsonIgnoreProperties({"receiverName", "receiverSecondName", "receiverSurname", "phone", "address"})
     @GetMapping
     public ResponseEntity<List<OrderDto>> findAllOrders(Principal principal) {
-        Long userId = userService.findUserByEmail(principal.getName()).getId();
+        Long userId = userService.findUserByIdPrincipal(principal);
         return new ResponseEntity<>(orderService.findAllUserOrders(userId), HttpStatus.OK);
     }
 
     @PostMapping(value = "/add_order")
     public ResponseEntity<Object> addOrder(@RequestBody Order order, Principal principal) {
         try {
-            Long userId = userService.findUserByEmail(principal.getName()).getId();
+            Long userId = userService.findUserByIdPrincipal(principal);
             orderService.addOrder(order, userId, cartService);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
