@@ -1,13 +1,12 @@
 package com.example.restea.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -29,23 +28,23 @@ public class Product extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name="origin_id", nullable=false)
-    private ProductOrigin origin;
+    private Origin origin;
 
     @ManyToOne
     @JoinColumn(name="type_id", nullable=false)
-    private ProductType type;
+    private Type type;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "product_flavor",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "flavor_id")
     )@ToString.Exclude
-    private Set<ProductFlavor> flavors = new HashSet<>();
+    private List<Flavor> flavors = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "product_properties",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "property_id")
     )@ToString.Exclude
-    private Set<ProductProperty> properties = new HashSet<>();
+    private List<Property> properties = new ArrayList<>();
 }

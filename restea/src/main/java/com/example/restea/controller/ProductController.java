@@ -1,14 +1,12 @@
 package com.example.restea.controller;
 
-import com.example.restea.model.Order;
-import com.example.restea.model.Product;
+import com.example.restea.dto.ProductDto;
 import com.example.restea.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -23,13 +21,25 @@ public class ProductController {
         this.productService = productService;
     }
 
+    /**
+     * Method for return all products.
+     *
+     * @return {@link ProductDto} instance.
+     * @author Iryna Kopchak.
+     */
     @GetMapping
-    public ResponseEntity<List<Product>> findAllProducts() {
-        return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<ProductDto>> findAllProducts() {
+        return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
     }
 
+    /**
+     * Method for return product by id.
+     *
+     * @return {@link ProductDto} instance.
+     * @author Iryna Kopchak.
+     */
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> findProductById(@PathVariable Long productId) {
+    public ResponseEntity<ProductDto> findProductById(@PathVariable Long productId) {
         if (productId == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -40,15 +50,4 @@ public class ProductController {
         }
         return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.OK);
     }
-
-    @PostMapping(value = "/add-product")
-    public ResponseEntity<Object> addProduct(@RequestBody Product product) {
-        try {
-            productService.addProduct(product);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
 }

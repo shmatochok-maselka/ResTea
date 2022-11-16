@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDataDto {
+public class UserUpdateDto {
     private String name;
     private String surname;
     private String patronymic;

@@ -1,7 +1,7 @@
 package com.example.restea.service.impl;
 
 import com.example.restea.dto.UserCreateDto;
-import com.example.restea.dto.UserDataDto;
+import com.example.restea.dto.UserUpdateDto;
 import com.example.restea.dto.UserDto;
 import com.example.restea.exception.NotAllFieldPresentException;
 import com.example.restea.exception.UserNotFoundException;
@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,18 +36,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username).get();
-        if (user == null) {
-            System.out.println("There is no: " + username);
-            throw new UsernameNotFoundException("There is no: " + username);
-        } else {
-            System.out.println("User founded " + user.getName());
-        }
-
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        user.getRoles().forEach(role ->
-                authorities.add(new SimpleGrantedAuthority(role.getName().name()))
-        );
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("There is no: " + username));
+        Collection<SimpleGrantedAuthority> authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .collect(Collectors.toList());
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
     }
 
@@ -71,6 +63,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public Long findUserByIdPrincipal(Principal principal) {
+        String userEmail = principal.getName();
+        return this.findUserByEmail(userEmail).getId();
+    }
+
+    @Override
     public List<UserDto> findAll() {
         return userRepository.findAll().stream()
                 .map(UserDto::new)
@@ -90,19 +88,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDto update(UserDataDto userDataDto, Principal principal) {
-        User toUpdate = userRepository.findByEmail(principal.getName()).orElseThrow(IllegalArgumentException::new);
-        if (userDataDto.getName() != null) {
-            toUpdate.setName(userDataDto.getName());
+    public UserDto update(UserUpdateDto userUpdateDto, Principal principal) {
+        User toUpdate = userRepository.findByEmail(principal.getName())
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "No user with such email"));
+        if (userUpdateDto.getName() != null) {
+            toUpdate.setName(userUpdateDto.getName());
         }
-        if (userDataDto.getSurname() != null) {
-            toUpdate.setSurname(userDataDto.getSurname());
+        if (userUpdateDto.getSurname() != null) {
+            toUpdate.setSurname(userUpdateDto.getSurname());
         }
-        if (userDataDto.getBirthday() != null) {
-            toUpdate.setBirthday(userDataDto.getBirthday());
+        if (userUpdateDto.getPatronymic() != null) {
+            toUpdate.setPatronymic(userUpdateDto.getPatronymic());
         }
-        if (userDataDto.getImage() != null) {
-            toUpdate.setImage(userDataDto.getImage());
+        if (userUpdateDto.getBirthday() != null) {
+            toUpdate.setBirthday(userUpdateDto.getBirthday());
+        }
+        if (userUpdateDto.getImage() != null) {
+            toUpdate.setImage(userUpdateDto.getImage());
         }
         return new UserDto(userRepository.save(toUpdate));
     }
@@ -110,7 +112,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void addRoleToUser(Long id, RoleEnum roleEnum) {
         User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(HttpStatus.BAD_REQUEST, "No user with such id"));
-        Role role = roleRepository.findByName(roleEnum.name()).orElseThrow();
+        Role role = roleRepository.findByName(roleEnum).orElseThrow();
         user.getRoles().add(role);
     }
 

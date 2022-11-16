@@ -2,7 +2,6 @@ package com.example.restea.service.impl;
 
 import com.example.restea.dto.BlogPostDto;
 import com.example.restea.exception.PostNotFoundException;
-import com.example.restea.exception.UserNotFoundException;
 import com.example.restea.repository.BlogPostRepository;
 import com.example.restea.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,6 @@
 package com.example.restea.dto;
 
-import com.example.restea.model.BlogPost;
-import com.example.restea.model.Product;
 import com.example.restea.service.BlogPostService;
-import com.example.restea.service.ProductFlavorService;
-import com.example.restea.service.ProductPropertyService;
 import com.example.restea.service.ProductService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class MainPageDto {
-    private List<Product> products;
+    private List<ProductDto> products;
     private List<BlogPostDto> blogPosts;
 
     public MainPageDto(ProductService productService, BlogPostService blogPostService) {
