@@ -23,9 +23,9 @@ public class ProductDto {
 
     private int price;
 
-    private ProductOriginDto origin;
+    private OriginDto origin;
 
-    private ProductTypeDto type;
+    private TypeDto type;
 
     private List<FlavorDto> flavors = new ArrayList<>();
 
@@ -37,8 +37,8 @@ public class ProductDto {
         this.description = product.getDescription();
         this.image = product.getImage();
         this.price = product.getPrice();
-        this.origin = new ProductOriginDto(product.getOrigin());
-        this.type = new ProductTypeDto(product.getType());
+        this.origin = new OriginDto(product.getOrigin());
+        this.type = new TypeDto(product.getType());
         this.flavors = product.getFlavors().stream()
                 .map(FlavorDto::new)
                 .collect(Collectors.toList());
@@ -56,8 +56,6 @@ public class ProductDto {
         product.setPrice(this.price);
         product.setOrigin(this.origin.toProductOrigin());
         product.setType(this.type.toProductType());
-//        product.setFlavors(this.getFlavors());
-//        product.setProperties(this.getProperties());
         return product;
     }
 }

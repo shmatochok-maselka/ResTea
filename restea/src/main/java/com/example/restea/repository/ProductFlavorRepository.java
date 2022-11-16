@@ -1,6 +1,5 @@
 package com.example.restea.repository;
 
-import com.example.restea.model.Origin;
 import com.example.restea.model.ProductFlavor;
 import com.example.restea.model.ProductFlavorId;
 import org.springframework.data.jpa.repository.JpaRepository;

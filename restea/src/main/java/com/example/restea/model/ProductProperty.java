@@ -9,6 +9,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "product_properties")
 @DynamicUpdate
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-public class ProductProperty implements  java.io.Serializable{
+public class ProductProperty implements java.io.Serializable {
     @EmbeddedId
     private ProductPropertyId id;
 }

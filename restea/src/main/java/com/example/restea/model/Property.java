@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class Property extends BaseEntity{
+public class Property extends BaseEntity {
     @Column(name = "name")
     private String name;
 

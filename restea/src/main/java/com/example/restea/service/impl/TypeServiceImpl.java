@@ -1,6 +1,6 @@
 package com.example.restea.service.impl;
 
-import com.example.restea.dto.ProductTypeDto;
+import com.example.restea.dto.TypeDto;
 import com.example.restea.repository.TypeRepository;
 import com.example.restea.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,9 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public List<ProductTypeDto> findAllProductType() {
+    public List<TypeDto> findAllProductType() {
         return new ArrayList<>(typeRepository.findAll().stream()
-                .map(ProductTypeDto::new)
+                .map(TypeDto::new)
                 .collect(Collectors.toList()));
     }
 

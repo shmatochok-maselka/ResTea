@@ -8,11 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductTypeDto {
+public class TypeDto {
     private Long id;
     private String name;
 
-    public ProductTypeDto(Type type) {
+    public TypeDto(Type type) {
         this.id = type.getId();
         this.name = type.getName();
     }

@@ -1,6 +1,6 @@
 package com.example.restea.service.impl;
 
-import com.example.restea.dto.ProductOriginDto;
+import com.example.restea.dto.OriginDto;
 import com.example.restea.repository.OriginRepository;
 import com.example.restea.service.OriginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,9 @@ public class OriginServiceImpl implements OriginService {
     }
 
     @Override
-    public List<ProductOriginDto> findAllProductOrigin() {
+    public List<OriginDto> findAllProductOrigin() {
         return new ArrayList<>(originRepository.findAll().stream()
-                .map(ProductOriginDto::new)
+                .map(OriginDto::new)
                 .collect(Collectors.toList()));
     }
 

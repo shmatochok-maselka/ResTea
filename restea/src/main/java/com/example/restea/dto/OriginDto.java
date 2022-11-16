@@ -8,11 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductOriginDto {
+public class OriginDto {
     private Long id;
     private String name;
 
-    public ProductOriginDto(Origin origin) {
+    public OriginDto(Origin origin) {
         this.id = origin.getId();
         this.name = origin.getName();
     }

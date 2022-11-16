@@ -1,10 +1,11 @@
 package com.example.restea.service.impl;
 
-import com.example.restea.dto.ProductDto;
 import com.example.restea.dto.FlavorDto;
+import com.example.restea.dto.ProductDto;
 import com.example.restea.dto.PropertyDto;
 import com.example.restea.model.*;
 import com.example.restea.repository.ProductFlavorRepository;
+import com.example.restea.repository.ProductPropertyRepository;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +24,14 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductFlavorRepository productFlavorRepository;
 
+    private final ProductPropertyRepository productPropertyRepository;
+
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ProductFlavorRepository productFlavorRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductFlavorRepository productFlavorRepository,
+                              ProductPropertyRepository productPropertyRepository) {
         this.productRepository = productRepository;
         this.productFlavorRepository = productFlavorRepository;
+        this.productPropertyRepository = productPropertyRepository;
     }
 
     @Override
@@ -59,10 +64,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void addProduct(ProductDto productDto) {
         Product product = productDto.toProduct();
-//        product.setFlavors(flavorsDtoToFlavors(productDto.getFlavors()));
-//        product.setProperties(propertiesDtoToProperties(productDto.getProperties()));
         productRepository.save(product);
         productFlavorRepository.saveAll(addProductFlavors(productDto.getFlavors(), product));
+        productPropertyRepository.saveAll(addProductProperties(productDto.getProperties(), product));
     }
 
     private List<ProductFlavor> addProductFlavors(List<FlavorDto> flavorsDto, Product product){
@@ -74,27 +78,38 @@ public class ProductServiceImpl implements ProductService {
             ProductFlavor productFlavor = new ProductFlavor();
             productFlavor.setId(productFlavorId);
             productFlavors.add(productFlavor);
-//            productFlavorRepository.save(productFlavor);
         }
         return productFlavors;
     }
 
-
-    public List<Flavor> flavorsDtoToFlavors(List<FlavorDto> productFlavorsDto){
-        List<Flavor> flavors = new ArrayList<>();
-        for(FlavorDto flavorDto : productFlavorsDto){
-            Flavor flavor = flavorDto.toProductFlavor();
-            flavors.add(flavor);
-        }
-        return flavors;
-    }
-
-    public List<Property> propertiesDtoToProperties(List<PropertyDto> productPropertiesDto){
-        List<Property> productProperties = new ArrayList<>();
-        for(PropertyDto propertyDto: productPropertiesDto){
-            Property property = propertyDto.toProductProperty();
-            productProperties.add(property);
+    private List<ProductProperty> addProductProperties(List<PropertyDto> propertiesDto, Product product){
+        Long productId = product.getId();
+        List<ProductProperty> productProperties = new ArrayList<>();
+        for(PropertyDto propertyDto: propertiesDto){
+            Long propertyId = propertyDto.getId();
+            ProductPropertyId productPropertyId = new ProductPropertyId(productId, propertyId);
+            ProductProperty productProperty = new ProductProperty();
+            productProperty.setId(productPropertyId);
+            productProperties.add(productProperty);
         }
         return productProperties;
     }
+
+//    public List<Flavor> flavorsDtoToFlavors(List<FlavorDto> productFlavorsDto){
+//        List<Flavor> flavors = new ArrayList<>();
+//        for(FlavorDto flavorDto : productFlavorsDto){
+//            Flavor flavor = flavorDto.toProductFlavor();
+//            flavors.add(flavor);
+//        }
+//        return flavors;
+//    }
+//
+//    public List<Property> propertiesDtoToProperties(List<PropertyDto> productPropertiesDto){
+//        List<Property> productProperties = new ArrayList<>();
+//        for(PropertyDto propertyDto: productPropertiesDto){
+//            Property property = propertyDto.toProductProperty();
+//            productProperties.add(property);
+//        }
+//        return productProperties;
+//    }
 }

@@ -1,21 +1,15 @@
 package com.example.restea.model;
 
-import com.example.restea.repository.UserRepository;
-import com.example.restea.service.CartService;
-import com.example.restea.service.ProductService;
-import com.example.restea.service.UserService;
-import com.example.restea.service.impl.ProductServiceImpl;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "cart")
