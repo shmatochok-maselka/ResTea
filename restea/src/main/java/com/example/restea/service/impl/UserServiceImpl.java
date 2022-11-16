@@ -37,13 +37,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username).get();
-        if (user == null) {
-            System.out.println("There is no: " + username);
-            throw new UsernameNotFoundException("There is no: " + username);
-        } else {
-            System.out.println("User founded " + user.getName());
-        }
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("There is no: " + username));
 
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         user.getRoles().forEach(role ->
