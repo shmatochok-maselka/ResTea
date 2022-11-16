@@ -1,12 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Product} from "../../../models/product";
 
-interface item {
-  itemImageSrc: string;
-  itemImageAlt: string;
-  itemName: string;
-  itemPrice: string;
-  itemLink: string;
-}
 
 @Component({
   selector: 'app-product-card',
@@ -14,14 +8,17 @@ interface item {
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() items: item = {
-    itemImageSrc: "",
-    itemImageAlt: "",
-    itemName: "",
-    itemPrice: "",
-    itemLink: "",
-  }
-
+  @Input() product: Product = {
+    id: 0,
+    name: '',
+    description: '',
+    price: 0,
+    image: '',
+    type: {id: 0, name: ''},
+    origin: {id: 0, name: ''},
+    flavors: [],
+    properties: []
+  };
   constructor() {
   }
 
