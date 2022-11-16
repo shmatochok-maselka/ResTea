@@ -6,7 +6,8 @@
       <div class = "table_num">Кількість</div>
       <div>Ціна</div>
     </div>
-
+    <div *ngFor="let product of products" >
+      <app-cart-product  [cartProduct]="product"></app-cart-product>
   </div>
 
   <div class = "bottom">
@@ -16,5 +17,5 @@
     </div>
     <button class = "button order">Замовити</button>
   </div>
-
+  </div>
 </div>

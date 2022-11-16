@@ -19,10 +19,10 @@ const routes: Routes = [
   {path:'blog/:id', component:BlogPostPageComponent},
   {path:'shop/:id', component: OneProductComponent},
   {path:'about-us', component: AboutUsPageComponent},
-  {path:'contacts',component:ContactsPageComponent, canActivate:[AuthGuard]},
+  {path:'contacts',component:ContactsPageComponent, },
   {path:'login', component:LoginComponent},
   {path:'register', component:RegistrationComponent},
-  {path:'cart', component:CartComponent}
+  {path:'cart', component:CartComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({
