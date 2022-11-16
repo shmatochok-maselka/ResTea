@@ -1,7 +1,7 @@
 package com.example.restea.service;
 
 import com.example.restea.dto.UserCreateDto;
-import com.example.restea.dto.UserDataDto;
+import com.example.restea.dto.UserUpdateDto;
 import com.example.restea.dto.UserDto;
 import com.example.restea.model.RoleEnum;
 
@@ -15,7 +15,7 @@ public interface UserService {
     UserDto findUserByName(String name);
     UserDto findUserByEmail(String name);
     UserDto saveUser(UserCreateDto user);
-    UserDto update(UserDataDto userDataDto, Principal principal);
+    UserDto update(UserUpdateDto userUpdateDto, Principal principal);
     void addRoleToUser(Long id, RoleEnum roleName);
 
 }
