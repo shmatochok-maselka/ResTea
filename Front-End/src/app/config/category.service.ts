@@ -6,6 +6,8 @@ import {apiUrl} from "../../assets/apiurl"
   providedIn: 'root'
 })
 export class CategoryService {
+  constructor(private http: HttpClient) {}
+
   private categoriesUrl = `${apiUrl}/categories`;
 
   getCategories(): Observable<any> {
@@ -16,6 +18,5 @@ export class CategoryService {
     return this.http.get<any>(`${this.categoriesUrl}/max_min_price`)
   }
 
-  constructor(private http: HttpClient) {
-  }
+
 }
