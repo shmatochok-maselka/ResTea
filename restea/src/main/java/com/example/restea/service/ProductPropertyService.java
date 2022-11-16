@@ -1,9 +1,9 @@
 package com.example.restea.service;
 
-import com.example.restea.model.ProductProperty;
+import com.example.restea.dto.ProductPropertyDto;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ProductPropertyService {
-    Set<ProductProperty> findAll();
+    List<ProductPropertyDto> findAllProductPropertiesDto();
 }

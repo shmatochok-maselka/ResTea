@@ -1,9 +1,9 @@
 package com.example.restea.service;
 
-import com.example.restea.model.ProductFlavor;
+import com.example.restea.dto.ProductFlavorDto;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ProductFlavorService {
-    Set<ProductFlavor> findAll();
+    List<ProductFlavorDto> findAllProductFlavorsDto();
 }

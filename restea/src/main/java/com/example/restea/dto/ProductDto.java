@@ -7,8 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -28,9 +31,9 @@ public class ProductDto {
 
     private ProductTypeDto type;
 
-    private Set<ProductFlavor> flavors = new HashSet<>();
+    private List<ProductFlavorDto> flavors = new ArrayList<>();
 
-    private Set<ProductProperty> properties = new HashSet<>();
+    private List<ProductPropertyDto> properties = new ArrayList<>();
 
     public ProductDto(Product product) {
         this.id = product.getId();
@@ -40,8 +43,12 @@ public class ProductDto {
         this.price = product.getPrice();
         this.origin = new ProductOriginDto(product.getOrigin());
         this.type = new ProductTypeDto(product.getType());
-        this.flavors = product.getFlavors();
-        this.properties = product.getProperties();
+        this.flavors = product.getFlavors().stream()
+                .map(ProductFlavorDto::new)
+                .collect(Collectors.toList());
+        this.properties = product.getProperties().stream()
+                .map(ProductPropertyDto::new)
+                .collect(Collectors.toList());
     }
 
     public Product toProduct(){
@@ -53,8 +60,8 @@ public class ProductDto {
         product.setPrice(this.price);
         product.setOrigin(this.origin.toProductOrigin());
         product.setType(this.type.toProductType());
-        product.setFlavors(this.getFlavors());
-        product.setProperties(this.getProperties());
+//        product.setFlavors(this.getFlavors());
+//        product.setProperties(this.getProperties());
         return product;
     }
 }

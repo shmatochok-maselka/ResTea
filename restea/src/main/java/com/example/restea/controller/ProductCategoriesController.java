@@ -49,8 +49,8 @@ public class ProductCategoriesController {
     @ResponseBody
     public ResponseEntity<ProductCategoriesDto> findAllCategories() {
         ProductCategoriesDto productCategoriesDto = new ProductCategoriesDto
-                (productTypeService.findAll(), productFlavorService.findAll(), productOriginService.findAll(),
-                        productPropertyService.findAll());
+                (productTypeService.findAllProductType(), productFlavorService.findAllProductFlavorsDto(),
+                        productOriginService.findAllProductOrigin(), productPropertyService.findAllProductPropertiesDto());
         return ResponseEntity.ok(productCategoriesDto);
     }
 }

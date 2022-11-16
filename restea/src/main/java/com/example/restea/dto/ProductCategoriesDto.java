@@ -7,17 +7,18 @@ import com.example.restea.model.ProductType;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 public class ProductCategoriesDto {
-    private Set<ProductType> typeCategory;
-    private Set<ProductFlavor> flavorCategory;
-    private Set<ProductOrigin> originCategory;
-    private Set<ProductProperty> propertyCategory;
-    public ProductCategoriesDto(Set<ProductType> typeCategory, Set<ProductFlavor> flavorCategory,
-                                Set<ProductOrigin> originCategory, Set<ProductProperty> propertyCategory) {
+    private List<ProductTypeDto> typeCategory;
+    private List<ProductFlavorDto> flavorCategory;
+    private List<ProductOriginDto> originCategory;
+    private List<ProductPropertyDto> propertyCategory;
+    public ProductCategoriesDto(List<ProductTypeDto> typeCategory, List<ProductFlavorDto> flavorCategory,
+                                List<ProductOriginDto> originCategory, List<ProductPropertyDto> propertyCategory) {
         this.typeCategory = typeCategory;
         this.flavorCategory = flavorCategory;
         this.originCategory = originCategory;

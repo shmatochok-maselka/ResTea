@@ -1,7 +1,11 @@
 package com.example.restea.service.impl;
 
 import com.example.restea.dto.ProductDto;
+import com.example.restea.dto.ProductFlavorDto;
+import com.example.restea.dto.ProductPropertyDto;
 import com.example.restea.model.Product;
+import com.example.restea.model.ProductFlavor;
+import com.example.restea.model.ProductProperty;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +56,28 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addProduct(ProductDto product) {
-        productRepository.save(product.toProduct());
+    public void addProduct(ProductDto productDto) {
+        Product product = productDto.toProduct();
+        product.setFlavors(flavorsDtoToFlavors(productDto.getFlavors()));
+        product.setProperties(propertiesDtoToProperties(productDto.getProperties()));
+        productRepository.save(product);
+    }
+
+    public List<ProductFlavor> flavorsDtoToFlavors(List<ProductFlavorDto> productFlavorsDto){
+        List<ProductFlavor> productFlavors = new ArrayList<>();
+        for(ProductFlavorDto productFlavorDto: productFlavorsDto){
+            ProductFlavor flavor = productFlavorDto.toProductFlavor();
+            productFlavors.add(flavor);
+        }
+        return productFlavors;
+    }
+
+    public List<ProductProperty> propertiesDtoToProperties(List<ProductPropertyDto> productPropertiesDto){
+        List<ProductProperty> productProperties = new ArrayList<>();
+        for(ProductPropertyDto propertyDto: productPropertiesDto){
+            ProductProperty productProperty = propertyDto.toProductProperty();
+            productProperties.add(productProperty);
+        }
+        return productProperties;
     }
 }

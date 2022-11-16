@@ -9,7 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,5 +25,5 @@ public class ProductProperty extends BaseEntity{
 
     @JsonIgnore
     @ManyToMany(mappedBy = "properties")
-    private Set<Product> products = new HashSet<Product>();
+    private List<Product> products = new ArrayList<>();
 }

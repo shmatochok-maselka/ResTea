@@ -1,9 +1,9 @@
 package com.example.restea.service;
 
-import com.example.restea.model.ProductOrigin;
+import com.example.restea.dto.ProductOriginDto;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ProductOriginService {
-    Set<ProductOrigin> findAll();
+    List<ProductOriginDto> findAllProductOrigin();
 }

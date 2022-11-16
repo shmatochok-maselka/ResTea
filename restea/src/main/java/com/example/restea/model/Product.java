@@ -1,12 +1,15 @@
 package com.example.restea.model;
 
+import com.example.restea.dto.ProductFlavorDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -40,12 +43,12 @@ public class Product extends BaseEntity{
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "flavor_id")
     )@ToString.Exclude
-    private Set<ProductFlavor> flavors = new HashSet<>();
+    private List<ProductFlavor> flavors = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "product_properties",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "property_id")
     )@ToString.Exclude
-    private Set<ProductProperty> properties = new HashSet<>();
+    private List<ProductProperty> properties = new ArrayList<>();
 }
