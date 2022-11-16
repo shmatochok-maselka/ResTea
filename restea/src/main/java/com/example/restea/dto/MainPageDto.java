@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class MainPageDto {
-    private List<Product> products;
+    private List<ProductDto> products;
     private List<BlogPostDto> blogPosts;
 
     public MainPageDto(ProductService productService, BlogPostService blogPostService) {

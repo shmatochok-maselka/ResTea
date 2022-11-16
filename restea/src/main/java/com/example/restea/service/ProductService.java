@@ -1,18 +1,19 @@
 package com.example.restea.service;
 
+import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Product;
 import org.json.JSONObject;
 
 import java.util.List;
 
 public interface ProductService {
-    Product findProductById(Long id);
+    ProductDto findProductById(Long id);
 
-    List<Product> findAll();
+    List<ProductDto> findAllProducts();
 
-    List<Product> getProductsForMainPage();
+    List<ProductDto> getProductsForMainPage();
 
     JSONObject minMaxProductPrice();
 
-    void addProduct(Product product);
+    void addProduct(ProductDto product);
 }

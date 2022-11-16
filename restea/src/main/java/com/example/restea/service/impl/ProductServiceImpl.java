@@ -1,5 +1,6 @@
 package com.example.restea.service.impl;
 
+import com.example.restea.dto.ProductDto;
 import com.example.restea.model.Product;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.ProductService;
@@ -24,21 +25,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findProductById(Long id) {
-        return productRepository.findById(id).get();
+    public ProductDto findProductById(Long id) {
+        return new ProductDto(productRepository.findById(id).get());
     }
 
-    @Override
-    public List<Product> findAll() {
+    public List<ProductDto> findAllProducts() {
         List<Product> listOfProducts = new ArrayList<>();
         var iterableProducts = productRepository.findAll();
         iterableProducts.forEach(listOfProducts::add);
-        return listOfProducts;
+        return listOfProducts.stream()
+                .map(ProductDto::new)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<Product> getProductsForMainPage() {
-        return this.findAll().stream().limit(4).collect(Collectors.toList());
+    public List<ProductDto> getProductsForMainPage() {
+        return this.findAllProducts().stream().limit(4).collect(Collectors.toList());
     }
 
     @Override
@@ -50,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addProduct(Product product) {
-        productRepository.save(product);
+    public void addProduct(ProductDto product) {
+        productRepository.save(product.toProduct());
     }
 }
