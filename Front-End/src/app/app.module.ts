@@ -25,6 +25,7 @@ import {ContactsPageModule} from "./contacts-page/contacts-page.module";
 import {LoginModule} from "./login/login.module";
 import {RegistrationModule} from "./registration/registration.module";
 import {JwtModule} from "@auth0/angular-jwt";
+import {CartModule} from "./cart/cart.module";
 
 export function tokenGetter(){
   return localStorage.getItem("token")
@@ -61,11 +62,12 @@ export function tokenGetter(){
         LoginModule,
         RegistrationModule,
         JwtModule.forRoot({
-          config:{
-            tokenGetter:tokenGetter,
-            allowedDomains:['localhost:4020']
-      }
-        })
+            config: {
+                tokenGetter: tokenGetter,
+                allowedDomains: ['localhost:4020']
+            }
+        }),
+        CartModule
     ],
   providers: [],
   exports: [

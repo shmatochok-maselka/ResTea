@@ -8,6 +8,7 @@ import {AboutUsPageComponent} from "./about-us-page/about-us-page.component";
 import {ContactsPageComponent} from "./contacts-page/contacts-page.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
+import {CartComponent} from "./cart/cart.component";
 
 const routes: Routes = [
   {path:'', component: MainPageComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'about-us', component: AboutUsPageComponent},
   {path:'contacts',component:ContactsPageComponent},
   {path:'login', component:LoginComponent},
-  {path:'register', component:RegistrationComponent}
+  {path:'register', component:RegistrationComponent},
+  {path:'cart', component:CartComponent}
 ];
 
 @NgModule({
