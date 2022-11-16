@@ -8,10 +8,8 @@ import com.example.restea.exception.UserNotFoundException;
 import com.example.restea.model.Role;
 import com.example.restea.model.User;
 import com.example.restea.repository.UserRepository;
-import com.example.restea.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,9 +39,11 @@ public class TokenController {
     @GetMapping("/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        String tokenStart = "Bearer ";
+        long accessTokenDuration = 31L * 24 * 3600 * 1000;
+        if (authorizationHeader != null && authorizationHeader.startsWith(tokenStart)) {
             try {
-                String refresh_token = authorizationHeader.substring("Bearer ".length());
+                String refresh_token = authorizationHeader.substring(tokenStart.length());
                 Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = verifier.verify(refresh_token);
@@ -52,7 +52,7 @@ public class TokenController {
                         .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "No user with such email"));
                 String access_token = JWT.create()
                         .withSubject(user.getEmail())
-                        .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
+                        .withExpiresAt(new Date(System.currentTimeMillis() + accessTokenDuration))
                         .withIssuer(request.getRequestURI())
                         .withClaim("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
                         .sign(algorithm);
@@ -64,7 +64,6 @@ public class TokenController {
             } catch (Exception exception) {
                 response.setHeader("error", exception.getMessage());
                 response.setStatus(FORBIDDEN.value());
-                //response.sendError(FORBIDDEN.value());
                 Map<String, String> error = new HashMap<>();
                 error.put("error", exception.getMessage());
                 response.setContentType(APPLICATION_JSON_VALUE);
