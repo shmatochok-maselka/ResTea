@@ -1,6 +1,8 @@
 package com.example.restea.service.impl;
 
+import com.example.restea.dto.CartAddDto;
 import com.example.restea.dto.CartProductDto;
+import com.example.restea.exception.CartProductNotFoundException;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
 import com.example.restea.model.Product;
@@ -10,15 +12,12 @@ import com.example.restea.service.ProductService;
 import com.example.restea.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -47,7 +46,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart findById(CartId cartId) {
-        return cartRepository.findById(cartId).orElseThrow(IllegalArgumentException::new);
+        return cartRepository.findById(cartId)
+                .orElseThrow(() -> new CartProductNotFoundException(HttpStatus.NOT_FOUND, "No cart with such id"));
     }
 
     @Override
@@ -66,32 +66,26 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ResponseEntity<Object> addProductToCart(Map<String, Long> productCartJSON, Principal principal) {
-        if (!productCartJSON.containsKey("productId") || !productCartJSON.containsKey("productWeight")) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        Long productId = productCartJSON.get("productId");
-        Long userId = userService.findUserByEmail(principal.getName()).getId();
-        try {
-            productService.findProductById(productId);
-        } catch (NoSuchElementException exception) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public void addProductToCart(CartAddDto cartAddDto, Principal principal) {
+        Long productId = cartAddDto.getProductId();
+        Long userId = userService.findUserByIdPrincipal(principal);
+        productService.findProductById(productId);
         Cart cartProduct = new Cart();
         cartProduct.setId(new CartId(userId, productId));
         try {
             Cart cartProductExist = findById(new CartId(userId, productId));
-            cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue() +
+            cartProduct.setProductWeight(cartAddDto.getProductWeight() +
                     cartProductExist.getProductWeight());
         } catch (Exception e) {
-            cartProduct.setProductWeight(productCartJSON.get("productWeight").intValue());
+            cartProduct.setProductWeight(cartAddDto.getProductWeight());
         }
         cartRepository.save(cartProduct);
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public void updateProductCart(Long userId, Long productId, int productWeight) {
+    public void updateProductCart(Long userId, CartAddDto cartAddDto) {
+        Long productId = cartAddDto.getProductId();
+        int productWeight = cartAddDto.getProductWeight();
         cartRepository.updateCartProduct(new CartId(userId, productId), productWeight);
     }
 }

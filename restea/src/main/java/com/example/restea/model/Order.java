@@ -6,21 +6,14 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Entity
 @Table(name = "order_client")
 @Getter
 @Setter
 @ToString
-public class Order extends BaseEntity{
+public class Order extends BaseEntity {
     @Column(name = "order_user_id")
     private Long userId;
 

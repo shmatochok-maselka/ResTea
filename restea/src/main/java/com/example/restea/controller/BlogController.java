@@ -21,16 +21,28 @@ public class BlogController {
         this.blogPostService = blogPostService;
     }
 
+    /**
+     * Method for return all posts.
+     *
+     * @return {@link BlogPostDto} instance.
+     * @author Iryna Kopchak.
+     */
     @GetMapping
     public ResponseEntity<List<BlogPostDto>> findAllPosts() {
         return new ResponseEntity<>(blogPostService.findAll(), HttpStatus.OK);
     }
 
+    /**
+     * Method for return particular post by id.
+     *
+     * @return {@link BlogPostDto} instance.
+     * @author Iryna Kopchak.
+     */
     @GetMapping("/{postId}")
     public ResponseEntity<BlogPostDto> findPostById(@PathVariable Long postId) {
-        try{
+        try {
             blogPostService.findPostById(postId);
-        } catch (NoSuchElementException exception){
+        } catch (NoSuchElementException exception) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(blogPostService.findPostById(postId),

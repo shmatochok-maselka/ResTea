@@ -10,11 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BlogPostDto {
     private Long id;
-
     private String title;
-
     private String image;
-
     private String content;
 
     public BlogPostDto(BlogPost blogPost) {

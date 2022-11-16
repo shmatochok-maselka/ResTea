@@ -1,27 +1,23 @@
 package com.example.restea.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "property")
+@Table(name = "product_properties")
+@DynamicUpdate
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class ProductProperty extends BaseEntity{
-    @Column(name = "name")
-    private String name;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "properties")
-    private Set<Product> products = new HashSet<Product>();
+public class ProductProperty implements java.io.Serializable {
+    @EmbeddedId
+    private ProductPropertyId id;
 }

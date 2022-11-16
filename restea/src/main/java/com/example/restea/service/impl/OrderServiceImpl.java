@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +21,10 @@ import java.util.List;
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
-    private OrderRepository orderRepository;
-    private CartRepository cartRepository;
+    private final OrderRepository orderRepository;
+    private final CartRepository cartRepository;
 
-    private OrderProductRepository orderProductRepository;
+    private final OrderProductRepository orderProductRepository;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository, CartRepository cartRepository,

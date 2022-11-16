@@ -12,16 +12,15 @@ import java.io.Serializable;
 @Setter
 @Getter
 @NoArgsConstructor
-public class OrderProductId implements Serializable {
-
-    @Column(name = "order_id")
-    private long orderId;
-
+public class ProductFlavorId implements Serializable {
     @Column(name = "product_id")
     private long productId;
 
-    public OrderProductId(long orderId, long productId) {
-        this.orderId = orderId;
+    @Column(name = "flavor_id")
+    private long flavorId;
+
+    public ProductFlavorId(long productId, long flavorId) {
         this.productId = productId;
+        this.flavorId = flavorId;
     }
 }
