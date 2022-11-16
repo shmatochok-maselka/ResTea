@@ -2,15 +2,13 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { BlogComponent } from './blog/blog.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';0
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MainPageModule} from "./main-page/main-page.module";
 import {NavBarModule} from "./nav-bar/nav-bar.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {AppRoutingModule} from "./app-routing.module";
-import {BlogPostComponent} from './blog/blog-post/blog-post.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatInputModule} from "@angular/material/input";
@@ -25,6 +23,7 @@ import {ContactsPageModule} from "./contacts-page/contacts-page.module";
 import {LoginModule} from "./login/login.module";
 import {RegistrationModule} from "./registration/registration.module";
 import {JwtModule} from "@auth0/angular-jwt";
+import {BlogModule} from "./blog/blog.module";
 
 export function tokenGetter(){
   return localStorage.getItem("token")
@@ -34,8 +33,6 @@ export function tokenGetter(){
   declarations: [
     AppComponent,
     NavBarComponent,
-    BlogComponent,
-    BlogPostComponent,
   ],
     imports: [
         OneProductModule,
@@ -60,6 +57,7 @@ export function tokenGetter(){
         ContactsPageModule,
         LoginModule,
         RegistrationModule,
+        BlogModule,
         JwtModule.forRoot({
           config:{
             tokenGetter:tokenGetter,
