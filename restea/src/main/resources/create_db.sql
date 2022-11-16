@@ -137,7 +137,7 @@ DROP TABLE IF EXISTS `ResTea`.`Product`;
 CREATE TABLE IF NOT EXISTS `ResTea`.`Product`
 (
     `id`          INT           NOT NULL AUTO_INCREMENT,
-    `name`        VARCHAR(20)   NOT NULL,
+    `name`        VARCHAR(50)   NOT NULL,
     `description` VARCHAR(400)  NOT NULL,
     `image`       VARCHAR(1000) NOT NULL,
     `price`       INT           NOT NULL,
