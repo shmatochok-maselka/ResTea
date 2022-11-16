@@ -24,9 +24,9 @@ public class ProductDto {
 
     private int price;
 
-    private ProductOrigin origin;
+    private ProductOriginDto origin;
 
-    private ProductType type;
+    private ProductTypeDto type;
 
     private Set<ProductFlavor> flavors = new HashSet<>();
 
@@ -38,9 +38,23 @@ public class ProductDto {
         this.description = product.getDescription();
         this.image = product.getImage();
         this.price = product.getPrice();
-        this.origin = product.getOrigin();
-        this.type = product.getType();
+        this.origin = new ProductOriginDto(product.getOrigin());
+        this.type = new ProductTypeDto(product.getType());
         this.flavors = product.getFlavors();
         this.properties = product.getProperties();
+    }
+
+    public Product toProduct(){
+        Product product = new Product();
+        product.setId(this.id);
+        product.setName(this.name);
+        product.setDescription(this.description);
+        product.setImage(this.image);
+        product.setPrice(this.price);
+        product.setOrigin(this.origin.toProductOrigin());
+        product.setType(this.type.toProductType());
+        product.setFlavors(this.getFlavors());
+        product.setProperties(this.getProperties());
+        return product;
     }
 }
