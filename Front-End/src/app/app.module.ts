@@ -25,6 +25,7 @@ import {RegistrationModule} from "./registration/registration.module";
 import {JwtModule} from "@auth0/angular-jwt";
 import {CartModule} from "./cart/cart.module";
 import {BlogModule} from "./blog/blog.module";
+import { FooterComponent } from './footer/footer.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token")
@@ -34,6 +35,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NavBarComponent,
+    FooterComponent,
   ],
   imports: [
     OneProductModule,
