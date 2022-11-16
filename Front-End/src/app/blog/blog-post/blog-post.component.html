@@ -5,6 +5,6 @@
     <p class="post-create-date">{{blogPost.id}}</p>
     <p class="post-description-text">{{blogPost.content}}"
     </p>
-    <button mat-raised-button color="black">Читати більше</button>
+    <button mat-raised-button color="black" [routerLink]="['/blog', blogPost.id]">Читати більше</button>
   </div>
 </div>

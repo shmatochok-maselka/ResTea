@@ -1,16 +1,14 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
-import { AppComponent } from './app.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { BlogComponent } from './blog/blog.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppComponent} from './app.component';
+import {NavBarComponent} from './nav-bar/nav-bar.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MainPageModule} from "./main-page/main-page.module";
 import {NavBarModule} from "./nav-bar/nav-bar.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {AppRoutingModule} from "./app-routing.module";
-import {BlogPostComponent} from './blog/blog-post/blog-post.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatInputModule} from "@angular/material/input";
@@ -26,8 +24,9 @@ import {LoginModule} from "./login/login.module";
 import {RegistrationModule} from "./registration/registration.module";
 import {JwtModule} from "@auth0/angular-jwt";
 import {CartModule} from "./cart/cart.module";
+import {BlogModule} from "./blog/blog.module";
 
-export function tokenGetter(){
+export function tokenGetter() {
   return localStorage.getItem("token")
 }
 
@@ -35,43 +34,41 @@ export function tokenGetter(){
   declarations: [
     AppComponent,
     NavBarComponent,
-    BlogComponent,
-    BlogPostComponent,
   ],
-    imports: [
-        OneProductModule,
-        RouterLink,
-        RouterModule,
-        ShopModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        MainPageModule,
-        NavBarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatCardModule,
-        MatGridListModule,
-        HttpClientModule,
-        MatInputModule,
-        MatCheckboxModule,
-        FormsModule,
-        MatSliderModule,
-        AppRoutingModule,
-        AboutUsPageModule,
-        ContactsPageModule,
-        LoginModule,
-        RegistrationModule,
-        JwtModule.forRoot({
-            config: {
-                tokenGetter: tokenGetter,
-                allowedDomains: ['localhost:4020']
-            }
-        }),
-        CartModule
-    ],
+  imports: [
+    OneProductModule,
+    RouterLink,
+    RouterModule,
+    ShopModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MainPageModule,
+    NavBarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    HttpClientModule,
+    MatInputModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatSliderModule,
+    AppRoutingModule,
+    AboutUsPageModule,
+    ContactsPageModule,
+    LoginModule,
+    RegistrationModule,
+    BlogModule,
+    CartModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:4020']
+      }
+    })
+  ],
   providers: [],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

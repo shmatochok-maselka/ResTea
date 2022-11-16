@@ -10,3 +10,7 @@ mat-card-title{
   display: flex;
   justify-content: center;
 }
+.button{
+  display: flex;
+  justify-content: space-between;
+}

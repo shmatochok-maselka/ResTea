@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Product} from "../models/product";
 import {ProductService} from "../config/product.service";
+import {CartService} from "../config/cart.service";
 
 @Component({
   selector: 'app-one-product',
@@ -10,7 +11,7 @@ import {ProductService} from "../config/product.service";
 })
 export class OneProductComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private _productService: ProductService) {
+  constructor(private route: ActivatedRoute, private _productService: ProductService, private _cartService:CartService){
   }
 
   id: number = 0;
@@ -28,6 +29,9 @@ export class OneProductComponent implements OnInit {
   flavorsNames:Array<string>=[];
   propertiesNames:Array<string>=[];
 
+  mass: number=50;
+  price:number=this.mass*this.product.price;
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.id = params['id']
@@ -36,7 +40,19 @@ export class OneProductComponent implements OnInit {
       this.product = el;
       this.product.flavors.forEach(el=>this.flavorsNames.push(el.name))
       this.product.properties.forEach(el=>this.propertiesNames.push(el.name))
-      console.log(this.product)
     });
+
+  }
+  ngDoCheck(): void{
+    this.price=this.mass*this.product.price
+  }
+
+  setPrice() {
+    this.price=this.mass*this.product.price
+  }
+
+  addToCart() {
+    this._cartService.addProduct(this.id, this.mass).subscribe()
+    this._cartService.getCart().subscribe(x=>console.log(x))
   }
 }
