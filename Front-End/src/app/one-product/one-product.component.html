@@ -30,9 +30,11 @@
     </table>
     <div class="price-container">
       <p>Вага</p>
-      <input type="number" name="price">
+      <input type="number" name="price" [(ngModel)]='mass' (change)="setPrice()">
+      <p>Ціна:{{price}}</p>
+
     </div>
-    <button mat-button color="primary" id="add-btn"> Додати у кошик</button>
+    <button mat-button color="primary" id="add-btn" (click)="addToCart()"> Додати у кошик</button>
   </div>
 </div>
 
