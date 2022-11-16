@@ -5,6 +5,7 @@ import {UserNavModule} from "./user-nav/user-nav.module";
 import {UserProfileModule} from "./user-profile/user-profile.module";
 import {RouterOutlet} from "@angular/router";
 import {UserPasswordModule} from "./user-password/user-password.module";
+import {UserOrdersModule} from "./user-orders/user-orders.module";
 
 
 
@@ -18,6 +19,7 @@ import {UserPasswordModule} from "./user-password/user-password.module";
     UserProfileModule,
     RouterOutlet,
     UserPasswordModule,
+    UserOrdersModule,
   ],
   exports: [
     UserPageComponent

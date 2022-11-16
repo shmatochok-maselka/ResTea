@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-user-page',
@@ -6,6 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
+
+  orders = [
+    {
+      Id: "1", Date: "11-16-2022", Sum: "15"
+    },
+    {
+      Id: "1", Date: "11-16-2022", Sum: "15"
+    },
+    {
+      Id: "1", Date: "11-16-2022", Sum: "15"
+    },
+    {
+      Id: "1", Date: "11-16-2022", Sum: "15"
+    },
+    {
+      Id: "1", Date: "11-16-2022", Sum: "15"
+    },
+  ]
 
   constructor() {
   }
