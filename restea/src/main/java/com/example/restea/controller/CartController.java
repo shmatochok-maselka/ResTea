@@ -5,6 +5,7 @@ import com.example.restea.dto.CartProductDto;
 import com.example.restea.model.CartId;
 import com.example.restea.service.CartService;
 import com.example.restea.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,7 @@ public class CartController {
      * @author Iryna Kopchak.
      */
     @GetMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<List<CartProductDto>> findAllCartProducts(Principal principal) {
         Long userId = userService.findUserByIdPrincipal(principal);
         return new ResponseEntity<>(cartService.getCartProductsByUserId(userId), HttpStatus.CREATED);
@@ -47,6 +49,7 @@ public class CartController {
      * @author Iryna Kopchak.
      */
     @PostMapping(value = "/add")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<CartProductDto> addProductToCart(@RequestBody CartAddDto cartAddDto, Principal principal) {
         try {
             cartService.addProductToCart(cartAddDto, principal);
@@ -63,6 +66,7 @@ public class CartController {
      * @author Iryna Kopchak.
      */
     @PutMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<CartProductDto> editProductCart(@RequestBody CartAddDto cartAddDto, Principal principal) {
         try {
             Long userId = userService.findUserByIdPrincipal(principal);
@@ -80,6 +84,7 @@ public class CartController {
      * @author Iryna Kopchak.
      */
     @PostMapping(value = "/delete")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Object> deleteProductFromCart(@RequestBody Map<String, Long> productCartJSON, Principal principal) {
         try {
             Long productId = productCartJSON.get("productId");

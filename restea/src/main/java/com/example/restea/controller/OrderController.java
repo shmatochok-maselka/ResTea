@@ -6,6 +6,7 @@ import com.example.restea.service.CartService;
 import com.example.restea.service.UserService;
 import com.example.restea.service.impl.OrderServiceImpl;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,7 @@ public class OrderController {
      */
     @JsonIgnoreProperties({"receiverName", "receiverSecondName", "receiverSurname", "phone", "address"})
     @GetMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<List<OrderDto>> findAllOrders(Principal principal) {
         Long userId = userService.findUserByIdPrincipal(principal);
         return new ResponseEntity<>(orderService.findAllUserOrders(userId), HttpStatus.OK);
@@ -52,6 +54,7 @@ public class OrderController {
      * @author Iryna Kopchak.
      */
     @PostMapping(value = "/add_order")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<OrderDto> addOrder(@RequestBody Order order, Principal principal) {
         try {
             Long userId = userService.findUserByIdPrincipal(principal);
