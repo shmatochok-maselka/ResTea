@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class ProductOrigin extends BaseEntity{
+public class Origin extends BaseEntity{
     @Column(name = "name")
     private String name;
 

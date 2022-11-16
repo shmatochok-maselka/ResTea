@@ -1,6 +1,6 @@
 package com.example.restea.dto;
 
-import com.example.restea.model.ProductOrigin;
+import com.example.restea.model.Origin;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,15 +12,15 @@ public class ProductOriginDto {
     private Long id;
     private String name;
 
-    public ProductOriginDto(ProductOrigin productOrigin) {
-        this.id = productOrigin.getId();
-        this.name = productOrigin.getName();
+    public ProductOriginDto(Origin origin) {
+        this.id = origin.getId();
+        this.name = origin.getName();
     }
 
-    public ProductOrigin toProductOrigin(){
-        ProductOrigin productOrigin = new ProductOrigin();
-        productOrigin.setId(this.id);
-        productOrigin.setName(this.name);
-        return productOrigin;
+    public Origin toProductOrigin(){
+        Origin origin = new Origin();
+        origin.setId(this.id);
+        origin.setName(this.name);
+        return origin;
     }
 }

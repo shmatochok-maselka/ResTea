@@ -1,16 +1,12 @@
 package com.example.restea.dto;
 
 import com.example.restea.model.Product;
-import com.example.restea.model.ProductFlavor;
-import com.example.restea.model.ProductProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -31,9 +27,9 @@ public class ProductDto {
 
     private ProductTypeDto type;
 
-    private List<ProductFlavorDto> flavors = new ArrayList<>();
+    private List<FlavorDto> flavors = new ArrayList<>();
 
-    private List<ProductPropertyDto> properties = new ArrayList<>();
+    private List<PropertyDto> properties = new ArrayList<>();
 
     public ProductDto(Product product) {
         this.id = product.getId();
@@ -44,10 +40,10 @@ public class ProductDto {
         this.origin = new ProductOriginDto(product.getOrigin());
         this.type = new ProductTypeDto(product.getType());
         this.flavors = product.getFlavors().stream()
-                .map(ProductFlavorDto::new)
+                .map(FlavorDto::new)
                 .collect(Collectors.toList());
         this.properties = product.getProperties().stream()
-                .map(ProductPropertyDto::new)
+                .map(PropertyDto::new)
                 .collect(Collectors.toList());
     }
 

@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/api/v1/categories")
 public class ProductCategoriesController {
-    private final ProductTypeService productTypeService;
-    private final ProductOriginService productOriginService;
-    private final ProductFlavorService productFlavorService;
-    private final ProductPropertyService productPropertyService;
+    private final TypeService typeService;
+    private final OriginService originService;
+    private final FlavorService flavorService;
+    private final PropertyService propertyService;
     private final ProductService productService;
 
     @Autowired
-    public ProductCategoriesController(ProductTypeService productTypeService, ProductOriginService productOriginService,
-                                       ProductFlavorService productFlavorService,
-                                       ProductPropertyService productPropertyService, ProductService productService) {
-        this.productTypeService = productTypeService;
-        this.productOriginService = productOriginService;
-        this.productFlavorService = productFlavorService;
-        this.productPropertyService = productPropertyService;
+    public ProductCategoriesController(TypeService typeService, OriginService originService,
+                                       FlavorService flavorService,
+                                       PropertyService propertyService, ProductService productService) {
+        this.typeService = typeService;
+        this.originService = originService;
+        this.flavorService = flavorService;
+        this.propertyService = propertyService;
         this.productService = productService;
     }
 
@@ -49,8 +49,8 @@ public class ProductCategoriesController {
     @ResponseBody
     public ResponseEntity<ProductCategoriesDto> findAllCategories() {
         ProductCategoriesDto productCategoriesDto = new ProductCategoriesDto
-                (productTypeService.findAllProductType(), productFlavorService.findAllProductFlavorsDto(),
-                        productOriginService.findAllProductOrigin(), productPropertyService.findAllProductPropertiesDto());
+                (typeService.findAllProductType(), flavorService.findAllProductFlavorsDto(),
+                        originService.findAllProductOrigin(), propertyService.findAllProductPropertiesDto());
         return ResponseEntity.ok(productCategoriesDto);
     }
 }

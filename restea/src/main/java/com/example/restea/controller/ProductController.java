@@ -50,21 +50,4 @@ public class ProductController {
         }
         return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.OK);
     }
-
-    /**
-     * Method for add product to db(admin panel).
-     *
-     * @return {@link ProductDto} instance.
-     * @author Iryna Kopchak.
-     */
-    @PostMapping(value = "/add-product")
-    public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto product) {
-        try {
-            productService.addProduct(product);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
 }

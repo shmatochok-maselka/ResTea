@@ -4,6 +4,6 @@ import com.example.restea.dto.ProductTypeDto;
 
 import java.util.List;
 
-public interface ProductTypeService {
+public interface TypeService {
     List<ProductTypeDto> findAllProductType();
 }

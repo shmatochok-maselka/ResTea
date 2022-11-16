@@ -4,6 +4,6 @@ import com.example.restea.dto.ProductOriginDto;
 
 import java.util.List;
 
-public interface ProductOriginService {
+public interface OriginService {
     List<ProductOriginDto> findAllProductOrigin();
 }

@@ -10,16 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "property")
 @Getter
 @Setter
 @ToString
-public class ProductProperty extends BaseEntity{
+public class Property extends BaseEntity{
     @Column(name = "name")
     private String name;
 

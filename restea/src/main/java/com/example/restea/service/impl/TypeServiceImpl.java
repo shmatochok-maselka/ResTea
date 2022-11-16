@@ -1,25 +1,21 @@
 package com.example.restea.service.impl;
 
-import com.example.restea.dto.BlogPostDto;
 import com.example.restea.dto.ProductTypeDto;
-import com.example.restea.model.ProductType;
-import com.example.restea.repository.ProductTypeRepository;
-import com.example.restea.service.ProductTypeService;
+import com.example.restea.repository.TypeRepository;
+import com.example.restea.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductTypeServiceImpl implements ProductTypeService {
-    private final ProductTypeRepository typeRepository;
+public class TypeServiceImpl implements TypeService {
+    private final TypeRepository typeRepository;
 
     @Autowired
-    public ProductTypeServiceImpl(ProductTypeRepository typeRepository) {
+    public TypeServiceImpl(TypeRepository typeRepository) {
         this.typeRepository = typeRepository;
     }
 

@@ -1,6 +1,6 @@
 package com.example.restea.dto;
 
-import com.example.restea.model.ProductType;
+import com.example.restea.model.Type;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,15 +12,15 @@ public class ProductTypeDto {
     private Long id;
     private String name;
 
-    public ProductTypeDto(ProductType productType) {
-        this.id = productType.getId();
-        this.name = productType.getName();
+    public ProductTypeDto(Type type) {
+        this.id = type.getId();
+        this.name = type.getName();
     }
 
-    public ProductType toProductType(){
-        ProductType productType = new ProductType();
-        productType.setId(this.id);
-        productType.setName(this.name);
-        return productType;
+    public Type toProductType(){
+        Type type = new Type();
+        type.setId(this.id);
+        type.setName(this.name);
+        return type;
     }
 }

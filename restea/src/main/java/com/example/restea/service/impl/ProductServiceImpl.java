@@ -1,11 +1,11 @@
 package com.example.restea.service.impl;
 
 import com.example.restea.dto.ProductDto;
-import com.example.restea.dto.ProductFlavorDto;
-import com.example.restea.dto.ProductPropertyDto;
+import com.example.restea.dto.FlavorDto;
+import com.example.restea.dto.PropertyDto;
 import com.example.restea.model.Product;
-import com.example.restea.model.ProductFlavor;
-import com.example.restea.model.ProductProperty;
+import com.example.restea.model.Flavor;
+import com.example.restea.model.Property;
 import com.example.restea.repository.ProductRepository;
 import com.example.restea.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -63,20 +63,20 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
     }
 
-    public List<ProductFlavor> flavorsDtoToFlavors(List<ProductFlavorDto> productFlavorsDto){
-        List<ProductFlavor> productFlavors = new ArrayList<>();
-        for(ProductFlavorDto productFlavorDto: productFlavorsDto){
-            ProductFlavor flavor = productFlavorDto.toProductFlavor();
-            productFlavors.add(flavor);
+    public List<Flavor> flavorsDtoToFlavors(List<FlavorDto> productFlavorsDto){
+        List<Flavor> flavors = new ArrayList<>();
+        for(FlavorDto flavorDto : productFlavorsDto){
+            Flavor flavor = flavorDto.toProductFlavor();
+            flavors.add(flavor);
         }
-        return productFlavors;
+        return flavors;
     }
 
-    public List<ProductProperty> propertiesDtoToProperties(List<ProductPropertyDto> productPropertiesDto){
-        List<ProductProperty> productProperties = new ArrayList<>();
-        for(ProductPropertyDto propertyDto: productPropertiesDto){
-            ProductProperty productProperty = propertyDto.toProductProperty();
-            productProperties.add(productProperty);
+    public List<Property> propertiesDtoToProperties(List<PropertyDto> productPropertiesDto){
+        List<Property> productProperties = new ArrayList<>();
+        for(PropertyDto propertyDto: productPropertiesDto){
+            Property property = propertyDto.toProductProperty();
+            productProperties.add(property);
         }
         return productProperties;
     }
