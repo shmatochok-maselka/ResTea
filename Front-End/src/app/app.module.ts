@@ -23,6 +23,7 @@ import {ContactsPageModule} from "./contacts-page/contacts-page.module";
 import {LoginModule} from "./login/login.module";
 import {RegistrationModule} from "./registration/registration.module";
 import {JwtModule} from "@auth0/angular-jwt";
+import {CartModule} from "./cart/cart.module";
 import {BlogModule} from "./blog/blog.module";
 
 export function tokenGetter() {
@@ -58,6 +59,7 @@ export function tokenGetter() {
     LoginModule,
     RegistrationModule,
     BlogModule,
+    CartModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
