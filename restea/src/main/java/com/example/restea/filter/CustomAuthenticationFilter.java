@@ -27,6 +27,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         this.authenticationManager = authenticationManager;
     }
 
+
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String username = request.getParameter("email");
@@ -38,17 +39,18 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
         User user = (User) authResult.getPrincipal();
-        Algorithm algorithm = Algorithm.HMAC256(("secє" +
-                "ret").getBytes());
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        long accessTokenDuration = 31L * 24 * 3600 * 1000;
         String access_token = JWT.create()
                 .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 31L * 24 * 3600 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + accessTokenDuration))
                 .withIssuer(request.getRequestURI())
                 .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
+        long refreshTokenDuration = 12 * 31L * 24 * 3600 * 1000;
         String refresh_token = JWT.create()
                 .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + refreshTokenDuration))
                 .withIssuer(request.getRequestURI())
                 .sign(algorithm);
 
