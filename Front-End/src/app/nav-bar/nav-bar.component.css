@@ -1,4 +1,4 @@
-nav{
+nav {
   background-color: black;
   display: flex;
   padding-top: 15px;
@@ -33,14 +33,16 @@ nav{
 }
 
 
-#right-items{
+#right-items {
   display: flex;
   justify-content: flex-end;
   margin-right: 2%;
   align-items: center;
   gap: 1rem;
 }
-.mat-icon{
+
+.mat-icon {
+  cursor: pointer;
   font-size: 34px;
   height: 34px;
   width: 34px;

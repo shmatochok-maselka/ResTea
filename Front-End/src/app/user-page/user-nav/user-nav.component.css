@@ -1,0 +1,17 @@
+nav{
+  height: 100vh;
+  width: 40vh;
+  border: 2px solid lightgray;
+  text-align: center;
+  background-color: mintcream;
+}
+
+ul{
+  list-style-type: none;
+}
+ul,.page-title{
+  margin-top: 20%;
+}
+li{
+  margin-bottom: 2%;
+}
