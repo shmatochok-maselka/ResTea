@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Service
 public class ProductFlavorServiceImpl implements ProductFlavorService {
-    private ProductFlavorsRepository flavorsRepository;
+    private final ProductFlavorsRepository flavorsRepository;
 
     @Autowired
     public ProductFlavorServiceImpl(ProductFlavorsRepository flavorsRepository) {

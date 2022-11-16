@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Service
 public class ProductOriginServiceImpl implements ProductOriginService {
-    private ProductOriginRepository originRepository;
+    private final ProductOriginRepository originRepository;
 
     @Autowired
     public ProductOriginServiceImpl(ProductOriginRepository originRepository) {

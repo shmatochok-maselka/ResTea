@@ -1,6 +1,6 @@
 package com.example.restea.controller;
 
-import com.example.restea.model.ProductCategories;
+import com.example.restea.dto.ProductCategoriesDto;
 import com.example.restea.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,18 +28,29 @@ public class ProductCategoriesController {
         this.productService = productService;
     }
 
+    /**
+     * Method for return min and max price for filter in shop page.
+     *
+     * @author Iryna Kopchak.
+     */
     @GetMapping("/max_min_price")
     @ResponseBody
     public ResponseEntity<Object> maxAndMinPricesOfProduct() {
         return new ResponseEntity<>(productService.minMaxProductPrice().toMap(), HttpStatus.OK);
     }
 
+    /**
+     * Method for return all categories of products for filter in shop page.
+     *
+     * @return {@link ProductCategoriesDto} instance.
+     * @author Iryna Kopchak.
+     */
     @GetMapping()
     @ResponseBody
-    public ResponseEntity<ProductCategories> findAllCategories() {
-        ProductCategories productCategories = new ProductCategories
+    public ResponseEntity<ProductCategoriesDto> findAllCategories() {
+        ProductCategoriesDto productCategoriesDto = new ProductCategoriesDto
                 (productTypeService.findAll(), productFlavorService.findAll(), productOriginService.findAll(),
                         productPropertyService.findAll());
-        return ResponseEntity.ok(productCategories);
+        return ResponseEntity.ok(productCategoriesDto);
     }
 }

@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Service
 public class ProductTypeServiceImpl implements ProductTypeService {
-    private ProductTypeRepository typeRepository;
+    private final ProductTypeRepository typeRepository;
 
     @Autowired
     public ProductTypeServiceImpl(ProductTypeRepository typeRepository) {

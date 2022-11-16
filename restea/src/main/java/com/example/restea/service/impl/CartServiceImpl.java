@@ -2,6 +2,7 @@ package com.example.restea.service.impl;
 
 import com.example.restea.dto.CartAddDto;
 import com.example.restea.dto.CartProductDto;
+import com.example.restea.exception.CartProductNotFoundException;
 import com.example.restea.model.Cart;
 import com.example.restea.model.CartId;
 import com.example.restea.model.Product;
@@ -10,6 +11,7 @@ import com.example.restea.service.CartService;
 import com.example.restea.service.ProductService;
 import com.example.restea.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -44,7 +46,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart findById(CartId cartId) {
-        return cartRepository.findById(cartId).orElseThrow(IllegalArgumentException::new);
+        return cartRepository.findById(cartId)
+                .orElseThrow(() -> new CartProductNotFoundException(HttpStatus.NOT_FOUND, "No cart with such id"));
     }
 
     @Override

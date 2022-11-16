@@ -12,7 +12,7 @@ import java.util.Set;
 @Service
 public class ProductPropertyServiceImpl implements ProductPropertyService {
 
-    private ProductPropertyRepository propertyRepository;
+    private final ProductPropertyRepository propertyRepository;
 
     @Autowired
     public ProductPropertyServiceImpl(ProductPropertyRepository propertyRepository) {

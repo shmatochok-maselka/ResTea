@@ -1,12 +1,12 @@
 package com.example.restea.dto;
 
-import com.example.restea.model.*;
+import com.example.restea.model.Product;
+import com.example.restea.model.ProductFlavor;
+import com.example.restea.model.ProductProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 

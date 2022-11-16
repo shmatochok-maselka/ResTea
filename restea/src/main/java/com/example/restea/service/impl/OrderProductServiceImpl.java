@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 public class OrderProductServiceImpl implements OrderProductService {
-    private OrderProductRepository orderProductRepository;
+    private final OrderProductRepository orderProductRepository;
 
     @Autowired
     public OrderProductServiceImpl(OrderProductRepository orderProductRepository) {
