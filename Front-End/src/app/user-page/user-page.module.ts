@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { UserPageComponent } from './user-page.component';
 import {UserNavModule} from "./user-nav/user-nav.module";
 import {UserProfileModule} from "./user-profile/user-profile.module";
+import {RouterOutlet} from "@angular/router";
+import {UserPasswordModule} from "./user-password/user-password.module";
 
 
 
@@ -14,6 +16,8 @@ import {UserProfileModule} from "./user-profile/user-profile.module";
     CommonModule,
     UserNavModule,
     UserProfileModule,
+    RouterOutlet,
+    UserPasswordModule,
   ],
   exports: [
     UserPageComponent

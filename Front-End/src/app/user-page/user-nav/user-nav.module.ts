@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserNavComponent } from './user-nav.component';
 import {MatButtonModule} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
 
 
 
@@ -9,10 +10,11 @@ import {MatButtonModule} from "@angular/material/button";
   declarations: [
     UserNavComponent
   ],
-  imports: [
-    CommonModule,
-    MatButtonModule
-  ],
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        RouterLink
+    ],
   exports: [
     UserNavComponent
   ]
