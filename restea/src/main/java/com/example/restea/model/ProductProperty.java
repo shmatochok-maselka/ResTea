@@ -6,18 +6,17 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 @Entity
-@Table(name = "product_flavor")
+@Table(name = "product_properties")
 @DynamicUpdate
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class ProductFlavor implements  java.io.Serializable{
+public class ProductProperty implements  java.io.Serializable{
     @EmbeddedId
-    private ProductFlavorId id;
+    private ProductPropertyId id;
 }
