@@ -10,6 +10,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {BlogPostPageComponent} from "./blog/blog-post-page/blog-post-page.component";
+import {UserPageComponent} from "./user-page/user-page.component";
 
 const routes: Routes = [
   {path:'', component: MainPageComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:'about-us', component: AboutUsPageComponent},
   {path:'contacts',component:ContactsPageComponent, canActivate:[AuthGuard]},
   {path:'login', component:LoginComponent},
-  {path:'register', component:RegistrationComponent}
+  {path:'register', component:RegistrationComponent},
+  {path:'user',component:UserPageComponent},
 ];
 
 @NgModule({
