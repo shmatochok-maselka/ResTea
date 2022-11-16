@@ -9,13 +9,12 @@
     <div *ngFor="let product of products" >
       <app-cart-product  [cartProduct]="product"></app-cart-product>
   </div>
-
+  </div>
   <div class = "bottom">
     <div class="discount">
       <input type="text" class = "discount_in" placeholder = "Введіть код"/>
       <button class = "button">Використати знижку</button>
     </div>
     <button class = "button order">Замовити</button>
-  </div>
   </div>
 </div>

@@ -8,8 +8,26 @@
 
 .product-image{
   object-fit: cover;
-  width: 10%;
-  height: 10%;
+  width: 20%;
+  height: 20%;
+}
+
+.product-name{
+  width: 30%;
+  padding-left: 10%;
+}
+
+.pr-im-nm{
+  position: static;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50%;
+}
+
+.pr-num{
+  position: static;
+  width: 40%;
 }
 
 .minus{
@@ -29,15 +47,26 @@
 }
 
 .form {
-  width: 10%;
+  width: 5%;
   background-color: #ecf0f1;
   border: none;
   padding: 0.5em 1em;
   border-radius: 2em;
 }
+
+.product-price{
+  position: static;
+  width: 17%;
+}
+
+.delete{
+
+  display: flex;
+}
+
 .del{
   position: relative;
-  border-radius: 50%;
-  border: 2px solid rgb(231, 50, 50);
+  border: none;
+  color: red;
   background-color: #fff;
 }

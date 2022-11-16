@@ -1,11 +1,16 @@
 <div class="product">
-  <img class="product-image" src="{{cartProduct.product.image}}" alt="product image">
-  <p class="product-name">{{cartProduct.product.name}}</p>
-  <div>
+  <div class="pr-im-nm">
+    <img class="product-image" src="{{cartProduct.product.image}}" alt="product image">
+    <p class="product-name">{{cartProduct.product.name}}</p>
+  </div>
+  <div class="pr-num">
     <a href="#" class="minus">-</a>
     <input class="form" value="1" />
     <a href="#" class="plus">+</a>
   </div>
   <p class="product-price">{{cartProduct.product.price}}</p>
-  <button class="del">X</button>
+  <div class="delete">
+    <button class="del">X</button>
+  </div>
 </div>
+
