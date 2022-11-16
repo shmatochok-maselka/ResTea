@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserProfileComponent } from './user-profile.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -8,9 +9,10 @@ import { UserProfileComponent } from './user-profile.component';
   declarations: [
     UserProfileComponent
   ],
-  imports: [
-    CommonModule
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule
+    ],
   exports: [
     UserProfileComponent
   ]
