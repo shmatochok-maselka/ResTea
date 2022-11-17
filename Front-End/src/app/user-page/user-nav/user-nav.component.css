@@ -1,0 +1,32 @@
+nav {
+  text-align: center;
+  background-color: #7BC5AE;
+  width: 100%;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul, .page-title {
+  margin-top: 20%;
+}
+
+li {
+  margin-bottom: 2%;
+}
+
+mat-button {
+  color: white;
+}
+
+h1 {
+  font-size: xx-large;
+}
+
+button {
+  font-size: x-large;
+  margin-bottom: 5%;
+}
+

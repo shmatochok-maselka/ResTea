@@ -11,6 +11,7 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {CartComponent} from "./cart/cart.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {BlogPostPageComponent} from "./blog/blog-post-page/blog-post-page.component";
+import {UserPageComponent} from "./user-page/user-page.component";
 
 const routes: Routes = [
   {path:'', component: MainPageComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'contacts',component:ContactsPageComponent, },
   {path:'login', component:LoginComponent},
   {path:'register', component:RegistrationComponent},
+  {path:'user',component:UserPageComponent},
   {path:'cart', component:CartComponent, canActivate:[AuthGuard]}
 ];
 
