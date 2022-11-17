@@ -64,7 +64,6 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:4020']
-      }
     })
   ],
   providers: [],
