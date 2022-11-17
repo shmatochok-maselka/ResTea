@@ -1,12 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {BlogPost} from "../../models/blog-post";
 
-interface postComponents {
-  imageSrc: string;
-  imageAlt: string;
-  postHeader: string;
-  postText: string;
-  postLink: string;
-}
 
 @Component({
   selector: 'app-blog-carousel',
@@ -14,7 +8,7 @@ interface postComponents {
   styleUrls: ['./blog-carousel.component.css']
 })
 export class BlogCarouselComponent implements OnInit {
-  @Input() posts: postComponents[] = []
+  @Input() posts: BlogPost[] = []
   @Input() indicators = true;
   @Input() controls = true;
 

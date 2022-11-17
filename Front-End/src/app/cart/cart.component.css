@@ -1,0 +1,64 @@
+
+
+@font-face {
+  font-family: ‘Marmelad’;
+  src: url('https://fonts.google.com/specimen/Marmelad');
+}
+
+.container {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+}
+
+.head {
+  text-align: center;
+  font-size: 200%;
+}
+
+.table {
+  width: 80%;
+  overflow: hidden;
+  position: static;
+  border-radius: 0.5em;
+  border-color: black;
+  background: #ecf0f1;
+  align-items: center;
+}
+
+.table_head {
+  padding: 1em 0;
+  justify-content: space-around;
+  color: #f7f7f7;
+  background: #4d4c4c;
+  display: flex;
+}
+
+.button {
+  background-color: #028C6A;
+  border: none;
+  border-radius: 0.5em;
+  color: #ffffff;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.bottom {
+  width: 80%;
+  display: flex;
+  margin-top: 1em;
+  justify-content: space-between;
+}
+
+.discount_in {
+  background-color: #ecf0f1;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 2em;
+}

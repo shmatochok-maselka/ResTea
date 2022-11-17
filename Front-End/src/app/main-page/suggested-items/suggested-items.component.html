@@ -1,7 +1,7 @@
 <h1 class="suggested-items-title"> Товари, що ми рекомендуємо</h1>
 <mat-grid-list cols="4" rowHeight="300px">
   <mat-grid-tile *ngFor="let item of items">
-    <app-product></app-product>
+    <app-product [products]="item"></app-product>
   </mat-grid-tile>
 </mat-grid-list>
 
