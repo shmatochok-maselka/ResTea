@@ -1,12 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Product} from "../../models/product";
 
-interface item {
-  itemImageSrc: string;
-  itemImageAlt: string;
-  itemName: string;
-  itemPrice: string;
-  itemLink: string;
-}
 
 @Component({
   selector: 'app-suggested-items',
@@ -14,7 +8,7 @@ interface item {
   styleUrls: ['./suggested-items.component.css']
 })
 export class SuggestedItemsComponent implements OnInit {
-  @Input() items: item[] = []
+  @Input() items: Product[] = []
 
   constructor() {
   }

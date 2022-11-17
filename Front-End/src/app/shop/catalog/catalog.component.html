@@ -1,5 +1,5 @@
 <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)"  rowHeight="2:3" gutterSize="1rem">
   <mat-grid-tile *ngFor="let product of products" >
-    <app-product [products]="product"></app-product>
+    <app-product  [products]="product"></app-product>
   </mat-grid-tile>
 </mat-grid-list>
