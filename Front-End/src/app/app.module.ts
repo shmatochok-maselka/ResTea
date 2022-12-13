@@ -25,17 +25,18 @@ import {RegistrationModule} from "./registration/registration.module";
 import {JwtModule} from "@auth0/angular-jwt";
 import {CartModule} from "./cart/cart.module";
 import {BlogModule} from "./blog/blog.module";
-import {UserPageModule} from "./user-page/user-page.module";
 
 export function tokenGetter() {
   return localStorage.getItem("token")
 }
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
   ],
+  exports: [],
   imports: [
     OneProductModule,
     RouterLink,
@@ -65,11 +66,10 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:4020']
-    })
+      }}),
+
   ],
-  providers: [],
-  exports: [],
-  bootstrap: [AppComponent]
+  providers: []
 })
 export class AppModule {
 }
